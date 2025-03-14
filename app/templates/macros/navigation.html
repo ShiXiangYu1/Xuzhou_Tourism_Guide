@@ -49,4 +49,11 @@
     </div>
     {% endif %}
 </div>
+{% endmacro %}
+
+{% macro map_link(name, address, lat=None, lng=None) %}
+<a href="{{ url_for('main.tourist_map') }}?name={{ name | urlencode }}&address={{ address | urlencode }}{% if lat and lng %}&lat={{ lat }}&lng={{ lng }}{% endif %}" 
+   class="btn btn-sm btn-outline-danger mt-2">
+   <i class="fas fa-map-marked-alt me-1"></i>查看地图位置
+</a>
 {% endmacro %} 

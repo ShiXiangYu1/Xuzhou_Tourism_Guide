@@ -3,7 +3,7 @@
 {% block title %}徐州网红打卡地{% endblock %}
 
 <!-- 导入导航宏 -->
-{% from "macros/navigation.html" import location_card %}
+{% from "macros/navigation.html" import location_card, map_link %}
 
 {% block extra_css %}
 <style>
@@ -107,7 +107,7 @@
                     <h5 class="card-title">云龙湖九里湾观景台</h5>
                     <p class="card-text">徐州摄影爱好者聚集地，湖光山色尽收眼底，是拍摄日落和云龙湖全景的绝佳位置。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市云龙区九里湾公园</small>
-                        {{ location_card("云龙湖九里湾观景台", "徐州市云龙区九里湾公园") }}
+                        {{ map_link("云龙湖九里湾观景台", "徐州市云龙区九里湾公园") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">
@@ -135,7 +135,7 @@
                     <h5 class="card-title">老城墙街区文创园</h5>
                     <p class="card-text">保留明清建筑风格的文创街区，网红咖啡店与创意小店云集，极具文艺气息。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市鼓楼区中山北路</small>
-                        {{ location_card("老城墙街区文创园", "徐州市鼓楼区中山北路老城墙") }}
+                        {{ map_link("老城墙街区文创园", "徐州市鼓楼区中山北路老城墙") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">
@@ -163,7 +163,7 @@
                     <h5 class="card-title">徐州博物馆汉兵马俑展区</h5>
                     <p class="card-text">中国仅存的汉代兵马俑，被誉为"东方艺术明珠"，展厅设计极具震撼力。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市云龙区东段</small>
-                        {{ location_card("徐州博物馆", "徐州市云龙区东段") }}
+                        {{ map_link("徐州博物馆", "徐州市云龙区东段") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">
@@ -191,7 +191,7 @@
                     <h5 class="card-title">彭祖园古建筑群</h5>
                     <p class="card-text">纪念中国传说中的长寿始祖彭祖的园林，古色古香的建筑与亭台楼阁适合古风摄影。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市铜山区彭祖大道</small>
-                        {{ location_card("彭祖园", "徐州市铜山区彭祖大道") }}
+                        {{ map_link("彭祖园", "徐州市铜山区彭祖大道") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">
@@ -219,7 +219,7 @@
                     <h5 class="card-title">戏马台音乐喷泉</h5>
                     <p class="card-text">亚洲最大的音乐喷泉之一，夜晚灯光秀与水舞表演相结合，场面壮观。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市泉山区戏马台广场</small>
-                        {{ location_card("戏马台音乐喷泉", "徐州市泉山区戏马台广场") }}
+                        {{ map_link("戏马台音乐喷泉", "徐州市泉山区戏马台广场") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">
@@ -246,7 +246,7 @@
                     <h5 class="card-title">淮海食味轩小吃城</h5>
                     <p class="card-text">徐州网红美食集中地，汇集各类徐州特色小吃，是美食博主打卡圣地。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市鼓楼区淮海东路</small>
-                        {{ location_card("淮海食味轩小吃城", "徐州市鼓楼区淮海东路") }}
+                        {{ map_link("淮海食味轩小吃城", "徐州市鼓楼区淮海东路") }}
                     </p>
                     
                     <div class="best-times mt-3 mb-2">

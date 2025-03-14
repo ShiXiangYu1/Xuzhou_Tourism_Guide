@@ -50,6 +50,21 @@
         padding-right: 10px;
     }
     
+    /* 位置列表项样式 */
+    .list-location-item {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    
+    .list-location-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .list-location-item.active {
+        background-color: #e9f5ff;
+        border-left: 3px solid #007bff;
+    }
+    
     /* 移动端优化 */
     @media (max-width: 768px) {
         #map-container {
@@ -166,8 +181,209 @@
 
 {% block extra_js %}
 <!-- 百度地图API -->
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=您的百度地图API密钥"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script>
+
+<!-- 离线模式支持 -->
 <script>
+// 标记是否处于离线模式
+let isOfflineMode = false;
+
+// 检查百度地图API是否成功加载
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        if (typeof BMap === 'undefined') {
+            console.log('百度地图API加载失败，切换到离线模式');
+            isOfflineMode = true;
+            activateOfflineMode();
+        }
+    }, 3000); // 3秒后检查
+});
+
+// 激活离线模式
+function activateOfflineMode() {
+    const mapContainer = document.getElementById('map-container');
+    if (!mapContainer) return;
+    
+    // 从URL获取位置参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const address = urlParams.get('address');
+    
+    // 生成离线模式UI
+    let offlineContent = `
+        <div class="card">
+            <div class="card-header bg-warning">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <h5 class="mb-0">地图服务暂时不可用</h5>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-4">
+                    <i class="fas fa-map-marked-alt" style="font-size: 80px; color: #ccc;"></i>
+                </div>
+                <p class="lead">无法连接到百度地图服务，以下是位置信息：</p>
+                ${name ? `<h4 class="mt-3">${name}</h4>` : ''}
+                ${address ? `<p><i class="fas fa-map-marker-alt text-danger me-2"></i>${address}</p>` : ''}
+                
+                <div class="mt-4">
+                    <p>您可以尝试以下方式：</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-primary" onclick="window.location.reload()">
+                            <i class="fas fa-sync-alt me-2"></i>重新加载
+                        </button>
+                        <a href="/" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-2"></i>返回首页
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // 替换地图容器内容
+    mapContainer.innerHTML = offlineContent;
+    
+    // 禁用地图控件
+    document.querySelectorAll('.map-controls').forEach(control => {
+        control.classList.add('disabled');
+        control.innerHTML = `
+            <div class="alert alert-warning mb-0">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                地图功能暂时不可用，请稍后再试
+            </div>
+        `;
+    });
+    
+    // 加载离线位置列表
+    loadOfflineLocationList();
+}
+
+// 加载离线位置列表
+function loadOfflineLocationList() {
+    const locationList = document.getElementById('location-list');
+    if (!locationList) return;
+    
+    // 从URL获取位置参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    
+    // 创建静态位置列表
+    const offlineLocations = [
+        { name: '云龙山风景区', address: '徐州市云龙区', type: 'attraction' },
+        { name: '龟山汉墓', address: '徐州市云龙区龟山路2号', type: 'attraction' },
+        { name: '徐州博物馆', address: '徐州市云龙区和平路118号', type: 'attraction' },
+        { name: '彭祖园', address: '徐州市泉山区彭祖大道1号', type: 'attraction' },
+        { name: '老玖烧烤', address: '徐州和平路', type: 'food' },
+        { name: '徐州羊汤', address: '徐州市泉山区', type: 'food' },
+        { name: '徐州火车站', address: '徐州市云龙区', type: 'traffic' }
+    ];
+    
+    // 生成HTML
+    let html = '';
+    offlineLocations.forEach((location, index) => {
+        // 获取图标类型
+        let iconClass = 'fa-map-marker-alt';
+        let iconColor = 'text-secondary';
+        
+        if (location.type === 'attraction') {
+            iconClass = 'fa-landmark';
+            iconColor = 'text-danger';
+        } else if (location.type === 'food') {
+            iconClass = 'fa-utensils';
+            iconColor = 'text-primary';
+        } else if (location.type === 'traffic') {
+            iconClass = 'fa-bus';
+            iconColor = 'text-success';
+        }
+        
+        // 检查是否是当前位置
+        const isActive = name && location.name === name;
+        const activeClass = isActive ? 'active' : '';
+        
+        html += `
+            <li class="list-group-item list-location-item ${activeClass}">
+                <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">
+                        <i class="fas ${iconClass} ${iconColor} me-2"></i>${location.name}
+                    </h6>
+                </div>
+                <small class="text-muted d-block text-truncate">${location.address}</small>
+            </li>
+        `;
+    });
+    
+    // 设置列表内容
+    locationList.innerHTML = html;
+    
+    // 更新位置信息卡片
+    if (name) {
+        const selectedLocation = offlineLocations.find(loc => loc.name === name);
+        if (selectedLocation) {
+            updateOfflineLocationInfo(selectedLocation);
+        }
+    }
+}
+
+// 更新离线位置信息
+function updateOfflineLocationInfo(location) {
+    const locationInfo = document.getElementById('location-info');
+    const locationTitle = document.getElementById('selected-location-title');
+    
+    if (!locationInfo || !locationTitle) return;
+    
+    // 更新标题
+    locationTitle.textContent = location.name;
+    
+    // 构建信息HTML
+    let html = `
+        <h5>${location.name}</h5>
+        <p><i class="fas fa-map-marker-alt text-danger me-2"></i>${location.address}</p>
+        <div class="alert alert-info mt-3">
+            <i class="fas fa-info-circle me-2"></i>
+            离线模式下无法显示完整的位置信息，请恢复网络连接后查看
+        </div>
+    `;
+    
+    // 更新信息区域
+    locationInfo.innerHTML = html;
+}
+</script>
+
+<!-- 备用地图API引用 -->
+<script>
+// 如果主API加载失败，尝试使用备用API
+setTimeout(function() {
+    if (typeof BMap === 'undefined' && !isOfflineMode) {
+        console.log('尝试加载备用百度地图API...');
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://api.map.baidu.com/getscript?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N&services=&t=' + Date.now();
+        document.body.appendChild(script);
+        
+        // 检查备用API是否加载成功
+        script.onload = function() {
+            console.log('备用API加载成功，正在初始化地图...');
+            if (typeof BMap !== 'undefined') {
+                // 尝试初始化地图
+                try {
+                    initMap();
+                    loadLocations();
+                } catch (e) {
+                    console.error('地图初始化失败:', e);
+                    activateOfflineMode();
+                }
+            }
+        };
+        
+        script.onerror = function() {
+            console.error('备用API加载失败，切换到离线模式');
+            activateOfflineMode();
+        };
+    }
+}, 4000); // 4秒后尝试加载备用API
+</script>
+
     // 地图实例和标记点集合
     let map;
     let markers = [];
@@ -214,23 +430,78 @@
             "</div>"
         );
         
-        // 点击标记时显示信息窗口
+        // 添加点击事件
         centerMarker.addEventListener("click", function(){
             this.openInfoWindow(centerInfoWindow);
         });
         
-        // 创建信息窗口实例
-        infoWindow = new BMap.InfoWindow("", {
-            width: 300,
-            height: 120,
-            title: "位置信息"
-        });
+        // 创建全局信息窗口用于显示位置信息
+        infoWindow = new BMap.InfoWindow("");
         
+        // 处理URL参数，如果有位置参数，直接定位到指定位置
+        handleUrlParams();
+
         // 加载坐标点数据
         loadLocations();
-        
+
         // 初始化事件监听
         initEventListeners();
+    }
+    
+    // 处理URL参数，支持从其他页面跳转并定位到特定位置
+    function handleUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const address = urlParams.get('address');
+        const lat = parseFloat(urlParams.get('lat'));
+        const lng = parseFloat(urlParams.get('lng'));
+        
+        if (name && address && !isNaN(lat) && !isNaN(lng)) {
+            console.log(`从URL参数定位到: ${name}, 坐标: ${lat},${lng}`);
+            
+            // 创建一个高亮标记
+            const point = new BMap.Point(lng, lat);
+            const highlightMarker = new BMap.Marker(point);
+            map.addOverlay(highlightMarker);
+            
+            // 设置动画效果
+            highlightMarker.setAnimation(BMAP_ANIMATION_BOUNCE);
+            
+            // 设置地图中心点和缩放级别
+            map.centerAndZoom(point, 16);
+            
+            // 创建信息窗口
+            const customInfoWindow = new BMap.InfoWindow(
+                "<div style='padding:8px;'>" +
+                `<h5 style='margin-bottom:5px;font-weight:bold;'>${name}</h5>` + 
+                `<p style='margin:0;'>${address}</p>` +
+                "</div>"
+            );
+            
+            // 自动打开信息窗口
+            highlightMarker.openInfoWindow(customInfoWindow);
+            
+            // 在加载位置列表后，高亮对应的列表项
+            setTimeout(function() {
+                highlightLocationInList(name);
+            }, 1000);
+        }
+    }
+    
+    // 在位置列表中高亮显示指定的位置
+    function highlightLocationInList(name) {
+        const listItems = document.querySelectorAll('.list-location-item');
+        listItems.forEach(item => {
+            const itemName = item.getAttribute('data-name');
+            if (itemName === name) {
+                // 移除所有项的active类
+                listItems.forEach(i => i.classList.remove('active'));
+                // 添加active类到匹配项
+                item.classList.add('active');
+                // 滚动到视图中
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
     }
     
     // 加载位置坐标数据

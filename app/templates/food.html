@@ -3,7 +3,7 @@
 {% block title %}徐州美食推荐{% endblock %}
 
 <!-- 导入导航宏 -->
-{% from "macros/navigation.html" import location_card %}
+{% from "macros/navigation.html" import location_card, map_link %}
 
 {% block extra_css %}
 <style>
@@ -72,7 +72,7 @@
                     </div>
                     <p class="card-text">徐州最知名的烧烤品牌之一，以羊肉串和特色腌制技术闻名，推荐尝试羊排和鸡翅。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：和平路</small>
-                        {{ location_card("老玖烧烤", "徐州和平路", "34.2716", "117.1847") }}
+                        {{ map_link("老玖烧烤", "徐州和平路", "34.2716", "117.1847") }}
                     </p>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     </div>
                     <p class="card-text">环境较好，特色是调料独特，肉质鲜嫩。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：万达广场附近</small>
-                        {{ location_card("火筷子烧烤", "徐州万达广场", "34.2623", "117.1789") }}
+                        {{ map_link("火筷子烧烤", "徐州万达广场", "34.2623", "117.1789") }}
                     </p>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     </div>
                     <p class="card-text">民间风味浓厚，特色是铁棍烤制，使食材保持原汁原味。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：云龙区大龙湖附近</small>
-                        {{ location_card("大铁棍烧烤", "徐州云龙区大龙湖", "34.2609", "117.1841") }}
+                        {{ map_link("大铁棍烧烤", "徐州云龙区大龙湖", "34.2609", "117.1841") }}
                     </p>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                     </div>
                     <p class="card-text">有名的深夜食堂，尤其推荐烤生蚝和烤羊肉。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：淮海西路</small>
-                        {{ location_card("奇火烧烤", "徐州淮海西路") }}
+                        {{ map_link("奇火烧烤", "徐州淮海西路") }}
                     </p>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                     </div>
                     <p class="card-text">当地特色面食，外脆里软。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市中心多处小吃街</small>
-                        {{ location_card("徐州烙馍", "徐州小吃街") }}
+                        {{ map_link("徐州烙馍", "徐州小吃街") }}
                     </p>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                     </div>
                     <p class="card-text">徐州特色卤味，入味且香辣。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：小吃街</small>
-                        {{ location_card("香辣鸡架", "徐州小吃街") }}
+                        {{ map_link("香辣鸡架", "徐州小吃街") }}
                     </p>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                     </div>
                     <p class="card-text">徐州名小吃，皮薄馅多，汤汁丰盈。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市区多家连锁店</small>
-                        {{ location_card("彭城汤包", "徐州彭城汤包") }}
+                        {{ map_link("彭城汤包", "徐州彭城汤包") }}
                     </p>
                 </div>
             </div>
