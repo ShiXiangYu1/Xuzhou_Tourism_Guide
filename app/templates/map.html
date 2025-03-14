@@ -180,8 +180,232 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- 百度地图API -->
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script>
+<!-- 百度地图API - 使用异步加载 -->
+<script type="text/javascript">
+// 动态加载百度地图API
+function loadBaiduMapScript() {
+    return new Promise((resolve, reject) => {
+        // 如果已经加载，直接返回
+        if (window.BMap) {
+            resolve(window.BMap);
+            return;
+        }
+        
+        console.log('开始加载百度地图API...');
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://api.map.baidu.com/api?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N&callback=initBaiduMap';
+        script.async = true;
+        script.onerror = () => {
+            console.error('百度地图API加载失败');
+            reject(new Error('百度地图API加载失败'));
+            isOfflineMode = true;
+            activateOfflineMode();
+        };
+        
+        // 定义回调函数
+        window.initBaiduMap = function() {
+            console.log('百度地图API加载完成');
+            resolve(window.BMap);
+            // 延迟初始化地图，避免阻塞页面渲染
+            setTimeout(() => {
+                if (!isOfflineMode) {
+                    initMap();
+                }
+            }, 100);
+        };
+        
+        document.body.appendChild(script);
+    });
+}
+
+// 在DOM加载完成后尝试加载地图
+document.addEventListener('DOMContentLoaded', function() {
+    // 创建Toast容器
+    createToastContainer();
+    
+    // 检查缓存状态
+    if (CacheManager.isCacheValid()) {
+        console.log('缓存数据有效');
+    } else {
+        console.log('缓存数据无效或不存在');
+    }
+    
+    // 检查网络连接
+    if (navigator.onLine) {
+        // 异步加载百度地图API
+        loadBaiduMapScript()
+            .catch(error => {
+                console.error('地图API加载失败:', error);
+                isOfflineMode = true;
+                activateOfflineMode();
+            });
+    } else {
+        console.log('网络离线，启用离线模式');
+        isOfflineMode = true;
+        activateOfflineMode();
+    }
+    
+    // 初始化事件监听
+    initializeUIEvents();
+});
+</script>
+
+<!-- 数据缓存机制 -->
+<script>
+// 缓存管理对象
+const CacheManager = {
+    // 缓存键名
+    CACHE_KEY: 'xuzhou_map_data_cache',
+    CACHE_TIMESTAMP_KEY: 'xuzhou_map_data_timestamp',
+    CACHE_VERSION: '1.0',
+    
+    // 缓存过期时间（24小时，单位毫秒）
+    CACHE_EXPIRY: 24 * 60 * 60 * 1000,
+    
+    // 保存数据到缓存
+    saveToCache: function(data) {
+        try {
+            // 添加缓存版本信息
+            const cacheData = {
+                version: this.CACHE_VERSION,
+                data: data,
+                categories: {}
+            };
+            
+            // 按类别组织数据，方便后续查询
+            data.forEach(item => {
+                const category = item.type || 'other';
+                if (!cacheData.categories[category]) {
+                    cacheData.categories[category] = [];
+                }
+                cacheData.categories[category].push(item);
+            });
+            
+            // 存储数据
+            localStorage.setItem(this.CACHE_KEY, JSON.stringify(cacheData));
+            
+            // 更新时间戳
+            localStorage.setItem(this.CACHE_TIMESTAMP_KEY, Date.now().toString());
+            
+            console.log(`缓存数据已更新，共 ${data.length} 条位置信息`);
+            return true;
+        } catch (e) {
+            console.error('保存缓存数据失败:', e);
+            return false;
+        }
+    },
+    
+    // 从缓存读取数据
+    getFromCache: function(category = 'all') {
+        try {
+            // 获取缓存数据
+            const cacheDataString = localStorage.getItem(this.CACHE_KEY);
+            if (!cacheDataString) return null;
+            
+            const cacheData = JSON.parse(cacheDataString);
+            
+            // 版本检查
+            if (cacheData.version !== this.CACHE_VERSION) {
+                console.log('缓存版本不匹配，需要更新');
+                return null;
+            }
+            
+            // 如果请求特定类别，返回该类别的数据
+            if (category !== 'all' && cacheData.categories[category]) {
+                return cacheData.categories[category];
+            }
+            
+            // 否则返回所有数据
+            return cacheData.data;
+        } catch (e) {
+            console.error('读取缓存数据失败:', e);
+            return null;
+        }
+    },
+    
+    // 检查缓存是否有效
+    isCacheValid: function() {
+        const timestamp = localStorage.getItem(this.CACHE_TIMESTAMP_KEY);
+        if (!timestamp) return false;
+        
+        const age = Date.now() - parseInt(timestamp);
+        return age < this.CACHE_EXPIRY;
+    },
+    
+    // 清除缓存
+    clearCache: function() {
+        localStorage.removeItem(this.CACHE_KEY);
+        localStorage.removeItem(this.CACHE_TIMESTAMP_KEY);
+        console.log('缓存数据已清除');
+    }
+};
+
+// 查询缓存的位置信息
+function getCachedLocation(name) {
+    try {
+        const cacheData = JSON.parse(localStorage.getItem(CacheManager.CACHE_KEY));
+        if (!cacheData || !cacheData.data) return null;
+        
+        return cacheData.data.find(item => item.name === name);
+    } catch (e) {
+        console.error('查询缓存位置失败:', e);
+        return null;
+    }
+}
+
+// 更新离线位置信息 - 这个函数之前被错误地删除了
+function updateOfflineLocationInfo(location) {
+    const locationInfo = document.getElementById('location-info');
+    const locationTitle = document.getElementById('selected-location-title');
+    
+    if (!locationInfo || !locationTitle) return;
+    
+    // 更新标题
+    locationTitle.textContent = location.name;
+    
+    // 构建信息HTML
+    let html = `
+        <h5>${location.name}</h5>
+        <p><i class="fas fa-map-marker-alt text-danger me-2"></i>${location.address}</p>
+    `;
+    
+    // 如果有坐标信息，显示出来
+    if (location.lat && location.lng) {
+        html += `<p><i class="fas fa-location-arrow text-info me-2"></i>坐标：${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}</p>`;
+    }
+    
+    // 如果有描述信息，显示出来
+    if (location.description) {
+        html += `<p><i class="fas fa-info-circle text-primary me-2"></i>${location.description}</p>`;
+    }
+    
+    // 根据位置类型添加不同的信息
+    if (location.type === 'attraction') {
+        if (location.opening_hours) {
+            html += `<p><i class="fas fa-clock text-success me-2"></i>开放时间: ${location.opening_hours}</p>`;
+        }
+        if (location.ticket_price) {
+            html += `<p><i class="fas fa-ticket-alt text-warning me-2"></i>门票: ${location.ticket_price}</p>`;
+        }
+    } else if (location.type === 'food') {
+        if (location.rating) {
+            html += `<p><i class="fas fa-star text-warning me-2"></i>评分: ${location.rating}</p>`;
+        }
+    }
+    
+    // 提示信息
+    html += `
+        <div class="alert alert-info mt-3">
+            <i class="fas fa-info-circle me-2"></i>
+            ${CacheManager.isCacheValid() ? '当前使用缓存数据，部分信息可能不是最新' : '离线模式下无法显示完整的位置信息，请恢复网络连接后查看'}
+        </div>
+    `;
+    
+    // 更新信息区域
+    locationInfo.innerHTML = html;
+}
+</script>
 
 <!-- 离线模式支持 -->
 <script>
@@ -199,7 +423,7 @@ window.addEventListener('load', function() {
     }, 3000); // 3秒后检查
 });
 
-// 激活离线模式
+// 修改离线模式，使用缓存数据
 function activateOfflineMode() {
     const mapContainer = document.getElementById('map-container');
     if (!mapContainer) return;
@@ -209,13 +433,24 @@ function activateOfflineMode() {
     const name = urlParams.get('name');
     const address = urlParams.get('address');
     
+    // 查找缓存中的位置信息
+    let cachedLocation = null;
+    if (name) {
+        cachedLocation = getCachedLocation(name);
+    }
+    
     // 生成离线模式UI
     let offlineContent = `
         <div class="card">
             <div class="card-header bg-warning">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <h5 class="mb-0">地图服务暂时不可用</h5>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <h5 class="mb-0 d-inline">地图服务暂时不可用</h5>
+                    </div>
+                    <div class="cache-status">
+                        ${CacheManager.isCacheValid() ? '<span class="badge bg-success">使用缓存数据</span>' : '<span class="badge bg-secondary">无缓存</span>'}
+                    </div>
                 </div>
             </div>
             <div class="card-body text-center">
@@ -225,6 +460,8 @@ function activateOfflineMode() {
                 <p class="lead">无法连接到百度地图服务，以下是位置信息：</p>
                 ${name ? `<h4 class="mt-3">${name}</h4>` : ''}
                 ${address ? `<p><i class="fas fa-map-marker-alt text-danger me-2"></i>${address}</p>` : ''}
+                ${cachedLocation && cachedLocation.lat && cachedLocation.lng ? 
+                  `<p><i class="fas fa-location-arrow text-info me-2"></i>坐标：${cachedLocation.lat.toFixed(6)}, ${cachedLocation.lng.toFixed(6)}</p>` : ''}
                 
                 <div class="mt-4">
                     <p>您可以尝试以下方式：</p>
@@ -249,17 +486,24 @@ function activateOfflineMode() {
         control.classList.add('disabled');
         control.innerHTML = `
             <div class="alert alert-warning mb-0">
-                <i class="fas fa-exclamation-triangle me-2"></i>
-                地图功能暂时不可用，请稍后再试
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        地图功能暂时不可用，请稍后再试
+                    </div>
+                    <button class="btn btn-sm btn-outline-dark ms-3" onclick="refreshCache()">
+                        <i class="fas fa-sync me-1"></i>更新缓存
+                    </button>
+                </div>
             </div>
         `;
     });
     
-    // 加载离线位置列表
+    // 加载离线位置列表，优先使用缓存数据
     loadOfflineLocationList();
 }
 
-// 加载离线位置列表
+// 加载离线位置列表，优先使用缓存数据
 function loadOfflineLocationList() {
     const locationList = document.getElementById('location-list');
     if (!locationList) return;
@@ -268,20 +512,25 @@ function loadOfflineLocationList() {
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name');
     
-    // 创建静态位置列表
-    const offlineLocations = [
-        { name: '云龙山风景区', address: '徐州市云龙区', type: 'attraction' },
-        { name: '龟山汉墓', address: '徐州市云龙区龟山路2号', type: 'attraction' },
-        { name: '徐州博物馆', address: '徐州市云龙区和平路118号', type: 'attraction' },
-        { name: '彭祖园', address: '徐州市泉山区彭祖大道1号', type: 'attraction' },
-        { name: '老玖烧烤', address: '徐州和平路', type: 'food' },
-        { name: '徐州羊汤', address: '徐州市泉山区', type: 'food' },
-        { name: '徐州火车站', address: '徐州市云龙区', type: 'traffic' }
-    ];
+    // 尝试从缓存获取数据
+    let locations = CacheManager.getFromCache();
+    
+    // 如果没有缓存数据，使用默认静态数据
+    if (!locations || locations.length === 0) {
+        locations = [
+            { name: '云龙山风景区', address: '徐州市云龙区', type: 'attraction' },
+            { name: '龟山汉墓', address: '徐州市云龙区龟山路2号', type: 'attraction' },
+            { name: '徐州博物馆', address: '徐州市云龙区和平路118号', type: 'attraction' },
+            { name: '彭祖园', address: '徐州市泉山区彭祖大道1号', type: 'attraction' },
+            { name: '老玖烧烤', address: '徐州和平路', type: 'food' },
+            { name: '徐州羊汤', address: '徐州市泉山区', type: 'food' },
+            { name: '徐州火车站', address: '徐州市云龙区', type: 'traffic' }
+        ];
+    }
     
     // 生成HTML
     let html = '';
-    offlineLocations.forEach((location, index) => {
+    locations.forEach((location, index) => {
         // 获取图标类型
         let iconClass = 'fa-map-marker-alt';
         let iconColor = 'text-secondary';
@@ -295,6 +544,12 @@ function loadOfflineLocationList() {
         } else if (location.type === 'traffic') {
             iconClass = 'fa-bus';
             iconColor = 'text-success';
+        } else if (location.type === 'shopping') {
+            iconClass = 'fa-shopping-bag';
+            iconColor = 'text-warning';
+        } else if (location.type === 'medical') {
+            iconClass = 'fa-hospital';
+            iconColor = 'text-info';
         }
         
         // 检查是否是当前位置
@@ -302,7 +557,7 @@ function loadOfflineLocationList() {
         const activeClass = isActive ? 'active' : '';
         
         html += `
-            <li class="list-group-item list-location-item ${activeClass}">
+            <li class="list-group-item list-location-item ${activeClass}" data-name="${location.name}">
                 <div class="d-flex w-100 justify-content-between">
                     <h6 class="mb-1">
                         <i class="fas ${iconClass} ${iconColor} me-2"></i>${location.name}
@@ -313,82 +568,201 @@ function loadOfflineLocationList() {
         `;
     });
     
+    // 添加缓存管理按钮
+    html += `
+        <li class="list-group-item bg-light">
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                    ${CacheManager.isCacheValid() ? 
+                      `<i class="fas fa-check-circle text-success me-1"></i>缓存数据有效` : 
+                      `<i class="fas fa-exclamation-circle text-warning me-1"></i>缓存过期或不存在`}
+                </small>
+                <button class="btn btn-sm btn-outline-primary" onclick="refreshCache()">
+                    <i class="fas fa-sync-alt me-1"></i>更新
+                </button>
+            </div>
+        </li>
+    `;
+    
     // 设置列表内容
     locationList.innerHTML = html;
     
+    // 添加点击事件
+    document.querySelectorAll('.list-location-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const name = this.getAttribute('data-name');
+            if (!name) return;
+            
+            // 从缓存中查找位置
+            const location = locations.find(loc => loc.name === name);
+            if (location) {
+                updateOfflineLocationInfo(location);
+                
+                // 高亮选中项
+                document.querySelectorAll('.list-location-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                this.classList.add('active');
+            }
+        });
+    });
+    
     // 更新位置信息卡片
     if (name) {
-        const selectedLocation = offlineLocations.find(loc => loc.name === name);
+        const selectedLocation = locations.find(loc => loc.name === name);
         if (selectedLocation) {
             updateOfflineLocationInfo(selectedLocation);
         }
     }
 }
 
-// 更新离线位置信息
-function updateOfflineLocationInfo(location) {
-    const locationInfo = document.getElementById('location-info');
-    const locationTitle = document.getElementById('selected-location-title');
+// 刷新缓存数据
+function refreshCache() {
+    // 显示加载指示器
+    const loadingToast = showToast('正在更新位置数据缓存...', 'info', false);
     
-    if (!locationInfo || !locationTitle) return;
+    // 发起API请求获取最新数据
+    fetch('/api/coordinates?category=all')
+        .then(response => response.json())
+        .then(data => {
+            // 保存到缓存
+            if (CacheManager.saveToCache(data)) {
+                // 更新成功后显示提示
+                hideToast(loadingToast);
+                showToast('位置数据缓存已更新！', 'success', true);
+                
+                // 重新加载位置列表
+                loadOfflineLocationList();
+            } else {
+                throw new Error('保存缓存失败');
+            }
+        })
+        .catch(error => {
+            console.error('更新缓存失败:', error);
+            hideToast(loadingToast);
+            showToast('更新缓存失败，请检查网络连接', 'danger', true);
+        });
+}
+
+// 显示 Toast 提示
+function showToast(message, type = 'info', autoHide = true) {
+    // 创建 Toast 元素
+    const toastContainer = document.getElementById('toast-container') || createToastContainer();
+    const toastId = 'toast-' + Date.now();
     
-    // 更新标题
-    locationTitle.textContent = location.name;
+    const toast = document.createElement('div');
+    toast.className = `toast show bg-${type} text-white`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+    toast.id = toastId;
     
-    // 构建信息HTML
-    let html = `
-        <h5>${location.name}</h5>
-        <p><i class="fas fa-map-marker-alt text-danger me-2"></i>${location.address}</p>
-        <div class="alert alert-info mt-3">
+    toast.innerHTML = `
+        <div class="toast-header bg-${type} text-white">
             <i class="fas fa-info-circle me-2"></i>
-            离线模式下无法显示完整的位置信息，请恢复网络连接后查看
+            <strong class="me-auto">提示</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ${message}
         </div>
     `;
     
-    // 更新信息区域
-    locationInfo.innerHTML = html;
+    toastContainer.appendChild(toast);
+    
+    // 自动隐藏
+    if (autoHide) {
+        setTimeout(() => {
+            hideToast(toastId);
+        }, 3000);
+    }
+    
+    return toastId;
+}
+
+// 隐藏 Toast 提示
+function hideToast(toastId) {
+    const toast = document.getElementById(toastId);
+    if (toast) {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }
+}
+
+// 创建 Toast 容器
+function createToastContainer() {
+    const container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container position-fixed top-0 end-0 p-3';
+    container.style.zIndex = '9999';
+    document.body.appendChild(container);
+    return container;
 }
 </script>
 
 <!-- 备用地图API引用 -->
 <script>
 // 如果主API加载失败，尝试使用备用API
-setTimeout(function() {
+function loadBackupMapAPI() {
     if (typeof BMap === 'undefined' && !isOfflineMode) {
         console.log('尝试加载备用百度地图API...');
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://api.map.baidu.com/getscript?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N&services=&t=' + Date.now();
-        document.body.appendChild(script);
         
-        // 检查备用API是否加载成功
-        script.onload = function() {
-            console.log('备用API加载成功，正在初始化地图...');
-            if (typeof BMap !== 'undefined') {
-                // 尝试初始化地图
-                try {
-                    initMap();
-                    loadLocations();
-                } catch (e) {
-                    console.error('地图初始化失败:', e);
-                    activateOfflineMode();
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://api.map.baidu.com/getscript?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N&services=&t=' + Date.now();
+            script.async = true;
+            
+            // 检查备用API是否加载成功
+            script.onload = function() {
+                console.log('备用API加载成功，正在初始化地图...');
+                if (typeof BMap !== 'undefined') {
+                    // 尝试初始化地图
+                    try {
+                        resolve(window.BMap);
+                        initMap();
+                    } catch (e) {
+                        console.error('地图初始化失败:', e);
+                        reject(e);
+                        activateOfflineMode();
+                    }
+                } else {
+                    reject(new Error('BMap未定义'));
                 }
-            }
-        };
-        
-        script.onerror = function() {
-            console.error('备用API加载失败，切换到离线模式');
-            activateOfflineMode();
-        };
+            };
+            
+            script.onerror = function() {
+                console.error('备用API加载失败，切换到离线模式');
+                reject(new Error('备用API加载失败'));
+                activateOfflineMode();
+            };
+            
+            document.body.appendChild(script);
+        });
     }
-}, 4000); // 4秒后尝试加载备用API
+    
+    return Promise.resolve(window.BMap);
+}
+
+// 延迟4秒后检查BMap是否加载成功，如果失败则尝试备用API
+setTimeout(function() {
+    if (typeof BMap === 'undefined' && !isOfflineMode) {
+        loadBackupMapAPI().catch(() => {
+            activateOfflineMode();
+        });
+    }
+}, 4000);
 </script>
 
+<script>
     // 地图实例和标记点集合
     let map;
     let markers = [];
     let currentLocations = [];
     let infoWindow;
+    let markerClusterer; // 聚合器实例
     
     // 类型对应的颜色
     const typeColors = {
@@ -400,10 +774,98 @@ setTimeout(function() {
         'other': '#34495e'        // 深灰色
     };
     
+    // 自定义图标
+    const customIcons = {};
+    
+    // 预先创建自定义图标
+    function createCustomIcons() {
+        const iconSize = new BMap.Size(23, 25);
+        const iconAnchor = new BMap.Size(11, 25);
+        
+        // 创建各类别的图标
+        customIcons.attraction = new BMap.Icon('/static/img/marker_attraction.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        customIcons.food = new BMap.Icon('/static/img/marker_food.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        customIcons.traffic = new BMap.Icon('/static/img/marker_traffic.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        customIcons.shopping = new BMap.Icon('/static/img/marker_shopping.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        customIcons.medical = new BMap.Icon('/static/img/marker_medical.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        customIcons.other = new BMap.Icon('/static/img/marker_other.png', iconSize, {
+            imageSize: iconSize,
+            anchor: iconAnchor
+        });
+        
+        // 如果没有自定义图标，使用默认图标
+        customIcons.default = null;
+    }
+    
+    // 动态加载扩展库
+    function loadBMapExtension(extensionName) {
+        return new Promise((resolve, reject) => {
+            if (!window.BMap) {
+                reject(new Error('BMap未加载'));
+                return;
+            }
+            
+            // 检查扩展是否已加载
+            if (extensionName === 'MarkerClusterer' && window.BMapLib && window.BMapLib.MarkerClusterer) {
+                resolve();
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            
+            switch(extensionName) {
+                case 'MarkerClusterer':
+                    script.src = 'https://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js';
+                    break;
+                case 'TextIconOverlay':
+                    script.src = 'https://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js';
+                    break;
+                default:
+                    reject(new Error('未知的扩展库'));
+                    return;
+            }
+            
+            script.onload = function() {
+                console.log(`扩展库 ${extensionName} 加载完成`);
+                resolve();
+            };
+            
+            script.onerror = function() {
+                console.error(`扩展库 ${extensionName} 加载失败`);
+                reject(new Error(`扩展库 ${extensionName} 加载失败`));
+            };
+            
+            document.body.appendChild(script);
+        });
+    }
+    
     // 初始化地图
     function initMap() {
         // 创建地图实例
-        map = new BMap.Map("map-container");
+        map = new BMap.Map("map-container", {
+            enableMapClick: false  // 禁用默认的地图点击事件，提高性能
+        });
         
         // 徐州市中心坐标 - 更新为精确坐标
         const xuzhou = new BMap.Point(117.20111, 34.273194);
@@ -411,10 +873,9 @@ setTimeout(function() {
         // 设置中心点和缩放级别
         map.centerAndZoom(xuzhou, 15);
         
-        // 添加地图控件
-        map.addControl(new BMap.NavigationControl());
+        // 添加地图控件 - 精简控件提高性能
+        map.addControl(new BMap.NavigationControl({type: BMAP_NAVIGATION_CONTROL_ZOOM}));
         map.addControl(new BMap.ScaleControl());
-        map.addControl(new BMap.OverviewMapControl());
         map.enableScrollWheelZoom();
         
         // 添加默认位置标记
@@ -438,6 +899,11 @@ setTimeout(function() {
         // 创建全局信息窗口用于显示位置信息
         infoWindow = new BMap.InfoWindow("");
         
+        // 创建自定义图标
+        if (window.BMap) {
+            createCustomIcons();
+        }
+        
         // 处理URL参数，如果有位置参数，直接定位到指定位置
         handleUrlParams();
 
@@ -446,6 +912,15 @@ setTimeout(function() {
 
         // 初始化事件监听
         initEventListeners();
+        
+        // 加载聚合库
+        loadBMapExtension('MarkerClusterer')
+            .then(() => {
+                console.log('标记聚合器加载成功');
+            })
+            .catch(error => {
+                console.warn('标记聚合器加载失败，将使用普通标记:', error);
+            });
     }
     
     // 处理URL参数，支持从其他页面跳转并定位到特定位置
@@ -461,7 +936,10 @@ setTimeout(function() {
             
             // 创建一个高亮标记
             const point = new BMap.Point(lng, lat);
-            const highlightMarker = new BMap.Marker(point);
+            const highlightMarker = new BMap.Marker(point, {
+                enableMassClear: false,  // 防止被清除
+                icon: customIcons.attraction || customIcons.default // 使用自定义图标
+            });
             map.addOverlay(highlightMarker);
             
             // 设置动画效果
@@ -492,22 +970,24 @@ setTimeout(function() {
     function highlightLocationInList(name) {
         const listItems = document.querySelectorAll('.list-location-item');
         listItems.forEach(item => {
+            // 使用dataset属性获取名称，更可靠
             const itemName = item.getAttribute('data-name');
+            item.classList.remove('active');
+            
             if (itemName === name) {
-                // 移除所有项的active类
-                listItems.forEach(i => i.classList.remove('active'));
-                // 添加active类到匹配项
                 item.classList.add('active');
-                // 滚动到视图中
+                // 使用更平滑的滚动
                 item.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     }
     
-    // 加载位置坐标数据
+    // 加载位置坐标数据 - 修改以支持缓存和性能优化
     function loadLocations(category = 'all') {
         // 清空现有标记
-        clearMarkers();
+        if (!isOfflineMode && map) {
+            clearMarkers();
+        }
         
         // 更新列表标题
         updateListTitle(category);
@@ -521,94 +1001,227 @@ setTimeout(function() {
             </li>
         `;
         
-        // 从API获取坐标数据
-        fetch(`/api/coordinates?category=${category}`)
+        // 首先尝试从缓存获取数据
+        const cachedData = CacheManager.getFromCache(category);
+        
+        // 开启性能优化的数据加载
+        const fetchPromise = fetch(`/api/coordinates?category=${category}`)
             .then(response => response.json())
             .then(data => {
                 // 保存当前位置数据
                 currentLocations = data;
                 
-                // 添加标记到地图
-                addMarkers(data);
-                
                 // 更新位置列表
                 updateLocationList(data);
-            })
-            .catch(error => {
-                console.error('获取坐标数据失败:', error);
+                
+                // 更新缓存
+                CacheManager.saveToCache(currentLocations);
+                
+                // 分批添加标记，避免阻塞UI
+                if (!isOfflineMode && map) {
+                    batchAddMarkers(data);
+                }
+                
+                return data;
+            });
+        
+        // 使用缓存数据快速显示
+        if (cachedData && cachedData.length > 0) {
+            console.log('使用缓存数据快速渲染');
+            // 更新位置列表
+            updateLocationList(cachedData);
+            
+            // 分批添加标记
+            if (!isOfflineMode && map) {
+                batchAddMarkers(cachedData);
+            }
+            
+            currentLocations = cachedData;
+        }
+        
+        // 无论有没有缓存，都尝试从服务器获取最新数据
+        fetchPromise.catch(error => {
+            console.error('获取坐标数据失败:', error);
+            
+            if (!cachedData || cachedData.length === 0) {
                 document.getElementById('location-list').innerHTML = `
                     <li class="list-group-item text-center text-danger">
                         <i class="fas fa-exclamation-circle"></i> 加载数据失败
                     </li>
+                    <li class="list-group-item text-center">
+                        <button class="btn btn-outline-primary btn-sm" onclick="refreshCache()">
+                            <i class="fas fa-sync-alt me-1"></i>重试
+                        </button>
+                    </li>
                 `;
-            });
+            } else {
+                // 如果API失败但有缓存，显示提示
+                showToast('使用离线缓存数据', 'warning', true);
+            }
+        });
     }
     
-    // 添加标记到地图
-    function addMarkers(locations) {
-        locations.forEach(location => {
-            // 创建标记
-            const point = new BMap.Point(location.lng, location.lat);
-            const marker = new BMap.Marker(point);
+    // 分批添加标记，避免浏览器卡顿
+    function batchAddMarkers(locations) {
+        // 清空现有标记
+        clearMarkers();
+        
+        // 定义每批处理的标记数量
+        const BATCH_SIZE = 10;
+        // 标记总数
+        const totalMarkers = locations.length;
+        // 当前处理的索引
+        let currentIndex = 0;
+        
+        function processBatch() {
+            // 计算本批次结束位置
+            const endIndex = Math.min(currentIndex + BATCH_SIZE, totalMarkers);
             
-            // 根据类型设置不同的图标颜色
-            let iconType = location.type || 'other';
-            if (iconType === 'traffic') iconType = 'traffic';
-            if (iconType === 'shopping') iconType = 'shopping';
-            if (iconType === 'medical') iconType = 'medical';
+            // 处理当前批次的标记
+            for (let i = currentIndex; i < endIndex; i++) {
+                addSingleMarker(locations[i]);
+            }
             
-            const color = typeColors[iconType] || typeColors.other;
+            // 更新当前索引
+            currentIndex = endIndex;
             
-            // 添加点击事件
-            marker.addEventListener('click', function() {
-                showLocationInfo(location);
-            });
-            
-            // 添加到地图
-            map.addOverlay(marker);
-            
-            // 保存标记引用
-            markers.push(marker);
+            // 继续处理下一批，直到所有标记都添加完成
+            if (currentIndex < totalMarkers) {
+                setTimeout(processBatch, 10); // 10毫秒延迟，避免阻塞UI
+            } else {
+                // 所有标记添加完成后，应用聚合
+                applyMarkerClustering();
+                
+                // 调整地图视野
+                if (markers.length > 0 && !urlHasLocation) {
+                    map.setViewport(markers.map(marker => marker.getPosition()));
+                }
+            }
+        }
+        
+        // 开始处理第一批
+        processBatch();
+    }
+    
+    // 添加单个标记
+    function addSingleMarker(location) {
+        // 创建标记
+        const point = new BMap.Point(location.lng, location.lat);
+        
+        // 根据类型获取图标
+        let iconType = location.type || 'other';
+        if (iconType === 'traffic') iconType = 'traffic';
+        if (iconType === 'shopping') iconType = 'shopping';
+        if (iconType === 'medical') iconType = 'medical';
+        
+        const marker = new BMap.Marker(point, {
+            icon: customIcons[iconType] || customIcons.default
         });
         
-        // 如果有位置，调整地图视野以包含所有标记
-        if (locations.length > 0) {
-            map.setViewport(markers.map(marker => marker.getPosition()));
+        // 优化：仅在鼠标悬停时设置标题
+        marker.addEventListener('mouseover', function() {
+            this.setTitle(location.name);
+        });
+        
+        // 添加点击事件
+        marker.addEventListener('click', function() {
+            showLocationInfo(location);
+            
+            // 高亮对应的侧边栏项
+            highlightLocationInList(location.name);
+        });
+        
+        // 添加到地图
+        map.addOverlay(marker);
+        
+        // 保存标记引用
+        markers.push(marker);
+        
+        // 关联位置数据
+        marker.location = location;
+        
+        return marker;
+    }
+    
+    // 应用标记聚合
+    function applyMarkerClustering() {
+        // 检查聚合库是否已加载
+        if (window.BMapLib && window.BMapLib.MarkerClusterer && markers.length > 20) {
+            if (markerClusterer) {
+                markerClusterer.clearMarkers();
+            }
+            
+            // 创建聚合器
+            markerClusterer = new BMapLib.MarkerClusterer(map, {
+                markers: markers,
+                girdSize: 100,
+                maxZoom: 15,  // 大于此缩放级别时不聚合
+                minClusterSize: 5  // 最小聚合数量
+            });
+            
+            console.log(`应用标记聚合，共 ${markers.length} 个标记`);
         }
     }
     
     // 清除地图上的所有标记
     function clearMarkers() {
+        // 如果有聚合器，清除聚合器
+        if (markerClusterer) {
+            markerClusterer.clearMarkers();
+        }
+        
+        // 清除单个标记
         markers.forEach(marker => {
             map.removeOverlay(marker);
         });
+        
+        // 清空标记数组
         markers = [];
     }
     
     // 初始化事件监听
     function initEventListeners() {
         // 位置类型筛选
-        document.getElementById('location-type').addEventListener('change', function() {
-            loadLocations(this.value);
-        });
+        const locationTypeSelect = document.getElementById('location-type');
+        if (locationTypeSelect) {
+            locationTypeSelect.addEventListener('change', function() {
+                loadLocations(this.value);
+            });
+        }
         
         // 地图搜索
-        document.getElementById('map-search-btn').addEventListener('click', searchLocation);
-        document.getElementById('map-search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                searchLocation();
-            }
-        });
+        const mapSearchBtn = document.getElementById('map-search-btn');
+        const mapSearchInput = document.getElementById('map-search-input');
+        
+        if (mapSearchBtn && mapSearchInput) {
+            // 点击搜索按钮
+            mapSearchBtn.addEventListener('click', function() {
+                const keyword = mapSearchInput.value.trim();
+                if (keyword) {
+                    searchInLocations(keyword);
+                }
+            });
+            
+            // 回车搜索
+            mapSearchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const keyword = this.value.trim();
+                    if (keyword) {
+                        searchInLocations(keyword);
+                    }
+                }
+            });
+        }
+    }
+    
+    // 初始化UI事件监听（在DOM加载完成后调用）
+    function initializeUIEvents() {
+        // 暂时不需要额外的UI事件初始化，所有事件都在initEventListeners中处理
+        console.log('UI事件初始化完成');
     }
     
     // 搜索位置
-    function searchLocation() {
-        const searchInput = document.getElementById('map-search-input');
-        const keyword = searchInput.value.trim();
-        
-        if (!keyword) return;
-        
+    function searchInLocations(keyword) {
         // 在当前位置中搜索
         const results = currentLocations.filter(location => 
             location.name.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -750,23 +1363,7 @@ setTimeout(function() {
         }
     }
     
-    // 页面加载完成后初始化
-    document.addEventListener('DOMContentLoaded', function() {
-        // 初始化地图
-        initMap();
-        
-        // 加载所有位置
-        loadLocations();
-        
-        // 设置类型过滤器事件
-        document.getElementById('location-type').addEventListener('change', function() {
-            filterLocations();
-        });
-        
-        // 设置搜索框事件
-        document.getElementById('search-locations').addEventListener('input', function() {
-            filterLocations();
-        });
-    });
+    // URL中是否包含位置参数
+    let urlHasLocation = false;
 </script>
 {% endblock %} 

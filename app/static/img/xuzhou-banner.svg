@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="450" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景渐变 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a0909" />
+      <stop offset="50%" stop-color="#9c0c0c" />
+      <stop offset="100%" stop-color="#7a0909" />
+    </linearGradient>
+    
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a2e" />
+      <stop offset="100%" stop-color="#362049" />
+    </linearGradient>
+    
+    <radialGradient id="moonGlow" cx="80%" cy="30%" r="20%" 
+                    fx="80%" fy="30%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f5e4c3" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#e2c17f" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1a0a2e" stop-opacity="0"/>
+    </radialGradient>
+    
+    <pattern id="cloudPattern" patternUnits="userSpaceOnUse" width="200" height="100">
+      <path d="M0,40 Q30,20 60,40 T120,40 T180,40" 
+            fill="none" stroke="#e2c17f" stroke-width="1" opacity="0.3"/>
+    </pattern>
+    
+    <pattern id="traditionalPattern" patternUnits="userSpaceOnUse" width="40" height="40">
+      <path d="M0,0 L40,40 M40,0 L0,40" stroke="#e2c17f" stroke-width="0.5" opacity="0.2"/>
+      <circle cx="20" cy="20" r="8" fill="none" stroke="#e2c17f" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="url(#skyGradient)"/>
+  
+  <!-- 传统云纹装饰 -->
+  <rect width="100%" height="100%" fill="url(#cloudPattern)" opacity="0.3"/>
+  
+  <!-- 月亮光晕 -->
+  <circle cx="80%" cy="30%" r="240" fill="url(#moonGlow)"/>
+  
+  <!-- 月亮 -->
+  <circle cx="80%" cy="30%" r="40" fill="#e2c17f" opacity="0.9"/>
+  
+  <!-- 传统图案装饰 -->
+  <rect width="100%" height="100%" fill="url(#traditionalPattern)"/>
+  
+  <!-- 星星 -->
+  <circle cx="10%" cy="15%" r="1.5" fill="#e2c17f" opacity="0.8"/>
+  <circle cx="15%" cy="25%" r="1" fill="#e2c17f" opacity="0.6"/>
+  <circle cx="25%" cy="10%" r="1.2" fill="#e2c17f" opacity="0.7"/>
+  <circle cx="35%" cy="20%" r="1" fill="#e2c17f" opacity="0.5"/>
+  <circle cx="45%" cy="15%" r="1.3" fill="#e2c17f" opacity="0.7"/>
+  <circle cx="55%" cy="25%" r="1.1" fill="#e2c17f" opacity="0.6"/>
+  <circle cx="65%" cy="10%" r="1" fill="#e2c17f" opacity="0.5"/>
+  <circle cx="90%" cy="15%" r="1.2" fill="#e2c17f" opacity="0.7"/>
+  
+  <!-- 云层 -->
+  <path d="M0,350 Q50,320 100,340 T200,320 T300,340 T400,320 T500,340 T600,320 T700,340 T800,320 T900,340 T1000,320 T1100,340 T1200,320" 
+        fill="#1a0a2e" opacity="0.8"/>
+
+  <!-- 远山轮廓 -->
+  <path d="M0,380 Q100,330 200,350 T400,310 T600,360 T800,320 T1000,370 T1200,330 L1200,450 L0,450 Z" 
+        fill="#362049" opacity="0.8"/>
+  
+  <!-- 城市天际线轮廓 - 融入汉代建筑特色 -->
+  <path d="M0,450 L0,390 
+           L20,390 L30,375 L40,390 L50,380 L60,390 
+           L80,390 L90,370 L100,390 
+           L120,390 L130,380 L140,390 
+           L160,390 L170,360 L180,390 
+           L190,390 L200,375 L210,375 L220,390 
+           L240,390 L250,370 L260,370 L270,390 
+           L290,390 L300,365 L310,390 
+           L330,390 L340,380 L350,380 L360,390 
+           L380,390 L390,355 L400,390 
+           L410,390 L420,380 L430,380 L440,390 
+           L460,390 L470,375 L480,375 L490,390 
+           L500,390 L510,365 L520,390 
+           L540,390 L550,370 L560,370 L570,390
+           L590,390 L600,375 L610,375 L620,390 
+           L640,390 L650,350 L660,350 L670,390 
+           L690,390 L700,380 L710,380 L720,390 
+           L740,390 L750,365 L760,390 
+           L780,390 L790,355 L800,390 
+           L820,390 L830,375 L840,375 L850,390 
+           L870,390 L880,360 L890,390 
+           L910,390 L920,380 L930,370 L940,370 L950,380 L960,390 
+           L980,390 L990,365 L1000,365 L1010,390 
+           L1030,390 L1040,375 L1050,375 L1060,390 
+           L1080,390 L1090,355 L1100,355 L1110,390 
+           L1130,390 L1140,370 L1150,370 L1160,390 
+           L1180,390 L1190,380 L1200,380 
+           L1200,450 Z" 
+        fill="#221026" opacity="0.9"/>
+
+  <!-- 汉代建筑特色轮廓 - 汉代宫殿 -->
+  <path d="M500,400 L500,350 L505,340 L520,330 L535,340 L540,350 L540,400 Z" fill="#1a0a2e"/>
+  <path d="M510,400 L510,360 L530,360 L530,400 Z" fill="#9c0c0c"/>
+  <path d="M505,345 L535,345" stroke="#e2c17f" stroke-width="1" opacity="0.8"/>
+  <path d="M500,355 L540,355" stroke="#e2c17f" stroke-width="1" opacity="0.6"/>
+  
+  <!-- 汉代建筑特色轮廓 - 古城墙 -->
+  <path d="M600,400 L600,360 L610,360 L610,350 L620,350 L620,360 L630,360 L630,350 L640,350 L640,360 L650,360 L650,400 Z" fill="#1a0a2e"/>
+  <path d="M610,360 L610,400" stroke="#9c0c0c" stroke-width="2"/>
+  <path d="M630,360 L630,400" stroke="#9c0c0c" stroke-width="2"/>
+  <path d="M600,370 L650,370" stroke="#e2c17f" stroke-width="1" opacity="0.5"/>
+
+  <!-- 前景装饰 - 传统纹样 -->
+  <path d="M0,440 Q30,430 60,440 T120,440 T180,440 T240,440 T300,440 T360,440 T420,440 T480,440 T540,440 T600,440 T660,440 T720,440 T780,440 T840,440 T900,440 T960,440 T1020,440 T1080,440 T1140,440 T1200,440" 
+        stroke="#e2c17f" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M0,447 Q30,437 60,447 T120,447 T180,447 T240,447 T300,447 T360,447 T420,447 T480,447 T540,447 T600,447 T660,447 T720,447 T780,447 T840,447 T900,447 T960,447 T1020,447 T1080,447 T1140,447 T1200,447" 
+        stroke="#e2c17f" stroke-width="1" fill="none" opacity="0.4"/>
+</svg> 

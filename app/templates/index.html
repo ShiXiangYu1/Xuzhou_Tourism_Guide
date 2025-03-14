@@ -3,27 +3,36 @@
 {% block title %}徐州旅游攻略 - 主页{% endblock %}
 
 {% block content %}
-<div class="jumbotron bg-light p-5 rounded-3 mb-4">
-    <h1 class="display-4">徐州旅游攻略</h1>
-    <p class="lead">寻味大汉风情之都，带您探索徐州的历史文化与美食盛宴。</p>
-    <hr class="my-4">
-    <p>徐州位于江苏省西北部，是中国历史文化名城，汉文化的重要发源地。作为楚汉文化和淮海文化的交汇处，徐州拥有丰富的历史遗迹和独特的饮食文化。</p>
-    <a class="btn btn-primary btn-lg" href="#overview" role="button">了解更多</a>
+<!-- 英雄区域 -->
+<div class="hero-section">
+    <div class="hero-content text-center">
+        <h1>探索徐州之美</h1>
+        <p class="lead">寻味大汉风情之都，带您探索徐州的历史文化与美食盛宴</p>
+        <a class="btn btn-light btn-lg" href="#overview" role="button">
+            <i class="fas fa-arrow-down me-2"></i>了解更多
+        </a>
+    </div>
 </div>
 
-<section id="overview" class="mb-5">
-    <h2 class="text-center mb-4">徐州概览</h2>
+<!-- 中国传统装饰元素 -->
+<div class="chinese-pattern"></div>
+
+<!-- 概览部分 -->
+<section id="overview" class="overview-section container">
+    <div class="section-divider">
+        <span>徐州概览</span>
+    </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card h-100">
+        <div class="col-md-6 mb-4">
+            <div class="overview-card">
                 <div class="card-body">
                     <h5 class="card-title">文化底蕴</h5>
                     <p class="card-text">徐州作为中国历史文化名城，有着悠久的历史和深厚的文化底蕴。这里是汉文化的重要发源地，西楚霸王项羽和汉高祖刘邦的故乡，曾经上演过著名的楚汉之争。</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card h-100">
+        <div class="col-md-6 mb-4">
+            <div class="overview-card">
                 <div class="card-body">
                     <h5 class="card-title">地理位置</h5>
                     <p class="card-text">徐州位于江苏省西北部，是苏鲁豫皖四省交界处的区域性中心城市，也是淮海经济区中心城市。徐州地处京沪、陇海两大铁路干线的交汇点，交通十分便利。</p>
@@ -33,11 +42,17 @@
     </div>
 </section>
 
-<section class="mb-5">
-    <h2 class="text-center mb-4">推荐亮点</h2>
+<!-- 中国传统装饰元素 -->
+<div class="chinese-pattern"></div>
+
+<!-- 推荐亮点部分 -->
+<section class="container mb-5">
+    <div class="section-divider">
+        <span>推荐亮点</span>
+    </div>
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="feature-card">
                 <div class="card-header bg-primary text-white">
                     <h5 class="card-title mb-0"><i class="fas fa-utensils me-2"></i>特色美食</h5>
                 </div>
@@ -47,14 +62,16 @@
                         <li class="list-group-item">徐州烙馍 - 外脆里软的特色面食</li>
                         <li class="list-group-item">彭城汤包 - 皮薄馅多，汤汁丰盈</li>
                         <li class="list-group-item">香辣鸡架 - 入味且香辣的特色卤味</li>
-                        <li class="list-group-item bg-light text-danger">
+                        <li class="list-group-item highlight">
                             <i class="fas fa-fire me-1"></i>
                             <strong>苍蝇馆子 - 小鱼卷饼、老王地锅、徐州凉皮</strong>
                         </li>
                     </ul>
-                    <div class="mt-3 d-flex gap-2">
-                        <a href="{{ url_for('main.food') }}" class="btn btn-outline-primary">查看详情</a>
-                        <a href="{{ url_for('main.local_food') }}" class="btn btn-outline-danger">
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('main.food') }}" class="btn btn-outline-primary btn-action">查看详情</a>
+                        <a href="{{ url_for('main.local_food') }}" class="btn btn-outline-danger btn-action">
                             <i class="fas fa-utensils me-1"></i>逛苍蝇馆子
                         </a>
                     </div>
@@ -63,7 +80,7 @@
         </div>
         
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="feature-card">
                 <div class="card-header bg-success text-white">
                     <h5 class="card-title mb-0"><i class="fas fa-mountain me-2"></i>热门景点</h5>
                 </div>
@@ -73,16 +90,20 @@
                         <li class="list-group-item">汉文化景区 - 包括汉兵马俑、汉画像石馆</li>
                         <li class="list-group-item">徐州博物馆 - 了解徐州深厚的历史文化</li>
                         <li class="list-group-item">云龙湖 - 市中心最大湖泊，适合散步休闲</li>
+                        <li class="list-group-item highlight">
+                            <i class="fas fa-star me-1"></i>
+                            <strong>泉山湖 - 新兴打卡地，景观优美</strong>
+                        </li>
                     </ul>
-                    <div class="mt-3">
-                        <a href="{{ url_for('main.attractions') }}" class="btn btn-outline-success">查看详情</a>
-                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('main.attractions') }}" class="btn btn-outline-success btn-action">查看详情</a>
                 </div>
             </div>
         </div>
         
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="feature-card">
                 <div class="card-header bg-warning text-dark">
                     <h5 class="card-title mb-0"><i class="fas fa-route me-2"></i>行程推荐</h5>
                 </div>
@@ -91,9 +112,18 @@
                         <li class="list-group-item"><strong>第一天:</strong> 徐州博物馆→彭城汤包→汉文化景区→老玖烧烤</li>
                         <li class="list-group-item"><strong>第二天:</strong> 云龙山→山上用餐→云龙湖→火筷子烧烤</li>
                         <li class="list-group-item"><strong>第三天:</strong> 潘安湖湿地→苏园饭店→万达广场→逍遥津夜市</li>
+                        <li class="list-group-item highlight">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            <strong>推荐使用地图导航功能规划行程</strong>
+                        </li>
                     </ul>
-                    <div class="mt-3">
-                        <a href="{{ url_for('main.itinerary') }}" class="btn btn-outline-warning">查看详情</a>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('main.itinerary') }}" class="btn btn-outline-warning btn-action">查看详情</a>
+                        <a href="{{ url_for('main.tourist_map') }}" class="btn btn-outline-info btn-action">
+                            <i class="fas fa-map me-1"></i>打开地图
+                        </a>
                     </div>
                 </div>
             </div>
@@ -101,22 +131,61 @@
     </div>
 </section>
 
-<section class="mb-5">
-    <h2 class="text-center mb-4">徐州旅游小贴士</h2>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="alert alert-info">
-                        <p><i class="fas fa-info-circle me-2"></i><strong>最佳旅游季节:</strong> 4-5月和9-10月，气候宜人</p>
+<!-- 中国传统装饰元素 -->
+<div class="chinese-pattern"></div>
+
+<!-- 旅游小贴士部分 -->
+<section class="info-section">
+    <div class="container">
+        <div class="section-divider">
+            <span>旅游小贴士</span>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center p-4">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <div class="alert alert-warning">
-                        <p><i class="fas fa-exclamation-triangle me-2"></i><strong>温馨提示:</strong> 徐州夏季较热，请做好防晒准备</p>
+                    <h5 class="card-title">最佳旅游季节</h5>
+                    <p class="card-text">4-5月和9-10月，气候宜人，景色优美，是徐州旅游的黄金时段。</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center p-4">
+                    <div class="info-icon">
+                        <i class="fas fa-sun"></i>
                     </div>
-                    <p>更多实用信息，请查看<a href="{{ url_for('main.info') }}">实用信息</a>页面。</p>
+                    <h5 class="card-title">气候提示</h5>
+                    <p class="card-text">徐州夏季较热，请做好防晒准备；冬季干燥寒冷，注意保暖。</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="info-card text-center p-4">
+                    <div class="info-icon">
+                        <i class="fas fa-subway"></i>
+                    </div>
+                    <h5 class="card-title">交通建议</h5>
+                    <p class="card-text">徐州公共交通便利，地铁1、2号线连接主要景点，也可使用共享单车。</p>
                 </div>
             </div>
         </div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('main.info') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-info-circle me-2"></i>更多实用信息
+            </a>
+        </div>
     </div>
 </section>
+
+<!-- 汉代文化特色装饰 -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <blockquote class="blockquote">
+                <p class="mb-0">项王军壁垓下，兵少食尽，汉军围之数重。夜闻汉军四面皆楚歌，项王乃大惊曰："汉皆已得楚乎？</p>
+                <footer class="blockquote-footer mt-2">《史记·项羽本纪》</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
 {% endblock %} 
