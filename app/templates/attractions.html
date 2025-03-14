@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+
+{% block title %}徐州景点推荐{% endblock %}
+
+{% block extra_css %}
+<style>
+    .rating {
+        color: gold;
+    }
+    .attraction-card {
+        transition: transform 0.3s;
+        height: 100%;
+    }
+    .attraction-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .attraction-img {
+        height: 200px;
+        object-fit: cover;
+    }
+    .category-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .info-icon {
+        margin-right: 8px;
+        width: 20px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">徐州景点推荐</h1>
+    <p class="lead text-center mb-5">探索徐州历史文化与自然风光，让您的旅行更加丰富多彩。</p>
+    
+    <!-- 分类筛选 -->
+    <div class="mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">景点分类</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-primary active filter-btn" data-category="all">全部</button>
+                    <button class="btn btn-outline-primary filter-btn" data-category="历史文化类">历史文化</button>
+                    <button class="btn btn-outline-primary filter-btn" data-category="自然景观类">自然景观</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" id="attraction-container">
+        <!-- 历史文化类景点 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-landmark me-2"></i>历史文化景点</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
+            <div class="card attraction-card">
+                <span class="badge bg-primary category-badge">历史文化</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="云龙山风景区">
+                <div class="card-body">
+                    <h5 class="card-title">云龙山风景区</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="text-muted ms-1">4.8</span>
+                    </div>
+                    <p class="card-text">徐州地标，可俯瞰全城。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区云龙山</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-18:00</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 60元</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
+            <div class="card attraction-card">
+                <span class="badge bg-primary category-badge">历史文化</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="汉文化景区">
+                <div class="card-body">
+                    <h5 class="card-title">汉文化景区</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.7</span>
+                    </div>
+                    <p class="card-text">包括汉兵马俑、汉画像石馆等。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 80元</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
+            <div class="card attraction-card">
+                <span class="badge bg-primary category-badge">历史文化</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="楚王陵">
+                <div class="card-body">
+                    <h5 class="card-title">楚王陵</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.6</span>
+                    </div>
+                    <p class="card-text">西楚霸王项羽的陵墓。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:30-17:30</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 40元</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
+            <div class="card attraction-card">
+                <span class="badge bg-primary category-badge">历史文化</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="徐州博物馆">
+                <div class="card-body">
+                    <h5 class="card-title">徐州博物馆</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="text-muted ms-1">4.9</span>
+                    </div>
+                    <p class="card-text">了解徐州深厚的历史文化。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区东段</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 自然景观类景点 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-tree me-2"></i>自然景观</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="自然景观类">
+            <div class="card attraction-card">
+                <span class="badge bg-success category-badge">自然景观</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="云龙湖">
+                <div class="card-body">
+                    <h5 class="card-title">云龙湖</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.7</span>
+                    </div>
+                    <p class="card-text">市中心最大湖泊，适合散步休闲。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 全天开放</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="自然景观类">
+            <div class="card attraction-card">
+                <span class="badge bg-success category-badge">自然景观</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="潘安湖湿地公园">
+                <div class="card-body">
+                    <h5 class="card-title">潘安湖湿地公园</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.5</span>
+                    </div>
+                    <p class="card-text">生态环境优美，适合亲近自然。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市贾汪区</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 30元</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 景点参观贴士 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>景点参观贴士</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    徐州博物馆每周一闭馆（法定节假日除外），请提前安排行程
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    云龙山风景区游览需要2-3小时，建议上午前往，避开高峰时段
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    汉文化景区展品丰富，建议预留半天时间深度参观
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    潘安湖湿地公园面积较大，可租借观光车游览
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 简易地图 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-map me-2"></i>徐州主要景点分布</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p class="text-muted">此处可嵌入徐州景点地图，方便游客规划路线。</p>
+                    <div class="alert alert-info">
+                        <p class="mb-0"><i class="fas fa-info-circle me-2"></i>大部分历史文化景点位于市中心区域，游览较为便利。自然景观类景点需要安排专门交通工具前往。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 分类筛选功能
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const attractionItems = document.querySelectorAll('.attraction-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前按钮添加active类
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                
+                // 显示或隐藏景点项目
+                attractionItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %} 

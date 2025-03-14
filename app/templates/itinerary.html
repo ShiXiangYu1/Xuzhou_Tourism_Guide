@@ -1,0 +1,463 @@
+{% extends "base.html" %}
+
+{% block title %}徐州行程规划{% endblock %}
+
+{% block extra_css %}
+<style>
+    .timeline {
+        position: relative;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .timeline:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        margin-left: -1.5px;
+        background-color: #e9ecef;
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 50px;
+        min-height: 50px;
+    }
+    
+    .timeline-panel {
+        position: relative;
+        float: left;
+        width: 46%;
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+        background-color: #fff;
+    }
+    
+    .timeline-panel-right {
+        float: right;
+    }
+    
+    .timeline-badge {
+        position: absolute;
+        top: 16px;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+        text-align: center;
+        font-size: 1.4em;
+        line-height: 50px;
+        color: white;
+        background-color: #6c757d;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    
+    .timeline-badge.breakfast {
+        background-color: #fd7e14;
+    }
+    
+    .timeline-badge.morning {
+        background-color: #007bff;
+    }
+    
+    .timeline-badge.lunch {
+        background-color: #28a745;
+    }
+    
+    .timeline-badge.afternoon {
+        background-color: #6610f2;
+    }
+    
+    .timeline-badge.dinner {
+        background-color: #dc3545;
+    }
+    
+    .timeline-title {
+        margin-top: 0;
+        color: inherit;
+    }
+    
+    .timeline-body > p,
+    .timeline-body > ul {
+        margin-bottom: 0;
+    }
+    
+    @media (max-width: 767px) {
+        .timeline:before {
+            left: 40px;
+        }
+        
+        .timeline-panel {
+            width: calc(100% - 90px);
+            float: right;
+        }
+        
+        .timeline-badge {
+            left: 15px;
+            margin-left: 0;
+        }
+    }
+    
+    .day-header {
+        background: linear-gradient(135deg, #6c757d, #495057);
+        color: white;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .day-card {
+        margin-bottom: 50px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-highlight {
+        border-left: 5px solid #007bff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">徐州三日游行程规划</h1>
+    <p class="lead text-center mb-5">专为您定制的三天徐州深度游行程，体验历史文化与美食盛宴。</p>
+    
+    <!-- 行程导航 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#day1">第一天</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#day2">第二天</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#day3">第三天</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 第一天行程 -->
+    <div id="day1" class="day-card">
+        <div class="day-header">
+            <h2 class="mb-0">第一天 - 探索徐州历史文化</h2>
+        </div>
+        <div class="card-body">
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <div class="timeline-badge morning">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">上午 9:00 - 12:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-landmark me-2"></i>徐州博物馆</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>参观徐州博物馆，了解徐州深厚的历史文化。馆内珍藏了众多汉代文物，是了解汉文化的绝佳场所。</p>
+                            <div class="alert alert-info mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-info-circle me-2"></i>Tips: 博物馆每周一闭馆（法定节假日除外），免费参观，可提前预约。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge lunch">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">中午 12:00 - 14:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-utensils me-2"></i>特色小吃</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>在博物馆附近品尝徐州烙馍和彭城汤包，体验正宗的徐州特色小吃。</p>
+                            <p>推荐餐厅：博物馆附近的小吃街，有多家正宗小吃店。</p>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge afternoon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">下午 14:00 - 17:30</h4>
+                            <p><small class="text-muted"><i class="fas fa-landmark me-2"></i>汉文化景区</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>游览汉文化景区，参观汉兵马俑和汉画像石馆，了解汉代军事和民俗风情。</p>
+                            <div class="alert alert-warning mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Tips: 景区较大，建议预留3小时以上游览时间。门票80元。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge dinner">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">晚上 18:00 - 21:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-fire me-2"></i>老玖烧烤</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>晚上去老玖烧烤体验正宗徐州烧烤，品尝当地特色的羊肉串和鸡翅。</p>
+                            <p>地址：和平路老玖烧烤店，可乘坐出租车前往。</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 第二天行程 -->
+    <div id="day2" class="day-card">
+        <div class="day-header">
+            <h2 class="mb-0">第二天 - 山水风光之旅</h2>
+        </div>
+        <div class="card-body">
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <div class="timeline-badge morning">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">上午 8:30 - 12:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-mountain me-2"></i>云龙山风景区</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>登云龙山，俯瞰徐州全城。云龙山是徐州市区的制高点，有丰富的历史人文景观和自然风光。</p>
+                            <div class="alert alert-info mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-info-circle me-2"></i>Tips: 上午前往可避开高峰时段，徒步登山较为消耗体力，请穿舒适的鞋子。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge lunch">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">中午 12:00 - 14:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-utensils me-2"></i>山上餐厅</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>在云龙山上的餐厅享用午餐，一边欣赏美景，一边品尝当地特色菜肴。</p>
+                            <p>推荐餐厅：云龙山庄，提供徐州特色菜和淮扬菜系。</p>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge afternoon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">下午 14:30 - 17:30</h4>
+                            <p><small class="text-muted"><i class="fas fa-water me-2"></i>云龙湖</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>游览云龙湖，欣赏湖光山色。云龙湖是徐州市区最大的湖泊，环湖有多个景点，可乘坐游船游览。</p>
+                            <div class="alert alert-success mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-check-circle me-2"></i>Tips: 湖边设有多个休息区和观景台，适合放松心情。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge dinner">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">晚上 18:00 - 21:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-fire me-2"></i>火筷子烧烤</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>晚上去火筷子烧烤，品尝特色烤生蚝和其他海鲜烧烤。</p>
+                            <p>地址：万达广场附近，环境较好，适合休闲聚餐。</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 第三天行程 -->
+    <div id="day3" class="day-card">
+        <div class="day-header">
+            <h2 class="mb-0">第三天 - 休闲购物之旅</h2>
+        </div>
+        <div class="card-body">
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <div class="timeline-badge morning">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">上午 9:00 - 12:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-leaf me-2"></i>潘安湖湿地公园</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>游览潘安湖湿地公园，欣赏生态环境优美的湿地景观，远离城市喧嚣，感受大自然的宁静。</p>
+                            <div class="alert alert-info mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-info-circle me-2"></i>Tips: 公园面积较大，可租借观光车游览，门票30元。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge lunch">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">中午 12:30 - 14:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-utensils me-2"></i>苏园饭店</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>前往苏园饭店品尝地方菜，尝试徐州当地的特色菜肴。</p>
+                            <p>推荐菜品：徐州狮子头、扒鸡、三鲜汤等淮扬菜系经典菜品。</p>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge afternoon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">下午 14:30 - 17:30</h4>
+                            <p><small class="text-muted"><i class="fas fa-shopping-bag me-2"></i>万达广场</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>在万达广场购物休闲，购买徐州特产和纪念品。这里有各种品牌和商店，满足您的购物需求。</p>
+                            <div class="alert alert-success mt-2 mb-0">
+                                <p class="mb-0"><i class="fas fa-check-circle me-2"></i>Tips: 推荐购买徐州特产：彭城麻片、五香茶干等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="timeline-item">
+                    <div class="timeline-badge dinner">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="timeline-panel timeline-panel-right">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">晚上 18:00 - 21:00</h4>
+                            <p><small class="text-muted"><i class="fas fa-utensils me-2"></i>逍遥津小吃街</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>前往逍遥津附近的小吃街，品尝各种徐州特色小吃，作为旅行的完美收尾。</p>
+                            <p>推荐小吃：锅贴、小笼包、豆腐脑等传统小吃。</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 行程建议 -->
+    <div class="row mt-4 mb-5">
+        <div class="col-12">
+            <div class="card card-highlight">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>行程规划小贴士</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary"><i class="fas fa-check me-2"></i>交通建议</h6>
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item">
+                                    市内景点可乘坐公交车或出租车前往
+                                </li>
+                                <li class="list-group-item">
+                                    潘安湖湿地公园位于郊区，建议包车或预约网约车前往
+                                </li>
+                                <li class="list-group-item">
+                                    在市区游览可考虑租借共享单车，方便灵活
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary"><i class="fas fa-check me-2"></i>行程调整建议</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    行程可根据天气情况适当调整，雨天可增加室内景点参观
+                                </li>
+                                <li class="list-group-item">
+                                    如时间有限，可将第三天的潘安湖湿地公园替换为市区景点
+                                </li>
+                                <li class="list-group-item">
+                                    行程中预留了足够的休息和用餐时间，可根据个人情况灵活安排
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 页面滚动导航
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 移除所有链接的active类
+                navLinks.forEach(l => l.classList.remove('active'));
+                // 为当前链接添加active类
+                this.classList.add('active');
+                
+                // 获取目标元素
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // 平滑滚动到目标元素
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+{% endblock %} 

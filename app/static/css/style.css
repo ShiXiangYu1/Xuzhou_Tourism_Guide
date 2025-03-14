@@ -1,0 +1,72 @@
+/* 徐州旅游攻略网站样式表 */
+
+/* 全局样式 */
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 导航栏样式 */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* 页脚样式 */
+footer {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* 首页样式 */
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 0.3rem;
+}
+
+/* 卡片样式 */
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* 评分星星 */
+.rating {
+    color: gold;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .lead {
+        font-size: 1.1rem;
+    }
+} 

@@ -1,0 +1,546 @@
+{% extends "base.html" %}
+
+{% block title %}徐州实用信息{% endblock %}
+
+{% block extra_css %}
+<style>
+    .info-card {
+        transition: transform 0.3s;
+        margin-bottom: 20px;
+        height: 100%;
+    }
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .info-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: #e7f1ff;
+        color: #0d6efd;
+    }
+    .highlight {
+        background-color: #fffacd;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">徐州旅游实用信息</h1>
+    <p class="lead text-center mb-5">了解徐州旅游的实用信息，让您的旅行更加顺畅。</p>
+    
+    <!-- 实用信息卡片 -->
+    <div class="row mb-5">
+        <div class="col-md-3 mb-4">
+            <div class="card info-card text-center">
+                <div class="card-body">
+                    <div class="info-icon text-primary">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h5 class="card-title">交通出行</h5>
+                    <p class="card-text">了解徐州市内外交通信息</p>
+                    <a href="#transportation" class="btn btn-outline-primary">查看详情</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card info-card text-center">
+                <div class="card-body">
+                    <div class="info-icon text-success">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h5 class="card-title">住宿推荐</h5>
+                    <p class="card-text">各类型住宿选择和推荐</p>
+                    <a href="#accommodation" class="btn btn-outline-success">查看详情</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card info-card text-center">
+                <div class="card-body">
+                    <div class="info-icon text-warning">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h5 class="card-title">最佳季节</h5>
+                    <p class="card-text">徐州旅游的最佳时间</p>
+                    <a href="#season" class="btn btn-outline-warning">查看详情</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card info-card text-center">
+                <div class="card-body">
+                    <div class="info-icon text-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h5 class="card-title">温馨提示</h5>
+                    <p class="card-text">旅行前需要了解的提示</p>
+                    <a href="#tips" class="btn btn-outline-danger">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 交通信息 -->
+    <section id="transportation" class="mb-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0"><i class="fas fa-car me-2"></i>交通出行</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">外部交通</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>徐州有高铁站和机场，交通便利。</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-train text-primary me-2"></i>
+                                        <strong>徐州东站/徐州站</strong>：高铁和普通列车，连接全国主要城市
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-plane text-primary me-2"></i>
+                                        <strong>徐州观音机场</strong>：有国内多条航线，距市区约25公里
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-bus text-primary me-2"></i>
+                                        <strong>长途汽车站</strong>：连接周边城市和乡镇
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">市内交通</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>公交系统发达，也可使用打车软件。</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-bus-alt text-success me-2"></i>
+                                        <strong>公交车</strong>：覆盖面广，票价1-2元，运营时间06:00-21:00
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-taxi text-warning me-2"></i>
+                                        <strong>出租车</strong>：起步价8元（3公里），之后每公里2元
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-mobile-alt text-danger me-2"></i>
+                                        <strong>网约车</strong>：滴滴、曹操专车等平台在徐州运营
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">推荐交通方式</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>在市中心租借共享单车游览市区景点。</p>
+                                <div class="alert alert-info">
+                                    <p class="mb-0"><i class="fas fa-info-circle me-2"></i>徐州市区主要景点相对集中，步行和骑行是很好的选择。</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-bicycle text-primary me-2"></i>
+                                        <strong>共享单车</strong>：市区随处可见，使用方便
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-walking text-success me-2"></i>
+                                        <strong>步行</strong>：市中心景点间距离适中，适合步行游览
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-car text-warning me-2"></i>
+                                        <strong>自驾</strong>：前往郊区景点如潘安湖时推荐自驾或包车
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 住宿推荐 -->
+    <section id="accommodation" class="mb-5">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0"><i class="fas fa-bed me-2"></i>住宿推荐</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">高档酒店</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-primary">
+                                    <p class="mb-0">舒适度高，服务完善，适合商务和高品质旅行。</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>徐州金鹰尊荣酒店</strong>
+                                        <p class="mb-0 text-muted">位于市中心，交通便利，设施豪华</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>徐州市云龙区中山北路29号</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：600-800元/晚</p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>徐州万达希尔顿酒店</strong>
+                                        <p class="mb-0 text-muted">国际品牌，环境优雅，设施齐全</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>徐州市云龙区和平大道59号</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：700-900元/晚</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">中档酒店</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-success">
+                                    <p class="mb-0">性价比高，设施齐全，适合大多数游客。</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>如家酒店</strong>
+                                        <p class="mb-0 text-muted">连锁品牌，多家分店分布市区</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>徐州市区多家分店</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：200-300元/晚</p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>徐州锦江之星</strong>
+                                        <p class="mb-0 text-muted">品牌连锁，干净整洁，服务规范</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>徐州市云龙区中山北路附近</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：250-350元/晚</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">特色住宿</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-warning">
+                                    <p class="mb-0">体验当地特色，适合寻找不同住宿体验的游客。</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>云龙山下民宿</strong>
+                                        <p class="mb-0 text-muted">环境优美，视野开阔，体验当地生活</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>云龙山脚下区域</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：300-500元/晚</p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>特色主题酒店</strong>
+                                        <p class="mb-0 text-muted">各类主题风格，新奇有趣</p>
+                                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>市区多个位置</p>
+                                        <p class="mb-0"><i class="fas fa-money-bill-wave text-success me-1"></i>参考价格：300-600元/晚</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info mt-3">
+                    <p class="mb-0"><i class="fas fa-lightbulb me-2"></i><strong>住宿建议：</strong>建议选择市中心区域住宿，交通便利，靠近主要景点和餐饮区。节假日期间建议提前预订酒店。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 最佳季节 -->
+    <section id="season" class="mb-5">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h2 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>最佳季节</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">最佳旅游季节</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><span class="highlight">4-5月和9-10月</span>，气候宜人。</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-success">
+                                            <h6 class="mb-2">春季（4-5月）</h6>
+                                            <p class="mb-0">气温温和，花开满园，最适合户外活动</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-warning">
+                                            <h6 class="mb-2">秋季（9-10月）</h6>
+                                            <p class="mb-0">天高气爽，秋高气爽，观景登山的好时节</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>各季节特点：</h6>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <strong>春季（3-5月）</strong>：气温10-25°C，雨水较多，需备雨具
+                                        </li>
+                                        <li class="list-group-item">
+                                            <strong>夏季（6-8月）</strong>：气温28-35°C，炎热多雨，注意防暑
+                                        </li>
+                                        <li class="list-group-item">
+                                            <strong>秋季（9-11月）</strong>：气温15-25°C，天气晴朗，最佳旅游季
+                                        </li>
+                                        <li class="list-group-item">
+                                            <strong>冬季（12-2月）</strong>：气温0-10°C，干燥寒冷，适合室内景点
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">烧烤最佳季节</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><span class="highlight">全年均可</span>，夏季夜晚户外烧烤别有风味。</p>
+                                <div class="alert alert-primary">
+                                    <p class="mb-0"><i class="fas fa-info-circle me-2"></i>徐州烧烤文化发达，一年四季都有人吃烧烤，但夏季夜晚户外烧烤最有氛围。</p>
+                                </div>
+                                
+                                <div class="accordion" id="accordionSeason">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                夏季烧烤特色（6-8月）
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionSeason">
+                                            <div class="accordion-body">
+                                                夏季夜晚坐在户外享用烧烤，清凉的夜风加上热腾腾的烧烤，是徐州当地人最爱的消夏方式。
+                                                此时户外烧烤摊位最多，氛围最佳。推荐前往和平路或淮海西路的烧烤一条街。
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                秋冬季烧烤特色（9-2月）
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSeason">
+                                            <div class="accordion-body">
+                                                秋冬季节温度降低，此时更适合在室内烧烤店享用。许多烧烤店会增加暖气设施，吃着热腾腾的烧烤，十分温暖。
+                                                此时烧烤的口味会更加重一些，更多人会选择麻辣味和孜然味的烧烤。
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                春季烧烤特色（3-5月）
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionSeason">
+                                            <div class="accordion-body">
+                                                春季气温适中，户外烧烤开始增多。此时许多烧烤店会推出春季特色食材，如春笋、野菜等，搭配传统的肉类烧烤，别有一番风味。
+                                                春季晚上的温度较凉爽，适合和家人朋友一起体验户外烧烤。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning mt-3">
+                    <p class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i><strong>特别提醒：</strong>五一、十一等黄金周期间徐州景点游客较多，建议错峰出行，提前预订酒店和门票。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 温馨提示 -->
+    <section id="tips" class="mb-5">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h2 class="mb-0"><i class="fas fa-exclamation-circle me-2"></i>温馨提示</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-warning">
+                            <p class="mb-0"><i class="fas fa-sun me-2"></i><strong>徐州夏季较热，请做好防晒准备</strong></p>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">防暑提示</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        携带防晒霜、遮阳伞和太阳镜
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        多补充水分，随身携带水杯
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        夏季中午时分避免户外活动
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="alert alert-info">
+                            <p class="mb-0"><i class="fas fa-utensils me-2"></i><strong>品尝特色美食时注意卫生和个人口味偏好</strong></p>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">饮食提示</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        徐州口味较重，可根据个人口味调整
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        选择卫生条件良好的餐厅就餐
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        对某些食物过敏者需注意询问食材成分
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="alert alert-success">
+                            <p class="mb-0"><i class="fas fa-landmark me-2"></i><strong>景点游览建议提前查询开放时间</strong></p>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">景点提示</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        许多景点周一闭馆，请提前确认
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        部分景点需要提前在线预约门票
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        参观博物馆等文物景点注意文明游览
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="alert alert-primary">
+                            <p class="mb-0"><i class="fas fa-comments me-2"></i><strong>徐州话有特色，可学几句当地方言增添旅行乐趣</strong></p>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">语言提示</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>"乖崽"</strong> - 形容小孩子乖巧可爱
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>"石拱"</strong> - 意思是真的，确实如此
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>"嘞嘞"</strong> - 表示肯定，相当于"是的"
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 应急联系方式 -->
+                <div class="card mt-3">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">应急联系方式</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p><i class="fas fa-ambulance text-danger me-2"></i><strong>急救电话：</strong>120</p>
+                                <p><i class="fas fa-fire-extinguisher text-danger me-2"></i><strong>火警电话：</strong>119</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><i class="fas fa-shield-alt text-primary me-2"></i><strong>报警电话：</strong>110</p>
+                                <p><i class="fas fa-hospital text-success me-2"></i><strong>徐州市第一人民医院：</strong>0516-85802002</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p><i class="fas fa-info-circle text-info me-2"></i><strong>旅游咨询：</strong>0516-12345</p>
+                                <p><i class="fas fa-taxi text-warning me-2"></i><strong>出租车投诉：</strong>0516-96520</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+{% endblock %} 

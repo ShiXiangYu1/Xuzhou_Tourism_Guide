@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}徐州旅游攻略 - 主页{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded-3 mb-4">
+    <h1 class="display-4">徐州旅游攻略</h1>
+    <p class="lead">寻味大汉风情之都，带您探索徐州的历史文化与美食盛宴。</p>
+    <hr class="my-4">
+    <p>徐州位于江苏省西北部，是中国历史文化名城，汉文化的重要发源地。作为楚汉文化和淮海文化的交汇处，徐州拥有丰富的历史遗迹和独特的饮食文化。</p>
+    <a class="btn btn-primary btn-lg" href="#overview" role="button">了解更多</a>
+</div>
+
+<section id="overview" class="mb-5">
+    <h2 class="text-center mb-4">徐州概览</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">文化底蕴</h5>
+                    <p class="card-text">徐州作为中国历史文化名城，有着悠久的历史和深厚的文化底蕴。这里是汉文化的重要发源地，西楚霸王项羽和汉高祖刘邦的故乡，曾经上演过著名的楚汉之争。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">地理位置</h5>
+                    <p class="card-text">徐州位于江苏省西北部，是苏鲁豫皖四省交界处的区域性中心城市，也是淮海经济区中心城市。徐州地处京沪、陇海两大铁路干线的交汇点，交通十分便利。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5">
+    <h2 class="text-center mb-4">推荐亮点</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0"><i class="fas fa-utensils me-2"></i>特色美食</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">徐州烧烤 - 老玖烧烤、火筷子烧烤</li>
+                        <li class="list-group-item">徐州烙馍 - 外脆里软的特色面食</li>
+                        <li class="list-group-item">彭城汤包 - 皮薄馅多，汤汁丰盈</li>
+                        <li class="list-group-item">香辣鸡架 - 入味且香辣的特色卤味</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="{{ url_for('main.food') }}" class="btn btn-outline-primary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0"><i class="fas fa-mountain me-2"></i>热门景点</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">云龙山风景区 - 徐州地标，可俯瞰全城</li>
+                        <li class="list-group-item">汉文化景区 - 包括汉兵马俑、汉画像石馆</li>
+                        <li class="list-group-item">徐州博物馆 - 了解徐州深厚的历史文化</li>
+                        <li class="list-group-item">云龙湖 - 市中心最大湖泊，适合散步休闲</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="{{ url_for('main.attractions') }}" class="btn btn-outline-success">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0"><i class="fas fa-route me-2"></i>行程推荐</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>第一天:</strong> 徐州博物馆→彭城汤包→汉文化景区→老玖烧烤</li>
+                        <li class="list-group-item"><strong>第二天:</strong> 云龙山→山上用餐→云龙湖→火筷子烧烤</li>
+                        <li class="list-group-item"><strong>第三天:</strong> 潘安湖湿地→苏园饭店→万达广场→逍遥津夜市</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="{{ url_for('main.itinerary') }}" class="btn btn-outline-warning">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5">
+    <h2 class="text-center mb-4">徐州旅游小贴士</h2>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <p><i class="fas fa-info-circle me-2"></i><strong>最佳旅游季节:</strong> 4-5月和9-10月，气候宜人</p>
+                    </div>
+                    <div class="alert alert-warning">
+                        <p><i class="fas fa-exclamation-triangle me-2"></i><strong>温馨提示:</strong> 徐州夏季较热，请做好防晒准备</p>
+                    </div>
+                    <p>更多实用信息，请查看<a href="{{ url_for('main.info') }}">实用信息</a>页面。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
