@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}搜索结果 - {{ query }}{% endblock %}
+
+{% from "macros/navigation.html" import map_navigation_button %}
+
+{% block extra_css %}
+<style>
+    .search-header {
+        background-color: #f8f9fa;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem;
+    }
+    
+    .search-form-lg {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .search-category-title {
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: #343a40;
+    }
+    
+    .result-card {
+        transition: transform 0.3s;
+        height: 100%;
+        margin-bottom: 1.5rem;
+    }
+    
+    .result-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .result-img {
+        height: 180px;
+        object-fit: cover;
+    }
+    
+    .rating {
+        color: gold;
+    }
+    
+    .no-results {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+        .search-header {
+            padding: 1.5rem 0;
+        }
+        
+        .result-img {
+            height: 150px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- 搜索头部 -->
+    <div class="search-header">
+        <div class="container">
+            <h1 class="mb-4 text-center">搜索结果</h1>
+            <form class="search-form-lg mb-0" action="{{ url_for('main.search') }}">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-lg" name="q" value="{{ query }}" placeholder="搜索景点、美食、位置...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i> 搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 搜索结果 -->
+    {% if not query %}
+    <div class="no-results">
+        <h3 class="mb-3">请输入搜索关键词</h3>
+        <p class="text-muted">您可以搜索徐州的景点、美食、交通、购物等信息。</p>
+    </div>
+    {% elif not results.attractions and not results.foods and not results.others %}
+    <div class="no-results">
+        <h3 class="mb-3">未找到"{{ query }}"相关结果</h3>
+        <p class="text-muted">请尝试使用其他关键词，或浏览下方的热门内容。</p>
+    </div>
+    
+    <!-- 热门推荐 -->
+    <div class="mt-5">
+        <h3 class="mb-4">热门推荐</h3>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top" alt="云龙山">
+                    <div class="card-body">
+                        <h5 class="card-title">云龙山风景区</h5>
+                        <p class="card-text">徐州地标，可俯瞰全城</p>
+                        <a href="{{ url_for('main.attractions') }}" class="btn btn-outline-primary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top" alt="徐州烧烤">
+                    <div class="card-body">
+                        <h5 class="card-title">徐州特色烧烤</h5>
+                        <p class="card-text">徐州最具代表性的美食</p>
+                        <a href="{{ url_for('main.food') }}" class="btn btn-outline-primary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top" alt="徐州地图">
+                    <div class="card-body">
+                        <h5 class="card-title">徐州旅游地图</h5>
+                        <p class="card-text">查看徐州完整旅游地图</p>
+                        <a href="{{ url_for('main.tourist_map') }}" class="btn btn-outline-primary">查看地图</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    
+    <!-- 景点搜索结果 -->
+    {% if results.attractions %}
+    <div class="search-result-section mb-5">
+        <h2 class="search-category-title">
+            <i class="fas fa-landmark me-2"></i>景点 ({{ results.attractions|length }})
+        </h2>
+        <div class="row">
+            {% for attraction in results.attractions %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card result-card">
+                    <img src="{{ url_for('static', filename='img/' + attraction.image) }}" class="card-img-top result-img" alt="{{ attraction.name }}" onerror="this.src='{{ url_for('static', filename='img/placeholder.svg') }}'">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ attraction.name }}</h5>
+                        <div class="rating mb-2">
+                            {% for i in range(5) %}
+                            {% if i < attraction.rating|int %}
+                            <i class="fas fa-star"></i>
+                            {% elif i < attraction.rating and i + 0.5 >= attraction.rating %}
+                            <i class="fas fa-star-half-alt"></i>
+                            {% else %}
+                            <i class="far fa-star"></i>
+                            {% endif %}
+                            {% endfor %}
+                            <span class="text-muted ms-1">{{ attraction.rating }}</span>
+                        </div>
+                        <p class="card-text text-truncate">{{ attraction.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ attraction.address }}</small></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('main.attractions') }}" class="btn btn-sm btn-outline-primary">查看详情</a>
+                            {{ map_navigation_button(attraction.name, attraction.address, attraction.lat, attraction.lng) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- 美食搜索结果 -->
+    {% if results.foods %}
+    <div class="search-result-section mb-5">
+        <h2 class="search-category-title">
+            <i class="fas fa-utensils me-2"></i>美食 ({{ results.foods|length }})
+        </h2>
+        <div class="row">
+            {% for food in results.foods %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card result-card">
+                    <img src="{{ url_for('static', filename='img/' + food.image) }}" class="card-img-top result-img" alt="{{ food.name }}" onerror="this.src='{{ url_for('static', filename='img/placeholder.svg') }}'">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ food.name }}</h5>
+                        <span class="badge bg-info mb-2">{{ food.category }}</span>
+                        <div class="rating mb-2">
+                            {% for i in range(5) %}
+                            {% if i < food.rating|int %}
+                            <i class="fas fa-star"></i>
+                            {% elif i < food.rating and i + 0.5 >= food.rating %}
+                            <i class="fas fa-star-half-alt"></i>
+                            {% else %}
+                            <i class="far fa-star"></i>
+                            {% endif %}
+                            {% endfor %}
+                            <span class="text-muted ms-1">{{ food.rating }}</span>
+                        </div>
+                        <p class="card-text text-truncate">{{ food.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ food.location }}</small></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('main.food') }}" class="btn btn-sm btn-outline-primary">查看详情</a>
+                            {{ map_navigation_button(food.name, food.location, food.lat, food.lng) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- 其他位置搜索结果 -->
+    {% if results.others %}
+    <div class="search-result-section mb-5">
+        <h2 class="search-category-title">
+            <i class="fas fa-map-marker-alt me-2"></i>其他位置 ({{ results.others|length }})
+        </h2>
+        <div class="row">
+            {% for location in results.others %}
+            <div class="col-md-6 mb-4">
+                <div class="card result-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if location.category == '交通' %}
+                            <i class="fas fa-bus text-success me-2"></i>
+                            {% elif location.category == '购物' %}
+                            <i class="fas fa-shopping-bag text-warning me-2"></i>
+                            {% elif location.category == '医疗' %}
+                            <i class="fas fa-hospital text-info me-2"></i>
+                            {% else %}
+                            <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                            {% endif %}
+                            {{ location.name }}
+                        </h5>
+                        <span class="badge bg-secondary mb-2">{{ location.category }}</span>
+                        <p class="card-text">{{ location.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ location.address }}</small></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('main.tourist_map') }}?q={{ location.name }}" class="btn btn-sm btn-outline-primary">在地图中查看</a>
+                            {{ map_navigation_button(location.name, location.address, location.lat, location.lng) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    {% endif %}
+</div>
+{% endblock %} 

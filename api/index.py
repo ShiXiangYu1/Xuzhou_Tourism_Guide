@@ -4,6 +4,12 @@ Vercel部署入口文件
 """
 
 from flask import Flask
+import os
+import sys
+
+# 添加当前目录到系统路径
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from app import create_app
 
 # 创建应用实例

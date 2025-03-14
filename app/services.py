@@ -6,7 +6,7 @@
 提供数据访问功能，从模型中检索数据
 """
 
-from app.models import FOOD_DATA, ATTRACTION_DATA, ITINERARY_DATA, PRACTICAL_INFO
+from app.models import FOOD_DATA, ATTRACTION_DATA, ITINERARY_DATA, PRACTICAL_INFO, LOCATION_COORDINATES
 
 
 def get_all_foods():
@@ -153,4 +153,120 @@ def search_attractions(keyword):
     return [attraction.to_dict() for attraction in ATTRACTION_DATA 
             if keyword in attraction.name.lower() or 
             keyword in attraction.description.lower() or
-            keyword in attraction.category.lower()] 
+            keyword in attraction.category.lower()]
+
+
+def get_featured_locations():
+    """
+    获取推荐的位置点
+    
+    Returns:
+        dict: 包含推荐景点和美食的字典
+    """
+    featured_attractions = [a.to_dict() for a in ATTRACTION_DATA if a.featured]
+    featured_foods = [f.to_dict() for f in FOOD_DATA if f.featured]
+    
+    return {
+        'attractions': featured_attractions,
+        'foods': featured_foods
+    }
+
+
+def get_all_map_coordinates():
+    """
+    获取所有地图坐标点
+    
+    Returns:
+        list: 所有坐标点的列表
+    """
+    # 获取景点坐标
+    attraction_coords = [
+        {
+            'name': a.name,
+            'address': a.address,
+            'lat': a.lat,
+            'lng': a.lng,
+            'category': a.category,
+            'description': a.description,
+            'type': 'attraction'
+        }
+        for a in ATTRACTION_DATA if a.lat and a.lng
+    ]
+    
+    # 获取美食坐标
+    food_coords = [
+        {
+            'name': f.name,
+            'address': f.location,
+            'lat': f.lat,
+            'lng': f.lng,
+            'category': f.category,
+            'description': f.description,
+            'type': 'food'
+        }
+        for f in FOOD_DATA if f.lat and f.lng
+    ]
+    
+    # 获取其他坐标点
+    other_coords = [loc.to_dict() for loc in LOCATION_COORDINATES]
+    for loc in other_coords:
+        loc['type'] = loc['category'].lower()
+    
+    # 合并所有坐标
+    return attraction_coords + food_coords + other_coords
+
+
+def get_coordinates_by_category(category):
+    """
+    按类别获取坐标点
+    
+    Args:
+        category: 坐标点类别（如景点、美食、交通等）
+        
+    Returns:
+        list: 符合类别的坐标点列表
+    """
+    all_coords = get_all_map_coordinates()
+    if category.lower() == 'all':
+        return all_coords
+        
+    return [coord for coord in all_coords 
+            if category.lower() in coord['category'].lower() or 
+               category.lower() in coord['type'].lower()]
+
+
+def search_all_locations(keyword):
+    """
+    全局搜索所有位置
+    
+    Args:
+        keyword: 搜索关键词
+        
+    Returns:
+        dict: 分类搜索结果
+    """
+    if not keyword or len(keyword.strip()) < 2:
+        return {'attractions': [], 'foods': [], 'others': []}
+    
+    keyword = keyword.lower().strip()
+    
+    # 搜索景点
+    attractions = search_attractions(keyword)
+    
+    # 搜索美食
+    foods = search_foods(keyword)
+    
+    # 搜索其他位置
+    other_locations = [
+        loc.to_dict() for loc in LOCATION_COORDINATES
+        if (keyword in loc.name.lower() or 
+            keyword in loc.address.lower() or 
+            keyword in loc.description.lower() or
+            keyword in loc.category.lower())
+    ]
+    
+    return {
+        'attractions': attractions, 
+        'foods': foods, 
+        'others': other_locations
+    } 

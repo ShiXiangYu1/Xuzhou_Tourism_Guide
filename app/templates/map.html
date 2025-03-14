@@ -1,0 +1,474 @@
+{% extends "base.html" %}
+
+{% block title %}徐州旅游地图{% endblock %}
+
+{% block extra_css %}
+<style>
+    #map-container {
+        height: 600px;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .map-controls {
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .map-category {
+        margin-bottom: 10px;
+    }
+    
+    .map-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }
+    
+    .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    
+    .location-list {
+        max-height: 600px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+        #map-container {
+            height: 400px;
+        }
+        
+        .location-list {
+            margin-top: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">徐州旅游地图</h1>
+    <p class="lead mb-4">探索徐州各个景点、美食和实用位置，规划您的完美行程。</p>
+    
+    <div class="row">
+        <div class="col-md-9">
+            <!-- 地图控制区 -->
+            <div class="map-controls">
+                <h5 class="mb-3">地图筛选</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="map-category">
+                            <label class="form-label">位置类型</label>
+                            <select class="form-select" id="location-type">
+                                <option value="all">所有位置</option>
+                                <option value="attraction">景点</option>
+                                <option value="food">美食</option>
+                                <option value="traffic">交通</option>
+                                <option value="shopping">购物</option>
+                                <option value="medical">医疗</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="map-search">
+                            <label class="form-label">搜索地点</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="map-search-input" placeholder="输入地点名称...">
+                                <button class="btn btn-primary" id="map-search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e74c3c;"></div>
+                        <span>景点</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3498db;"></div>
+                        <span>美食</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2ecc71;"></div>
+                        <span>交通</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f39c12;"></div>
+                        <span>购物</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9b59b6;"></div>
+                        <span>医疗</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #34495e;"></div>
+                        <span>其他</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 地图容器 -->
+            <div id="map-container"></div>
+            
+            <!-- 位置信息 -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0" id="selected-location-title">选中的位置信息</h5>
+                </div>
+                <div class="card-body" id="location-info">
+                    <p class="text-muted">请从地图上选择一个位置查看详细信息</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <!-- 位置列表 -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0" id="location-list-title">所有位置</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush location-list" id="location-list">
+                        <!-- 位置列表将通过JavaScript动态生成 -->
+                        <li class="list-group-item text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">加载中...</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- 百度地图API -->
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=您的百度地图API密钥"></script>
+<script>
+    // 地图实例和标记点集合
+    let map;
+    let markers = [];
+    let currentLocations = [];
+    let infoWindow;
+    
+    // 类型对应的颜色
+    const typeColors = {
+        'attraction': '#e74c3c',  // 红色
+        'food': '#3498db',        // 蓝色
+        'traffic': '#2ecc71',     // 绿色
+        'shopping': '#f39c12',    // 黄色
+        'medical': '#9b59b6',     // 紫色
+        'other': '#34495e'        // 深灰色
+    };
+    
+    // 初始化地图
+    function initMap() {
+        // 创建地图实例
+        map = new BMap.Map("map-container");
+        
+        // 徐州市中心坐标
+        const xuzhou = new BMap.Point(117.2, 34.26);
+        
+        // 设置中心点和缩放级别
+        map.centerAndZoom(xuzhou, 13);
+        
+        // 添加地图控件
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.ScaleControl());
+        map.addControl(new BMap.OverviewMapControl());
+        map.enableScrollWheelZoom();
+        
+        // 创建信息窗口实例
+        infoWindow = new BMap.InfoWindow("", {
+            width: 300,
+            height: 120,
+            title: "位置信息"
+        });
+        
+        // 加载坐标点数据
+        loadLocations();
+        
+        // 初始化事件监听
+        initEventListeners();
+    }
+    
+    // 加载位置坐标数据
+    function loadLocations(category = 'all') {
+        // 清空现有标记
+        clearMarkers();
+        
+        // 更新列表标题
+        updateListTitle(category);
+        
+        // 显示加载中
+        document.getElementById('location-list').innerHTML = `
+            <li class="list-group-item text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">加载中...</span>
+                </div>
+            </li>
+        `;
+        
+        // 从API获取坐标数据
+        fetch(`/api/coordinates?category=${category}`)
+            .then(response => response.json())
+            .then(data => {
+                // 保存当前位置数据
+                currentLocations = data;
+                
+                // 添加标记到地图
+                addMarkers(data);
+                
+                // 更新位置列表
+                updateLocationList(data);
+            })
+            .catch(error => {
+                console.error('获取坐标数据失败:', error);
+                document.getElementById('location-list').innerHTML = `
+                    <li class="list-group-item text-center text-danger">
+                        <i class="fas fa-exclamation-circle"></i> 加载数据失败
+                    </li>
+                `;
+            });
+    }
+    
+    // 添加标记到地图
+    function addMarkers(locations) {
+        locations.forEach(location => {
+            // 创建标记
+            const point = new BMap.Point(location.lng, location.lat);
+            const marker = new BMap.Marker(point);
+            
+            // 根据类型设置不同的图标颜色
+            let iconType = location.type || 'other';
+            if (iconType === 'traffic') iconType = 'traffic';
+            if (iconType === 'shopping') iconType = 'shopping';
+            if (iconType === 'medical') iconType = 'medical';
+            
+            const color = typeColors[iconType] || typeColors.other;
+            
+            // 添加点击事件
+            marker.addEventListener('click', function() {
+                showLocationInfo(location);
+            });
+            
+            // 添加到地图
+            map.addOverlay(marker);
+            
+            // 保存标记引用
+            markers.push(marker);
+        });
+        
+        // 如果有位置，调整地图视野以包含所有标记
+        if (locations.length > 0) {
+            map.setViewport(markers.map(marker => marker.getPosition()));
+        }
+    }
+    
+    // 清除地图上的所有标记
+    function clearMarkers() {
+        markers.forEach(marker => {
+            map.removeOverlay(marker);
+        });
+        markers = [];
+    }
+    
+    // 初始化事件监听
+    function initEventListeners() {
+        // 位置类型筛选
+        document.getElementById('location-type').addEventListener('change', function() {
+            loadLocations(this.value);
+        });
+        
+        // 地图搜索
+        document.getElementById('map-search-btn').addEventListener('click', searchLocation);
+        document.getElementById('map-search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchLocation();
+            }
+        });
+    }
+    
+    // 搜索位置
+    function searchLocation() {
+        const searchInput = document.getElementById('map-search-input');
+        const keyword = searchInput.value.trim();
+        
+        if (!keyword) return;
+        
+        // 在当前位置中搜索
+        const results = currentLocations.filter(location => 
+            location.name.toLowerCase().includes(keyword.toLowerCase()) ||
+            location.address.toLowerCase().includes(keyword.toLowerCase()) ||
+            (location.description && location.description.toLowerCase().includes(keyword.toLowerCase()))
+        );
+        
+        // 更新位置列表
+        updateLocationList(results);
+        
+        // 如果有结果，聚焦到第一个结果
+        if (results.length > 0) {
+            map.centerAndZoom(new BMap.Point(results[0].lng, results[0].lat), 15);
+            showLocationInfo(results[0]);
+        }
+    }
+    
+    // 显示位置信息
+    function showLocationInfo(location) {
+        const locationInfo = document.getElementById('location-info');
+        const locationTitle = document.getElementById('selected-location-title');
+        
+        // 更新标题
+        locationTitle.textContent = location.name;
+        
+        // 构建信息HTML
+        let html = `
+            <h5>${location.name}</h5>
+            <p><i class="fas fa-map-marker-alt text-danger me-2"></i>${location.address}</p>
+        `;
+        
+        if (location.description) {
+            html += `<p><i class="fas fa-info-circle text-info me-2"></i>${location.description}</p>`;
+        }
+        
+        // 根据位置类型添加不同的信息
+        if (location.type === 'attraction') {
+            if (location.opening_hours) {
+                html += `<p><i class="fas fa-clock text-success me-2"></i>开放时间: ${location.opening_hours}</p>`;
+            }
+            if (location.ticket_price) {
+                html += `<p><i class="fas fa-ticket-alt text-primary me-2"></i>门票: ${location.ticket_price}</p>`;
+            }
+        } else if (location.type === 'food') {
+            if (location.rating) {
+                html += `<p><i class="fas fa-star text-warning me-2"></i>评分: ${location.rating}</p>`;
+            }
+        }
+        
+        // 添加导航按钮
+        html += `
+            <button class="btn btn-primary mt-2" onclick="openMapNavigation(event, '${location.name}', '${location.address}', '${location.lat}', '${location.lng}')">
+                <i class="fas fa-directions me-1"></i> 导航到这里
+            </button>
+        `;
+        
+        // 更新信息区域
+        locationInfo.innerHTML = html;
+        
+        // 居中显示位置
+        map.centerAndZoom(new BMap.Point(location.lng, location.lat), 15);
+    }
+    
+    // 更新位置列表
+    function updateLocationList(locations) {
+        const locationList = document.getElementById('location-list');
+        
+        if (locations.length === 0) {
+            locationList.innerHTML = `
+                <li class="list-group-item text-center text-muted">
+                    没有找到匹配的位置
+                </li>
+            `;
+            return;
+        }
+        
+        let html = '';
+        locations.forEach((location, index) => {
+            // 获取图标类型
+            let iconClass = 'fa-map-marker-alt';
+            let iconColor = 'text-secondary';
+            
+            if (location.type === 'attraction') {
+                iconClass = 'fa-landmark';
+                iconColor = 'text-danger';
+            } else if (location.type === 'food') {
+                iconClass = 'fa-utensils';
+                iconColor = 'text-primary';
+            } else if (location.type === 'traffic') {
+                iconClass = 'fa-bus';
+                iconColor = 'text-success';
+            } else if (location.type === 'shopping') {
+                iconClass = 'fa-shopping-bag';
+                iconColor = 'text-warning';
+            } else if (location.type === 'medical') {
+                iconClass = 'fa-hospital';
+                iconColor = 'text-info';
+            }
+            
+            html += `
+                <li class="list-group-item list-location-item" data-index="${index}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">
+                            <i class="fas ${iconClass} ${iconColor} me-2"></i>${location.name}
+                        </h6>
+                    </div>
+                    <small class="text-muted d-block text-truncate">${location.address}</small>
+                </li>
+            `;
+        });
+        
+        locationList.innerHTML = html;
+        
+        // 添加点击事件
+        document.querySelectorAll('.list-location-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                const location = locations[index];
+                showLocationInfo(location);
+            });
+        });
+    }
+    
+    // 更新列表标题
+    function updateListTitle(category) {
+        const title = document.getElementById('location-list-title');
+        
+        switch(category) {
+            case 'attraction':
+                title.textContent = '景点位置';
+                break;
+            case 'food':
+                title.textContent = '美食位置';
+                break;
+            case 'traffic':
+                title.textContent = '交通位置';
+                break;
+            case 'shopping':
+                title.textContent = '购物位置';
+                break;
+            case 'medical':
+                title.textContent = '医疗位置';
+                break;
+            default:
+                title.textContent = '所有位置';
+        }
+    }
+    
+    // 页面加载完成后初始化地图
+    document.addEventListener('DOMContentLoaded', initMap);
+</script>
+{% endblock %} 

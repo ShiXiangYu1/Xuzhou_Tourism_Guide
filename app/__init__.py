@@ -8,6 +8,10 @@ Flask应用初始化模块
 
 from flask import Flask
 import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 
 def create_app(config_name=None):
@@ -28,8 +32,8 @@ def create_app(config_name=None):
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'xuzhou-travel-guide-key')
         app.config['DEBUG'] = False
     else:
-        app.config['SECRET_KEY'] = 'xuzhou-travel-guide-key'
-        app.config['DEBUG'] = True
+        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'xuzhou-travel-guide-key')
+        app.config['DEBUG'] = os.environ.get('DEBUG', 'True').lower() == 'true'
     
     # 注册蓝图
     from app.routes import main_bp

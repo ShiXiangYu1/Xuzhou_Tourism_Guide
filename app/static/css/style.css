@@ -69,4 +69,49 @@ footer a:hover {
     .lead {
         font-size: 1.1rem;
     }
+}
+
+/* 地图导航下拉菜单样式 */
+.map-dropdown {
+    position: absolute;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+}
+
+.map-dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-dropdown-content a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.map-dropdown-content a:hover {
+    background-color: #f5f5f5;
+}
+
+/* 地图导航按钮样式 */
+.map-nav-btn {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    color: #0dcaf0;
+    border: 1px solid #0dcaf0;
+}
+
+.map-nav-btn:hover {
+    background-color: #0dcaf0;
+    color: white;
 } 
