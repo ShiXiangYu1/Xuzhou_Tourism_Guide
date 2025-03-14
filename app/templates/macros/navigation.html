@@ -1,40 +1,3 @@
-{% macro map_navigation_button(name, address, lat=None, lng=None, button_class="btn btn-sm btn-outline-info ms-2") %}
-{# 地图导航按钮宏 - 提供一致的导航体验
-参数说明:
-- name: 地点名称(必填)
-- address: 地址描述(必填)
-- lat: 纬度坐标(选填)
-- lng: 经度坐标(选填)
-- button_class: 按钮CSS类(选填，默认为小型蓝色轮廓按钮)
-#}
-{% if name and address %}
-    {% if lat and lng %}
-        {# 当有坐标时，使用精确导航 #}
-        <button onclick="openMapNavigation(event, '{{ name }}', '{{ address }}', '{{ lat }}', '{{ lng }}')" 
-            class="{{ button_class }} map-nav-btn" 
-            data-name="{{ name }}" 
-            data-address="{{ address }}"
-            data-lat="{{ lat }}"
-            data-lng="{{ lng }}">
-            <i class="fas fa-directions"></i> 导航
-        </button>
-    {% else %}
-        {# 当无坐标时，使用地址搜索 #}
-        <button onclick="openMapNavigation(event, '{{ name }}', '{{ address }}')" 
-            class="{{ button_class }} map-nav-btn"
-            data-name="{{ name }}" 
-            data-address="{{ address }}">
-            <i class="fas fa-directions"></i> 导航
-        </button>
-    {% endif %}
-{% else %}
-    {# 参数不完整时显示禁用按钮 #}
-    <button class="{{ button_class }} disabled" disabled title="导航信息不完整">
-        <i class="fas fa-directions"></i> 导航
-    </button>
-{% endif %}
-{% endmacro %}
-
 {% macro location_card(name, address, lat=None, lng=None, description=None, image_url=None, rating=None) %}
 {# 位置信息卡片宏 - 展示地点详细信息
 参数说明:
@@ -79,7 +42,6 @@
                 <p class="card-text">
                     <i class="fas fa-map-marker-alt text-danger"></i> 
                     <small class="text-muted">{{ address }}</small>
-                    {{ map_navigation_button(name, address, lat, lng) }}
                 </p>
             </div>
     {% if image_url %}

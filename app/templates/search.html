@@ -2,8 +2,6 @@
 
 {% block title %}搜索结果 - {{ query }}{% endblock %}
 
-{% from "macros/navigation.html" import map_navigation_button %}
-
 {% block extra_css %}
 <style>
     .search-header {
@@ -162,7 +160,6 @@
                         <p class="card-text"><small class="text-muted">{{ attraction.address }}</small></p>
                         <div class="d-flex justify-content-between">
                             <a href="{{ url_for('main.attractions') }}" class="btn btn-sm btn-outline-primary">查看详情</a>
-                            {{ map_navigation_button(attraction.name, attraction.address, attraction.lat, attraction.lng) }}
                         </div>
                     </div>
                 </div>
@@ -202,7 +199,6 @@
                         <p class="card-text"><small class="text-muted">{{ food.location }}</small></p>
                         <div class="d-flex justify-content-between">
                             <a href="{{ url_for('main.food') }}" class="btn btn-sm btn-outline-primary">查看详情</a>
-                            {{ map_navigation_button(food.name, food.location, food.lat, food.lng) }}
                         </div>
                     </div>
                 </div>
@@ -240,7 +236,6 @@
                         <p class="card-text"><small class="text-muted">{{ location.address }}</small></p>
                         <div class="d-flex justify-content-between">
                             <a href="{{ url_for('main.tourist_map') }}?q={{ location.name }}" class="btn btn-sm btn-outline-primary">在地图中查看</a>
-                            {{ map_navigation_button(location.name, location.address, location.lat, location.lng) }}
                         </div>
                     </div>
                 </div>
