@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}徐州网红打卡地{% endblock %}
+
+<!-- 导入导航宏 -->
+{% from "macros/navigation.html" import map_navigation_button %}
+
+{% block extra_css %}
+<style>
+    .hotspot-card {
+        transition: transform 0.3s;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+    .hotspot-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .hotspot-img {
+        height: 250px;
+        object-fit: cover;
+    }
+    .social-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+    }
+    .category-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+    }
+    .photo-tips {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-left: 4px solid #ff385c;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 4px;
+    }
+    .best-time {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        background-color: #f8f9fa;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    .best-time.morning {
+        background-color: #ffe8cc;
+        color: #ff8c00;
+    }
+    .best-time.afternoon {
+        background-color: #fff3cd;
+        color: #ffc107;
+    }
+    .best-time.evening {
+        background-color: #cce5ff;
+        color: #0d6efd;
+    }
+    .best-time.night {
+        background-color: #d8d8ff;
+        color: #5c5cff;
+    }
+    .photo-angle {
+        color: #6c757d;
+        font-style: italic;
+    }
+    .tips-icon {
+        margin-right: 8px;
+        color: #ff385c;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">徐州网红打卡地</h1>
+    <p class="lead text-center mb-5">发现徐州小红书、抖音爆红的打卡圣地，记录独特美好的旅行瞬间。</p>
+    
+    <!-- 分类筛选 -->
+    <div class="mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">打卡地类型</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-danger active filter-btn" data-category="all">全部</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="自然风光">自然风光</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="历史人文">历史人文</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="网红街区">网红街区</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="美食地标">美食地标</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" id="hotspot-container">
+        <!-- 云龙湖九里湾观景台 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="自然风光">
+            <div class="card hotspot-card">
+                <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
+                <span class="badge bg-primary category-badge">自然风光</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="云龙湖九里湾观景台">
+                <div class="card-body">
+                    <h5 class="card-title">云龙湖九里湾观景台</h5>
+                    <p class="card-text">徐州摄影爱好者聚集地，湖光山色尽收眼底，是拍摄日落和云龙湖全景的绝佳位置。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市云龙区九里湾公园</small>
+                        {{ map_navigation_button("云龙湖九里湾观景台", "徐州市云龙区九里湾公园") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time afternoon"><i class="fas fa-sun"></i> 下午4-6点</span>
+                        <span class="best-time evening"><i class="fas fa-moon"></i> 傍晚6-7点</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">观景平台面向西北方向，拍摄湖面与日落</span></p>
+                        <p class="mb-0">建议携带广角镜头，能更好地捕捉湖面全景与天空的绚丽色彩。傍晚时分还可拍摄到城市与湖面的灯光倒影，效果绝佳。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 老城墙街区文创园 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="网红街区">
+            <div class="card hotspot-card">
+                <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
+                <span class="badge bg-info category-badge">网红街区</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="老城墙街区文创园">
+                <div class="card-body">
+                    <h5 class="card-title">老城墙街区文创园</h5>
+                    <p class="card-text">保留明清建筑风格的文创街区，网红咖啡店与创意小店云集，极具文艺气息。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市鼓楼区中山北路</small>
+                        {{ map_navigation_button("老城墙街区文创园", "徐州市鼓楼区中山北路老城墙") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time morning"><i class="fas fa-coffee"></i> 上午10-12点</span>
+                        <span class="best-time afternoon"><i class="fas fa-sun"></i> 下午3-5点</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">老城墙入口处的石拱门，街区内的青石板路与红灯笼</span></p>
+                        <p class="mb-0">建议穿着复古风服装，与古色古香的建筑更加搭配。街区有多处怀旧主题布置，适合拍摄复古风格照片。周末人流较多，建议工作日前往。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 徐州博物馆汉兵马俑展区 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="历史人文">
+            <div class="card hotspot-card">
+                <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
+                <span class="badge bg-warning text-dark category-badge">历史人文</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="徐州博物馆汉兵马俑展区">
+                <div class="card-body">
+                    <h5 class="card-title">徐州博物馆汉兵马俑展区</h5>
+                    <p class="card-text">中国仅存的汉代兵马俑，被誉为"东方艺术明珠"，展厅设计极具震撼力。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市云龙区东段</small>
+                        {{ map_navigation_button("徐州博物馆", "徐州市云龙区东段") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time morning"><i class="fas fa-sun"></i> 上午9-11点</span>
+                        <span class="best-time afternoon"><i class="fas fa-clock"></i> 下午2-4点</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">展厅中央俯视角度，特写兵马俑表情细节</span></p>
+                        <p class="mb-0">展厅光线较暗，建议使用手机夜景模式或单反低感光度拍摄。注意博物馆有拍照限制，禁止使用闪光灯。周一闭馆，请避开参观高峰期。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 彭祖园古建筑群 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="历史人文">
+            <div class="card hotspot-card">
+                <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
+                <span class="badge bg-warning text-dark category-badge">历史人文</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="彭祖园古建筑群">
+                <div class="card-body">
+                    <h5 class="card-title">彭祖园古建筑群</h5>
+                    <p class="card-text">纪念中国传说中的长寿始祖彭祖的园林，古色古香的建筑与亭台楼阁适合古风摄影。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市铜山区彭祖大道</small>
+                        {{ map_navigation_button("彭祖园", "徐州市铜山区彭祖大道") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time morning"><i class="fas fa-sun"></i> 上午8-10点</span>
+                        <span class="best-time afternoon"><i class="fas fa-cloud-sun"></i> 下午4-6点</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">园内亭台水榭，牌坊正面，园内小桥流水处</span></p>
+                        <p class="mb-0">春季时园内百花齐放，是拍摄的最佳季节。建议携带长焦镜头捕捉远处建筑细节。适合汉服摄影，但需提前办理摄影许可。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 戏马台音乐喷泉 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="自然风光">
+            <div class="card hotspot-card">
+                <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
+                <span class="badge bg-primary category-badge">自然风光</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="戏马台音乐喷泉">
+                <div class="card-body">
+                    <h5 class="card-title">戏马台音乐喷泉</h5>
+                    <p class="card-text">亚洲最大的音乐喷泉之一，夜晚灯光秀与水舞表演相结合，场面壮观。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市泉山区戏马台广场</small>
+                        {{ map_navigation_button("戏马台音乐喷泉", "徐州市泉山区戏马台广场") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time night"><i class="fas fa-moon"></i> 晚上7:30-9:00</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">广场西侧高处俯瞰，正面拍摄灯光与水柱</span></p>
+                        <p class="mb-0">每晚7:30和8:30各有一场表演，建议提前30分钟到达占位。录制视频时使用三脚架可获得更稳定的画面。周末和节假日人流量大，建议工作日前往。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 淮海食味轩小吃城 -->
+        <div class="col-md-6 mb-4 hotspot-item" data-category="美食地标">
+            <div class="card hotspot-card">
+                <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
+                <span class="badge bg-success category-badge">美食地标</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="淮海食味轩小吃城">
+                <div class="card-body">
+                    <h5 class="card-title">淮海食味轩小吃城</h5>
+                    <p class="card-text">徐州网红美食集中地，汇集各类徐州特色小吃，是美食博主打卡圣地。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：徐州市鼓楼区淮海东路</small>
+                        {{ map_navigation_button("淮海食味轩小吃城", "徐州市鼓楼区淮海东路") }}
+                    </p>
+                    
+                    <div class="best-times mt-3 mb-2">
+                        <span class="fw-bold">最佳拍摄时间：</span>
+                        <span class="best-time morning"><i class="fas fa-utensils"></i> 上午9-11点</span>
+                        <span class="best-time evening"><i class="fas fa-utensils"></i> 晚上6-8点</span>
+                    </div>
+                    
+                    <div class="photo-tips">
+                        <h6><i class="fas fa-camera tips-icon"></i>摄影小贴士</h6>
+                        <p class="mb-2">推荐角度：<span class="photo-angle">美食特写，制作过程，店铺招牌组合拍摄</span></p>
+                        <p class="mb-0">早上适合拍摄传统早点如酥饼、豆腐脑等，晚上适合拍摄烧烤、臭豆腐等夜宵。光线较暗时可使用手机的美食模式获得更好效果。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 拍摄小贴士 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>网红打卡拍摄小贴士</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            前往景点前先查看天气预报，阴天和晴天的拍摄效果差异很大
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            徐州日出时间约5:00-6:30，日落时间约17:30-19:00（随季节变化）
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            建议携带便携三脚架，尤其是拍摄夜景或日落时
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            公共场所拍照注意安全与文明，不要妨碍他人参观
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            徐州夏季炎热，户外拍摄记得防晒、补水
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 分类筛选功能
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const hotspotItems = document.querySelectorAll('.hotspot-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前按钮添加active类
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                
+                // 显示或隐藏打卡地项目
+                hotspotItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %} 

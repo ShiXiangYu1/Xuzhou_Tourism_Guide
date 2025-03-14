@@ -2,6 +2,9 @@
 
 {% block title %}徐州美食推荐{% endblock %}
 
+<!-- 导入导航宏 -->
+{% from "macros/navigation.html" import map_navigation_button %}
+
 {% block extra_css %}
 <style>
     .rating {
@@ -68,7 +71,9 @@
                         <span class="text-muted ms-1">5.0</span>
                     </div>
                     <p class="card-text">徐州最知名的烧烤品牌之一，以羊肉串和特色腌制技术闻名，推荐尝试羊排和鸡翅。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：和平路</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：和平路</small>
+                        {{ map_navigation_button("老玖烧烤", "徐州和平路") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -88,7 +93,9 @@
                         <span class="text-muted ms-1">4.5</span>
                     </div>
                     <p class="card-text">环境较好，特色是调料独特，肉质鲜嫩。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：万达广场附近</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：万达广场附近</small>
+                        {{ map_navigation_button("火筷子烧烤", "徐州万达广场") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -108,7 +115,9 @@
                         <span class="text-muted ms-1">4.8</span>
                     </div>
                     <p class="card-text">民间风味浓厚，特色是铁棍烤制，使食材保持原汁原味。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：云龙区大龙湖附近</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：云龙区大龙湖附近</small>
+                        {{ map_navigation_button("大铁棍烧烤", "徐州云龙区大龙湖") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -128,7 +137,9 @@
                         <span class="text-muted ms-1">4.7</span>
                     </div>
                     <p class="card-text">有名的深夜食堂，尤其推荐烤生蚝和烤羊肉。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：淮海西路</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：淮海西路</small>
+                        {{ map_navigation_button("奇火烧烤", "徐州淮海西路") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -153,7 +164,9 @@
                         <span class="text-muted ms-1">4.5</span>
                     </div>
                     <p class="card-text">当地特色面食，外脆里软。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市中心多处小吃街</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市中心多处小吃街</small>
+                        {{ map_navigation_button("徐州烙馍", "徐州小吃街") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -173,7 +186,9 @@
                         <span class="text-muted ms-1">4.3</span>
                     </div>
                     <p class="card-text">徐州特色卤味，入味且香辣。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：小吃街</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：小吃街</small>
+                        {{ map_navigation_button("香辣鸡架", "徐州小吃街") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -193,7 +208,9 @@
                         <span class="text-muted ms-1">4.6</span>
                     </div>
                     <p class="card-text">徐州名小吃，皮薄馅多，汤汁丰盈。</p>
-                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市区多家连锁店</small></p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">位置：市区多家连锁店</small>
+                        {{ map_navigation_button("彭城汤包", "徐州彭城汤包") }}
+                    </p>
                 </div>
             </div>
         </div>

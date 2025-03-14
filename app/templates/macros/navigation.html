@@ -1,0 +1,7 @@
+{% macro map_navigation_button(name, location) %}
+<a href="https://map.baidu.com/search/{{ (name + ' ' + location)|urlencode }}/?querytype=s" 
+   class="btn btn-sm btn-outline-info ms-2" 
+   target="_blank">
+    <i class="fas fa-directions"></i> 导航
+</a>
+{% endmacro %} 

@@ -77,4 +77,15 @@ def info():
     Returns:
         渲染后的实用信息页面模板
     """
-    return render_template('info.html', title='徐州实用信息') 
+    return render_template('info.html', title='徐州实用信息')
+
+
+@main_bp.route('/hotspots')
+def hotspots():
+    """
+    网红打卡地页面
+    
+    Returns:
+        渲染后的网红打卡地页面模板
+    """
+    return render_template('hotspots.html', title='徐州网红打卡地') 

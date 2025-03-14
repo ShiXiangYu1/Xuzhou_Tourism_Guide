@@ -7,6 +7,7 @@ Flask应用初始化模块
 """
 
 from flask import Flask
+import os
 
 
 def create_app(config_name=None):
@@ -22,9 +23,10 @@ def create_app(config_name=None):
     # 创建Flask应用
     app = Flask(__name__)
     
-    # 加载配置
-    if config_name == 'testing':
-        app.config['TESTING'] = True
+    # 配置
+    if os.environ.get('VERCEL_ENV') == 'production':
+        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'xuzhou-travel-guide-key')
+        app.config['DEBUG'] = False
     else:
         app.config['SECRET_KEY'] = 'xuzhou-travel-guide-key'
         app.config['DEBUG'] = True

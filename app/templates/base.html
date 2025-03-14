@@ -43,6 +43,12 @@
                            href="{{ url_for('main.attractions') }}">景点推荐</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('main.hotspots') %}active{% endif %}" 
+                           href="{{ url_for('main.hotspots') }}">
+                           <i class="fas fa-camera me-1"></i>网红打卡
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {% if request.path == url_for('main.itinerary') %}active{% endif %}" 
                            href="{{ url_for('main.itinerary') }}">行程规划</a>
                     </li>

@@ -2,6 +2,9 @@
 
 {% block title %}徐州景点推荐{% endblock %}
 
+<!-- 导入导航宏 -->
+{% from "macros/navigation.html" import map_navigation_button %}
+
 {% block extra_css %}
 <style>
     .rating {
@@ -73,8 +76,10 @@
                     </div>
                     <p class="card-text">徐州地标，可俯瞰全城。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区云龙山</small></p>
-                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-18:00</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 60元</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 60元</small>
+                        {{ map_navigation_button("云龙山风景区", "徐州市云龙区云龙山") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -96,7 +101,9 @@
                     <p class="card-text">包括汉兵马俑、汉画像石馆等。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 80元</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 80元</small>
+                        {{ map_navigation_button("汉文化景区", "徐州市铜山区") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -117,8 +124,10 @@
                     </div>
                     <p class="card-text">西楚霸王项羽的陵墓。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
-                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:30-17:30</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 40元</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:30-17:00</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 40元</small>
+                        {{ map_navigation_button("楚王陵", "徐州市铜山区") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -139,8 +148,10 @@
                     </div>
                     <p class="card-text">了解徐州深厚的历史文化。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区东段</small></p>
-                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00 (周一闭馆)</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small>
+                        {{ map_navigation_button("徐州博物馆", "徐州市云龙区东段") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -166,8 +177,10 @@
                     </div>
                     <p class="card-text">市中心最大湖泊，适合散步休闲。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区</small></p>
-                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 全天开放</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">全天开放</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small>
+                        {{ map_navigation_button("云龙湖", "徐州市云龙区") }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -189,7 +202,9 @@
                     <p class="card-text">生态环境优美，适合亲近自然。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市贾汪区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
-                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 30元</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 30元</small>
+                        {{ map_navigation_button("潘安湖湿地公园", "徐州市贾汪区") }}
+                    </p>
                 </div>
             </div>
         </div>
