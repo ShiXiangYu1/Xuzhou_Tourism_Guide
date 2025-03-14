@@ -19,6 +19,19 @@ def get_all_foods():
     return [food.to_dict() for food in FOOD_DATA]
 
 
+def get_local_food_spots():
+    """
+    获取当地特色小吃和苍蝇馆子
+    
+    Returns:
+        list: 符合条件的当地小吃店列表
+    """
+    local_spots = [food.to_dict() for food in FOOD_DATA 
+                  if food.name in ["小鱼卷饼", "老王地锅", "徐州凉皮"] 
+                  or "特色小吃" in food.category]
+    return local_spots
+
+
 def get_food_by_category(category):
     """
     按类别获取美食项目

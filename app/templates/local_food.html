@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}徐州苍蝇馆子 - 地道美食{% endblock %}
+
+{% block extra_css %}
+<style>
+    .rating {
+        color: gold;
+    }
+    .food-card {
+        transition: transform 0.3s;
+        height: 100%;
+    }
+    .food-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .food-img {
+        height: 200px;
+        object-fit: cover;
+    }
+    .category-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .location-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    .authentic-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #ff4d4f;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">徐州苍蝇馆子 - 地道美食</h1>
+    <p class="lead text-center mb-5">不起眼的小店，却有最正宗的徐州味道。这里推荐的都是当地人喜爱的美食店铺，不一定有豪华装修，但绝对美味实惠！</p>
+    
+    <!-- 美食分类 -->
+    <div class="mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">美食分类</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-danger active filter-btn" data-category="all">全部</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="小吃">地道小吃</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="地锅">特色地锅</button>
+                    <button class="btn btn-outline-danger filter-btn" data-category="卷饼">特色卷饼</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" id="food-container">
+        <!-- 特色卷饼 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-utensils me-2"></i>特色卷饼</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 food-item" data-category="卷饼">
+            <div class="card food-card">
+                <span class="badge bg-success category-badge">特色小吃</span>
+                <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="小鱼卷饼">
+                <div class="card-body">
+                    <h5 class="card-title">小鱼卷饼</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="text-muted ms-1">4.9</span>
+                    </div>
+                    <p class="card-text">不起眼的小店，但卷饼外酥里嫩，小鱼鲜香可口，排队人很多，值得一等。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">中山北路凉皮店旁</small>
+                        <a href="https://map.baidu.com/search/小鱼卷饼+中山北路凉皮店旁/?querytype=s" class="btn btn-sm btn-outline-info ms-2" target="_blank">
+                            <i class="fas fa-directions"></i> 导航
+                        </a>
+                    </p>
+                    <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 10:00-21:00</small></p>
+                    <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 15-20元/份</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 地锅类 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-fire-alt me-2"></i>特色地锅</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 food-item" data-category="地锅">
+            <div class="card food-card">
+                <span class="badge bg-warning text-dark category-badge">特色菜</span>
+                <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="老王地锅">
+                <div class="card-body">
+                    <h5 class="card-title">老王地锅</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.7</span>
+                    </div>
+                    <p class="card-text">朴实无华的店面，地锅菜香味浓郁，食材新鲜，是当地人常去的美食地点。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">云龙区新农贸市场附近</small>
+                        <a href="https://map.baidu.com/search/老王地锅+云龙区新农贸市场附近/?querytype=s" class="btn btn-sm btn-outline-info ms-2" target="_blank">
+                            <i class="fas fa-directions"></i> 导航
+                        </a>
+                    </p>
+                    <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 11:00-22:00</small></p>
+                    <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 40-80元/锅</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 凉皮类 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-cookie-bite me-2"></i>凉皮小吃</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 food-item" data-category="小吃">
+            <div class="card food-card">
+                <span class="badge bg-success category-badge">特色小吃</span>
+                <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
+                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="徐州凉皮">
+                <div class="card-body">
+                    <h5 class="card-title">徐州凉皮</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-muted ms-1">4.8</span>
+                    </div>
+                    <p class="card-text">劲道爽滑，调料香辣，夏季必备开胃小吃，往里走可以看到排队购买的人群。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">中山北路小吃街</small>
+                        <a href="https://map.baidu.com/search/徐州凉皮+中山北路小吃街/?querytype=s" class="btn btn-sm btn-outline-info ms-2" target="_blank">
+                            <i class="fas fa-directions"></i> 导航
+                        </a>
+                    </p>
+                    <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 10:00-20:00</small></p>
+                    <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 8-15元/份</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 当地人推荐贴士 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>当地人推荐贴士</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-light">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            <strong>最佳访问时间：</strong>中午11:30-13:00或晚上17:30-19:00是当地人用餐高峰，可以避开这些时间段减少排队
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            <strong>辣度提示：</strong>徐州小吃普遍较辣，点餐时可以指定辣度
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            <strong>实用建议：</strong>小鱼卷饼店排队人多，可以先到附近的凉皮店买凉皮，边吃边等
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            <strong>隐藏菜单：</strong>在老王地锅店，可以向老板要求"特制调料"，是店内不公开的秘制配方
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 分类筛选功能
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const foodItems = document.querySelectorAll('.food-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前按钮添加active类
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                
+                // 显示或隐藏食物项目
+                foodItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %} 

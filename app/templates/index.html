@@ -47,9 +47,16 @@
                         <li class="list-group-item">徐州烙馍 - 外脆里软的特色面食</li>
                         <li class="list-group-item">彭城汤包 - 皮薄馅多，汤汁丰盈</li>
                         <li class="list-group-item">香辣鸡架 - 入味且香辣的特色卤味</li>
+                        <li class="list-group-item bg-light text-danger">
+                            <i class="fas fa-fire me-1"></i>
+                            <strong>苍蝇馆子 - 小鱼卷饼、老王地锅、徐州凉皮</strong>
+                        </li>
                     </ul>
-                    <div class="mt-3">
+                    <div class="mt-3 d-flex gap-2">
                         <a href="{{ url_for('main.food') }}" class="btn btn-outline-primary">查看详情</a>
+                        <a href="{{ url_for('main.local_food') }}" class="btn btn-outline-danger">
+                            <i class="fas fa-utensils me-1"></i>逛苍蝇馆子
+                        </a>
                     </div>
                 </div>
             </div>

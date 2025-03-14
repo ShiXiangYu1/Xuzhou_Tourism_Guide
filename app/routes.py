@@ -34,6 +34,19 @@ def food():
     return render_template('food.html', title='徐州美食推荐')
 
 
+@main_bp.route('/local_food')
+def local_food():
+    """
+    苍蝇馆子 - 地道美食页面
+    
+    Returns:
+        渲染后的地道美食页面模板
+    """
+    from app.services import get_local_food_spots
+    local_foods = get_local_food_spots()
+    return render_template('local_food.html', title='徐州苍蝇馆子 - 地道美食', local_foods=local_foods)
+
+
 @main_bp.route('/attractions')
 def attractions():
     """
