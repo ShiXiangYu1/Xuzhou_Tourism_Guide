@@ -3,7 +3,7 @@
 {% block title %}徐州景点推荐{% endblock %}
 
 <!-- 导入导航宏 -->
-{% from "macros/navigation.html" import map_navigation_button %}
+{% from "macros/navigation.html" import location_card %}
 
 {% block extra_css %}
 <style>
@@ -78,7 +78,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区云龙山</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 60元</small>
-                        {{ map_navigation_button("云龙山风景区", "徐州市云龙区", "34.2732", "117.2011") }}
+                        {{ location_card("云龙山风景区", "徐州市云龙区", "34.2732", "117.2011") }}
                     </p>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 80元</small>
-                        {{ map_navigation_button("汉文化景区", "徐州市铜山区", "34.2037", "117.1611") }}
+                        {{ location_card("汉文化景区", "徐州市铜山区", "34.2037", "117.1611") }}
                     </p>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市铜山区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:30-17:00</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 40元</small>
-                        {{ map_navigation_button("楚王陵", "徐州市铜山区", "34.1754", "117.1629") }}
+                        {{ location_card("楚王陵", "徐州市铜山区", "34.1754", "117.1629") }}
                     </p>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区东段</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 09:00-17:00 (周一闭馆)</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small>
-                        {{ map_navigation_button("徐州博物馆", "徐州市云龙区东段", "34.2608", "117.2028") }}
+                        {{ location_card("徐州博物馆", "徐州市云龙区东段", "34.2608", "117.2028") }}
                     </p>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">全天开放</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 免费</small>
-                        {{ map_navigation_button("云龙湖", "徐州市云龙区", "34.2732", "117.2011") }}
+                        {{ location_card("云龙湖", "徐州市云龙区", "34.2732", "117.2011") }}
                     </p>
                 </div>
             </div>
@@ -203,7 +203,7 @@
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市贾汪区</small></p>
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 30元</small>
-                        {{ map_navigation_button("潘安湖湿地公园", "徐州市贾汪区") }}
+                        {{ location_card("潘安湖湿地公园", "徐州市贾汪区") }}
                     </p>
                 </div>
             </div>

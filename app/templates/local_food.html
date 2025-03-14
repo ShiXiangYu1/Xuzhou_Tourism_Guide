@@ -3,7 +3,7 @@
 {% block title %}徐州苍蝇馆子 - 地道美食{% endblock %}
 
 <!-- 导入导航宏 -->
-{% from "macros/navigation.html" import map_navigation_button %}
+{% from "macros/navigation.html" import location_card %}
 
 {% block extra_css %}
 <style>
@@ -88,7 +88,7 @@
                     </div>
                     <p class="card-text">不起眼的小店，但卷饼外酥里嫩，小鱼鲜香可口，排队人很多，值得一等。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">中山北路凉皮店旁</small>
-                        {{ map_navigation_button("小鱼卷饼", "中山北路凉皮店旁") }}
+                        {{ location_card("小鱼卷饼", "中山北路凉皮店旁") }}
                     </p>
                     <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 10:00-21:00</small></p>
                     <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 15-20元/份</small></p>
@@ -118,7 +118,7 @@
                     </div>
                     <p class="card-text">朴实无华的店面，地锅菜香味浓郁，食材新鲜，是当地人常去的美食地点。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">云龙区新农贸市场附近</small>
-                        {{ map_navigation_button("老王地锅", "云龙区新农贸市场附近") }}
+                        {{ location_card("老王地锅", "云龙区新农贸市场附近") }}
                     </p>
                     <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 11:00-22:00</small></p>
                     <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 40-80元/锅</small></p>
@@ -148,7 +148,7 @@
                     </div>
                     <p class="card-text">劲道爽滑，调料香辣，夏季必备开胃小吃，往里走可以看到排队购买的人群。</p>
                     <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">中山北路小吃街</small>
-                        {{ map_navigation_button("徐州凉皮", "中山北路小吃街") }}
+                        {{ location_card("徐州凉皮", "中山北路小吃街") }}
                     </p>
                     <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 10:00-20:00</small></p>
                     <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 8-15元/份</small></p>
