@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5e4c3" />
+      <stop offset="100%" stop-color="#e2c17f" />
+    </linearGradient>
+    <linearGradient id="wallGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8a665" />
+      <stop offset="100%" stop-color="#9c7b43" />
+    </linearGradient>
+    <pattern id="patternBrick" patternUnits="userSpaceOnUse" width="30" height="15">
+      <rect width="30" height="15" fill="#c8a665"/>
+      <rect width="15" height="7" fill="#9c7b43" opacity="0.3"/>
+      <rect x="15" y="7" width="15" height="7" fill="#9c7b43" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <rect x="20" y="20" width="760" height="560" stroke="#9c0c0c" stroke-width="10" fill="none"/>
+  <rect x="30" y="30" width="740" height="540" stroke="#9c0c0c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 汉代宫墙 -->
+  <rect x="100" y="150" width="600" height="200" fill="url(#wallGradient)"/>
+  <rect x="100" y="150" width="600" height="200" fill="url(#patternBrick)" opacity="0.3"/>
+  
+  <!-- 汉代屋顶 -->
+  <path d="M50,150 L400,50 L750,150" fill="#9c0c0c"/>
+  <path d="M70,155 L400,65 L730,155" fill="#7a0909"/>
+  
+  <!-- 装饰柱子 -->
+  <rect x="150" y="170" width="30" height="180" fill="#7a0909"/>
+  <rect x="300" y="170" width="30" height="180" fill="#7a0909"/>
+  <rect x="470" y="170" width="30" height="180" fill="#7a0909"/>
+  <rect x="620" y="170" width="30" height="180" fill="#7a0909"/>
+  
+  <!-- 门 -->
+  <rect x="370" y="230" width="60" height="120" fill="#7a0909"/>
+  <circle cx="415" cy="290" r="5" fill="#e2c17f"/>
+  
+  <!-- 兵马俑展区 -->
+  <rect x="150" y="400" width="500" height="150" fill="#c8a665" opacity="0.5"/>
+  <rect x="160" y="410" width="480" height="130" stroke="#9c0c0c" stroke-width="2" fill="none"/>
+  
+  <!-- 兵马俑 -->
+  <g transform="translate(200, 450) scale(0.5)">
+    <!-- 兵马俑1 -->
+    <path d="M10,60 L30,20 L50,60" stroke="#333" stroke-width="4" fill="none"/>
+    <circle cx="30" cy="15" r="10" fill="#9c7b43"/>
+    <rect x="20" y="25" width="20" height="30" fill="#7a0909"/>
+    <rect x="25" y="60" width="10" height="20" fill="#333"/>
+  </g>
+  
+  <g transform="translate(300, 450) scale(0.5)">
+    <!-- 兵马俑2 -->
+    <path d="M10,60 L30,20 L50,60" stroke="#333" stroke-width="4" fill="none"/>
+    <circle cx="30" cy="15" r="10" fill="#9c7b43"/>
+    <rect x="15" y="25" width="30" height="30" fill="#7a0909"/>
+    <rect x="25" y="60" width="10" height="20" fill="#333"/>
+    <line x1="15" y1="40" x2="0" y2="50" stroke="#333" stroke-width="3"/>
+  </g>
+  
+  <g transform="translate(400, 450) scale(0.5)">
+    <!-- 兵马俑3 (骑马) -->
+    <ellipse cx="30" cy="70" rx="40" ry="20" fill="#9c7b43"/>
+    <path d="M10,60 L30,20 L50,60" stroke="#333" stroke-width="4" fill="none"/>
+    <circle cx="30" cy="15" r="10" fill="#9c7b43"/>
+    <rect x="20" y="25" width="20" height="30" fill="#7a0909"/>
+    <line x1="50" y1="40" x2="70" y2="50" stroke="#333" stroke-width="3"/>
+  </g>
+  
+  <g transform="translate(500, 450) scale(0.5)">
+    <!-- 兵马俑4 -->
+    <path d="M10,60 L30,20 L50,60" stroke="#333" stroke-width="4" fill="none"/>
+    <circle cx="30" cy="15" r="10" fill="#9c7b43"/>
+    <rect x="20" y="25" width="20" height="30" fill="#7a0909"/>
+    <rect x="25" y="60" width="10" height="20" fill="#333"/>
+  </g>
+  
+  <!-- 汉代装饰文物 -->
+  <circle cx="220" cy="500" r="15" fill="#e2c17f" stroke="#9c0c0c" stroke-width="2"/>
+  <rect x="550" y="480" width="30" height="40" fill="#e2c17f" stroke="#9c0c0c" stroke-width="2"/>
+  
+  <!-- 汉代瓦当装饰 -->
+  <g transform="translate(100, 150) scale(0.5)">
+    <circle cx="0" cy="0" r="20" fill="#7a0909"/>
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#e2c17f" stroke-width="1"/>
+    <path d="M-10,-10 L10,10 M-10,10 L10,-10" stroke="#e2c17f" stroke-width="1"/>
+  </g>
+  
+  <g transform="translate(200, 150) scale(0.5)">
+    <circle cx="0" cy="0" r="20" fill="#7a0909"/>
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#e2c17f" stroke-width="1"/>
+    <path d="M-10,-10 L10,10 M-10,10 L10,-10" stroke="#e2c17f" stroke-width="1"/>
+  </g>
+  
+  <g transform="translate(300, 150) scale(0.5)">
+    <circle cx="0" cy="0" r="20" fill="#7a0909"/>
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#e2c17f" stroke-width="1"/>
+    <path d="M-10,-10 L10,10 M-10,10 L10,-10" stroke="#e2c17f" stroke-width="1"/>
+  </g>
+  
+  <!-- 题字 -->
+  <text x="400" y="110" font-family="'Microsoft YaHei'" font-size="24" text-anchor="middle" fill="#7a0909" font-weight="bold">徐州汉文化景区</text>
+  <text x="400" y="380" font-family="'Microsoft YaHei'" font-size="18" text-anchor="middle" fill="#7a0909">兵马俑展区</text>
+</svg> 

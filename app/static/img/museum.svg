@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8f4ff" />
+      <stop offset="100%" stop-color="#c8def0" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5e4c3" />
+      <stop offset="100%" stop-color="#e2c17f" />
+    </linearGradient>
+    <linearGradient id="roofGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9c0c0c" />
+      <stop offset="100%" stop-color="#7a0909" />
+    </linearGradient>
+    <linearGradient id="stepsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8a665" />
+      <stop offset="100%" stop-color="#9c7b43" />
+    </linearGradient>
+    <pattern id="patternBrick" patternUnits="userSpaceOnUse" width="30" height="15">
+      <rect width="30" height="15" fill="#e2c17f"/>
+      <rect width="15" height="7" fill="#c8a665" opacity="0.3"/>
+      <rect x="15" y="7" width="15" height="7" fill="#c8a665" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- 天空背景 -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  
+  <!-- 院子草坪 -->
+  <rect x="0" y="400" width="800" height="200" fill="#305642" opacity="0.5"/>
+  
+  <!-- 中轴线对称设计 - 汉代风格的台阶 -->
+  <rect x="300" y="400" width="200" height="10" fill="url(#stepsGradient)"/>
+  <rect x="310" y="410" width="180" height="10" fill="url(#stepsGradient)"/>
+  <rect x="320" y="420" width="160" height="10" fill="url(#stepsGradient)"/>
+  
+  <!-- 博物馆主体建筑 - 汉代宫殿风格 -->
+  <rect x="150" y="180" width="500" height="220" fill="url(#buildingGradient)"/>
+  <rect x="150" y="180" width="500" height="220" fill="url(#patternBrick)" opacity="0.3"/>
+  
+  <!-- 博物馆屋顶 - 汉代风格飞檐翘角 -->
+  <path d="M100,180 L400,100 L700,180" fill="url(#roofGradient)"/>
+  <path d="M120,180 L400,110 L680,180" fill="#7a0909"/>
+  
+  <!-- 装饰屋脊 -->
+  <path d="M380,100 L400,80 L420,100" stroke="#e2c17f" stroke-width="2" fill="none"/>
+  <circle cx="400" cy="80" r="5" fill="#e2c17f"/>
+  
+  <!-- 主体柱子 -->
+  <rect x="200" y="200" width="20" height="200" fill="#9c0c0c"/>
+  <rect x="580" y="200" width="20" height="200" fill="#9c0c0c"/>
+  
+  <!-- 汉代雕花图案 -->
+  <rect x="200" y="190" width="20" height="10" fill="#9c0c0c"/>
+  <rect x="580" y="190" width="20" height="10" fill="#9c0c0c"/>
+  
+  <!-- 装饰性柱子 -->
+  <rect x="270" y="220" width="15" height="180" fill="#9c0c0c"/>
+  <rect x="370" y="220" width="15" height="180" fill="#9c0c0c"/>
+  <rect x="415" y="220" width="15" height="180" fill="#9c0c0c"/>
+  <rect x="515" y="220" width="15" height="180" fill="#9c0c0c"/>
+  
+  <!-- 博物馆正门 -->
+  <rect x="350" y="300" width="100" height="100" fill="#7a0909"/>
+  <rect x="360" y="310" width="80" height="90" fill="#1a0a2e"/>
+  
+  <!-- 门上的汉代图案装饰 -->
+  <path d="M360,300 L440,300" stroke="#e2c17f" stroke-width="2"/>
+  <path d="M350,320 L450,320" stroke="#e2c17f" stroke-width="1"/>
+  <path d="M350,340 L450,340" stroke="#e2c17f" stroke-width="1"/>
+  
+  <!-- 两侧对称的展厅窗户 -->
+  <rect x="220" y="240" width="40" height="60" fill="#1a0a2e"/>
+  <rect x="540" y="240" width="40" height="60" fill="#1a0a2e"/>
+  <rect x="220" y="320" width="40" height="60" fill="#1a0a2e"/>
+  <rect x="540" y="320" width="40" height="60" fill="#1a0a2e"/>
+  
+  <!-- 窗户装饰 -->
+  <rect x="220" y="240" width="40" height="5" fill="#e2c17f"/>
+  <rect x="540" y="240" width="40" height="5" fill="#e2c17f"/>
+  <rect x="220" y="320" width="40" height="5" fill="#e2c17f"/>
+  <rect x="540" y="320" width="40" height="5" fill="#e2c17f"/>
+  
+  <!-- 汉代文物装饰图案 - 左展厅 -->
+  <circle cx="240" cy="270" r="10" fill="none" stroke="#e2c17f" stroke-width="1"/>
+  <path d="M235,265 L245,275 M235,275 L245,265" stroke="#e2c17f" stroke-width="1"/>
+  
+  <!-- 汉代文物装饰图案 - 右展厅 -->
+  <circle cx="560" cy="270" r="10" fill="none" stroke="#e2c17f" stroke-width="1"/>
+  <path d="M555,265 L565,275 M555,275 L565,265" stroke="#e2c17f" stroke-width="1"/>
+  
+  <!-- 博物馆入口路径 -->
+  <path d="M350,400 L350,500 L450,500 L450,400" fill="#9c7b43" opacity="0.3"/>
+  
+  <!-- 装饰路径 -->
+  <path d="M360,410 L360,490 L440,490 L440,410" stroke="#e2c17f" stroke-width="1" fill="none"/>
+  
+  <!-- 博物馆名称 -->
+  <text x="400" y="270" font-family="'Microsoft YaHei'" font-size="24" text-anchor="middle" fill="#7a0909" font-weight="bold">徐州博物馆</text>
+  
+  <!-- 传统装饰性云纹 -->
+  <path d="M150,180 Q170,170 190,180 T230,180 T270,180" stroke="#e2c17f" stroke-width="1" fill="none"/>
+  <path d="M530,180 Q550,170 570,180 T610,180 T650,180" stroke="#e2c17f" stroke-width="1" fill="none"/>
+  
+  <!-- 装饰花草 -->
+  <g transform="translate(100, 450)">
+    <path d="M0,0 C5,-10 10,-5 15,0" stroke="#305642" stroke-width="2" fill="none"/>
+    <path d="M5,0 C10,-15 15,-10 20,0" stroke="#305642" stroke-width="2" fill="none"/>
+    <path d="M10,0 C15,-12 20,-8 25,0" stroke="#305642" stroke-width="2" fill="none"/>
+  </g>
+  
+  <g transform="translate(650, 450)">
+    <path d="M0,0 C5,-10 10,-5 15,0" stroke="#305642" stroke-width="2" fill="none"/>
+    <path d="M5,0 C10,-15 15,-10 20,0" stroke="#305642" stroke-width="2" fill="none"/>
+    <path d="M10,0 C15,-12 20,-8 25,0" stroke="#305642" stroke-width="2" fill="none"/>
+  </g>
+</svg> 

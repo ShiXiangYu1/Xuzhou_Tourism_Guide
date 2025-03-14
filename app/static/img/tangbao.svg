@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5e4c3" />
+      <stop offset="100%" stop-color="#e2c17f" />
+    </linearGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5f5" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f5f5f5" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="baoBunGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5f5" />
+      <stop offset="100%" stop-color="#e6e6e6" />
+    </linearGradient>
+    <linearGradient id="bambooGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8a665" />
+      <stop offset="100%" stop-color="#9c7b43" />
+    </linearGradient>
+    <radialGradient id="baoShadowGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#9c7b43" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#9c7b43" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurFilter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰边框 -->
+  <rect x="40" y="40" width="720" height="520" stroke="#9c0c0c" stroke-width="3" fill="none" rx="10"/>
+  <rect x="50" y="50" width="700" height="500" stroke="#9c0c0c" stroke-width="1" fill="none" rx="8" stroke-dasharray="5,5"/>
+  
+  <!-- 竹笼蒸笼 - 底层 -->
+  <ellipse cx="400" cy="420" rx="220" ry="40" fill="url(#bambooGradient)"/>
+  <ellipse cx="400" cy="410" rx="200" ry="30" fill="#f5e4c3" opacity="0.6"/>
+  
+  <!-- 竹笼边缘 -->
+  <path d="M200,420 L200,300" stroke="#9c7b43" stroke-width="5"/>
+  <path d="M600,420 L600,300" stroke="#9c7b43" stroke-width="5"/>
+  <path d="M200,300 C270,270 530,270 600,300" stroke="#9c7b43" stroke-width="5" fill="none"/>
+  <path d="M200,350 C270,320 530,320 600,350" stroke="#9c7b43" stroke-width="3" fill="none"/>
+  
+  <!-- 竹笼编制纹理 -->
+  <path d="M220,420 L220,310 M240,420 L240,308 M260,420 L260,306 M280,420 L280,304 M300,420 L300,302 
+           M320,420 L320,301 M340,420 L340,300 M360,420 L360,300 M380,420 L380,300 M400,420 L400,300
+           M420,420 L420,300 M440,420 L440,300 M460,420 L460,301 M480,420 L480,302 M500,420 L500,304
+           M520,420 L520,306 M540,420 L540,308 M560,420 L560,310 M580,420 L580,315" 
+        stroke="#c8a665" stroke-width="1" opacity="0.7"/>
+  
+  <path d="M200,320 C270,290 530,290 600,320 M200,340 C270,310 530,310 600,340 
+           M200,360 C270,330 530,330 600,360 M200,380 C270,350 530,350 600,380 
+           M200,400 C270,370 530,370 600,400" 
+        stroke="#c8a665" stroke-width="1" opacity="0.7"/>
+  
+  <!-- 蒸笼中的汤包 - 中心汤包 -->
+  <g>
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+    
+    <!-- 蒸汽 -->
+    <path d="M390,280 Q380,260 390,240 Q400,230 410,240 Q420,260 410,280" fill="url(#steamGradient)" filter="url(#blurFilter)"/>
+    <path d="M380,280 Q370,250 360,270 Q350,290 370,285" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.7"/>
+    <path d="M420,280 Q430,250 440,270 Q450,290 430,285" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.7"/>
+  </g>
+  
+  <!-- 左侧汤包 -->
+  <g transform="translate(-80, 10) scale(0.9)">
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+    
+    <!-- 蒸汽 -->
+    <path d="M390,280 Q380,260 390,250 Q395,240 400,245 Q405,240 410,245 Q420,260 410,280" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.8"/>
+  </g>
+  
+  <!-- 右侧汤包 -->
+  <g transform="translate(80, 5) scale(0.85)">
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+    
+    <!-- 蒸汽 -->
+    <path d="M390,280 Q375,255 385,235 Q395,225 405,235 Q415,255 410,280" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.9"/>
+  </g>
+  
+  <!-- 前侧汤包 -->
+  <g transform="translate(0, 50) scale(0.8)">
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+  </g>
+  
+  <!-- 右后方汤包 -->
+  <g transform="translate(50, -20) scale(0.7)">
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+    
+    <!-- 蒸汽 -->
+    <path d="M390,280 Q385,260 395,245 Q405,240 410,245 Q415,260 410,280" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.6"/>
+  </g>
+  
+  <!-- 左后方汤包 -->
+  <g transform="translate(-50, -15) scale(0.75)">
+    <ellipse cx="400" cy="370" rx="50" ry="15" fill="url(#baoShadowGradient)"/>
+    <ellipse cx="400" cy="330" rx="50" ry="40" fill="url(#baoBunGradient)"/>
+    <path d="M400,290 C420,300 430,310 400,330 C370,310 380,300 400,290" fill="#f8f8f8"/>
+    <path d="M370,330 C380,340 420,340 430,330" stroke="#e0e0e0" stroke-width="0.5" fill="none"/>
+    <circle cx="400" cy="290" r="3" fill="#9c0c0c"/>
+    
+    <!-- 汤包褶皱效果 -->
+    <path d="M400,290 L395,310 M400,290 L390,315 M400,290 L385,317 M400,290 L380,315 
+             M400,290 L375,310 M400,290 L370,300 M400,290 L405,310 M400,290 L410,315 
+             M400,290 L415,317 M400,290 L420,315 M400,290 L425,310 M400,290 L430,300" 
+          stroke="#e6e6e6" stroke-width="0.8" fill="none"/>
+    
+    <!-- 蒸汽 -->
+    <path d="M390,280 Q380,265 375,245 Q380,230 390,235 Q400,230 410,235 Q420,255 410,280" fill="url(#steamGradient)" filter="url(#blurFilter)" opacity="0.7"/>
+  </g>
+  
+  <!-- 醋碟 -->
+  <ellipse cx="200" cy="480" rx="70" ry="25" fill="#e2c17f"/>
+  <ellipse cx="200" cy="480" rx="60" ry="20" fill="#9c0c0c" opacity="0.6"/>
+  <ellipse cx="200" cy="480" rx="55" ry="15" fill="#7a0909"/>
+  
+  <!-- 筷子 -->
+  <rect x="300" y="450" width="250" height="3" fill="#9c7b43" rx="1" transform="rotate(15, 300, 450)"/>
+  <rect x="300" y="460" width="250" height="3" fill="#9c7b43" rx="1" transform="rotate(15, 300, 460)"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="100" font-family="'Microsoft YaHei'" font-size="30" text-anchor="middle" fill="#9c0c0c" font-weight="bold">彭城汤包</text>
+  <text x="400" y="140" font-family="'Microsoft YaHei'" font-size="16" text-anchor="middle" fill="#7a0909">徐州特色美食</text>
+  <text x="400" y="170" font-family="'Microsoft YaHei'" font-size="14" text-anchor="middle" fill="#9c7b43">皮薄馅多 汤汁丰盈</text>
+  
+  <!-- 装饰元素 -->
+  <circle cx="270" cy="100" r="8" fill="#f5e4c3" stroke="#9c0c0c" stroke-width="1"/>
+  <circle cx="530" cy="100" r="8" fill="#f5e4c3" stroke="#9c0c0c" stroke-width="1"/>
+  
+  <path d="M200,160 Q250,120 300,160" stroke="#9c0c0c" stroke-width="1" fill="none"/>
+  <path d="M500,160 Q550,120 600,160" stroke="#9c0c0c" stroke-width="1" fill="none"/>
+</svg> 

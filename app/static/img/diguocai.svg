@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景和渐变定义 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbf5ed" />
+      <stop offset="100%" stop-color="#f0e1ca" />
+    </linearGradient>
+    <linearGradient id="potGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#222222" />
+      <stop offset="100%" stop-color="#444444" />
+    </linearGradient>
+    <linearGradient id="fireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#FF9800" />
+      <stop offset="50%" stop-color="#FF5722" />
+      <stop offset="100%" stop-color="#F44336" />
+    </linearGradient>
+    <linearGradient id="woodGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8D6E63" />
+      <stop offset="100%" stop-color="#5D4037" />
+    </linearGradient>
+    <linearGradient id="vegetableGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#66BB6A" />
+      <stop offset="100%" stop-color="#388E3C" />
+    </linearGradient>
+    <linearGradient id="meatGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E57373" />
+      <stop offset="100%" stop-color="#C62828" />
+    </linearGradient>
+    <radialGradient id="steamGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurFilter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰边框 -->
+  <rect x="40" y="40" width="720" height="520" stroke="#8D6E63" stroke-width="3" fill="none" rx="10"/>
+  <rect x="50" y="50" width="700" height="500" stroke="#8D6E63" stroke-width="1" fill="none" rx="8" stroke-dasharray="5,5"/>
+  
+  <!-- 炉火底座 -->
+  <g>
+    <!-- 木材或煤炭 -->
+    <rect x="300" y="460" width="200" height="20" fill="#5D4037" rx="5"/>
+    <rect x="320" y="450" width="160" height="20" fill="#5D4037" rx="5"/>
+    <rect x="340" y="440" width="120" height="20" fill="#5D4037" rx="5"/>
+    
+    <!-- 火焰 -->
+    <path d="M360,440 C350,410 380,400 400,390 C420,400 450,410 440,440" fill="url(#fireGradient)"/>
+    <path d="M375,440 C370,420 390,405 400,400 C410,405 430,420 425,440" fill="#FF9800" opacity="0.7"/>
+    <path d="M385,440 C380,425 395,410 400,405 C405,410 420,425 415,440" fill="#FFEB3B" opacity="0.6"/>
+  </g>
+  
+  <!-- 地锅 -->
+  <g>
+    <!-- 锅底 -->
+    <ellipse cx="400" cy="370" rx="150" ry="50" fill="url(#potGradient)"/>
+    
+    <!-- 锅身 -->
+    <path d="M250,370 L250,300 C250,280 320,250 400,250 C480,250 550,280 550,300 L550,370 Z" fill="url(#potGradient)"/>
+    
+    <!-- 锅沿 -->
+    <ellipse cx="400" cy="250" rx="150" ry="40" fill="url(#potGradient)"/>
+    <ellipse cx="400" cy="250" rx="130" ry="30" fill="#333333"/>
+    
+    <!-- 锅把手 -->
+    <path d="M250,320 C220,320 220,300 250,300" stroke="#555555" stroke-width="8" fill="none"/>
+    <path d="M550,320 C580,320 580,300 550,300" stroke="#555555" stroke-width="8" fill="none"/>
+  </g>
+  
+  <!-- 锅内食材 -->
+  <g>
+    <!-- 底部汤汁 -->
+    <ellipse cx="400" cy="280" rx="120" ry="25" fill="#8B4513" opacity="0.3"/>
+    
+    <!-- 蔬菜和肉 -->
+    <g transform="translate(400, 235)">
+      <!-- 白菜 -->
+      <g transform="translate(-80, 20) rotate(-20)">
+        <path d="M-15,-5 C-10,-15 10,-15 15,-5 C20,0 20,15 0,20 C-20,15 -20,0 -15,-5 Z" fill="#E8F5E9"/>
+        <path d="M-10,-2 C-7,-10 7,-10 10,-2 C13,0 13,10 0,15 C-13,10 -13,0 -10,-2 Z" fill="#C8E6C9"/>
+        <path d="M0,0 L0,15" stroke="#A5D6A7" stroke-width="1" fill="none"/>
+      </g>
+      
+      <g transform="translate(-50, 30) rotate(20)">
+        <path d="M-15,-5 C-10,-15 10,-15 15,-5 C20,0 20,15 0,20 C-20,15 -20,0 -15,-5 Z" fill="#E8F5E9"/>
+        <path d="M-10,-2 C-7,-10 7,-10 10,-2 C13,0 13,10 0,15 C-13,10 -13,0 -10,-2 Z" fill="#C8E6C9"/>
+        <path d="M0,0 L0,15" stroke="#A5D6A7" stroke-width="1" fill="none"/>
+      </g>
+      
+      <!-- 肉块 -->
+      <g transform="translate(20, 25)">
+        <path d="M-15,-5 C-10,-10 10,-10 15,-5 C20,5 20,10 10,15 C-10,15 -20,10 -15,-5 Z" fill="url(#meatGradient)"/>
+        <path d="M-10,-2 C-5,-6 5,-6 10,-2 C15,3 15,7 5,10 C-5,10 -15,7 -10,-2 Z" fill="#D32F2F" opacity="0.7"/>
+      </g>
+      
+      <g transform="translate(-10, 20)">
+        <path d="M-10,-3 C-7,-7 7,-7 10,-3 C13,3 13,7 7,10 C-7,10 -13,7 -10,-3 Z" fill="url(#meatGradient)"/>
+        <path d="M-7,-1 C-4,-4 4,-4 7,-1 C9,2 9,5 4,7 C-4,7 -9,5 -7,-1 Z" fill="#D32F2F" opacity="0.7"/>
+      </g>
+      
+      <!-- 胡萝卜 -->
+      <g transform="translate(60, 30) rotate(-15)">
+        <path d="M-8,-2 C-6,-5 6,-5 8,-2 C10,5 10,12 0,15 C-10,12 -10,5 -8,-2 Z" fill="#FF5722"/>
+        <path d="M0,0 L0,10" stroke="#E64A19" stroke-width="1" fill="none"/>
+      </g>
+      
+      <g transform="translate(40, 15) rotate(25)">
+        <path d="M-6,-2 C-4,-4 4,-4 6,-2 C8,4 8,8 0,10 C-8,8 -8,4 -6,-2 Z" fill="#FF5722"/>
+        <path d="M0,0 L0,8" stroke="#E64A19" stroke-width="1" fill="none"/>
+      </g>
+      
+      <!-- 豆角 -->
+      <g transform="translate(-30, 15)">
+        <path d="M-2,-10 C-1,-5 1,-5 2,-10" stroke="#388E3C" stroke-width="3" fill="none"/>
+        <path d="M-2,-8 C-1,-3 1,-3 2,-8" stroke="#388E3C" stroke-width="3" fill="none"/>
+        <path d="M-2,-6 C-1,-1 1,-1 2,-6" stroke="#388E3C" stroke-width="3" fill="none"/>
+      </g>
+      
+      <!-- 土豆 -->
+      <g transform="translate(70, 10)">
+        <ellipse cx="0" cy="0" rx="12" ry="10" fill="#FFA000"/>
+        <ellipse cx="-4" cy="-3" rx="2" ry="2" fill="#FFB300" opacity="0.7"/>
+        <ellipse cx="3" cy="2" rx="1" ry="1" fill="#FFB300" opacity="0.7"/>
+        <ellipse cx="5" cy="-3" rx="1.5" ry="1.5" fill="#FFB300" opacity="0.7"/>
+      </g>
+      
+      <g transform="translate(-70, 5)">
+        <ellipse cx="0" cy="0" rx="10" ry="8" fill="#FFA000"/>
+        <ellipse cx="-3" cy="-2" rx="1.5" ry="1.5" fill="#FFB300" opacity="0.7"/>
+        <ellipse cx="2" cy="1" rx="1" ry="1" fill="#FFB300" opacity="0.7"/>
+        <ellipse cx="4" cy="-2" rx="1" ry="1" fill="#FFB300" opacity="0.7"/>
+      </g>
+      
+      <!-- 葱段 -->
+      <g>
+        <path d="M-40,10 L-30,20" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
+        <path d="M50,5 L60,15" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20,-5 L30,5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
+        <path d="M-20,-5 L-10,5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      
+      <!-- 蒜瓣 -->
+      <g>
+        <ellipse cx="-55" cy="5" rx="5" ry="4" fill="#F5F5F5"/>
+        <ellipse cx="55" cy="-5" rx="5" ry="4" fill="#F5F5F5"/>
+      </g>
+      
+      <!-- 辣椒 -->
+      <g transform="translate(0, 10) rotate(-30)">
+        <path d="M0,0 C2,-2 6,-2 8,0 C12,5 12,15 8,20 C6,22 2,22 0,20 C-4,15 -4,5 0,0 Z" fill="#D50000"/>
+      </g>
+      
+      <g transform="translate(30, 0) rotate(20)">
+        <path d="M0,0 C1.5,-1.5 4.5,-1.5 6,0 C9,3.75 9,11.25 6,15 C4.5,16.5 1.5,16.5 0,15 C-3,11.25 -3,3.75 0,0 Z" fill="#D50000"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 蒸汽 -->
+  <g filter="url(#blurFilter)">
+    <path d="M350,220 Q340,200 350,180 Q360,160 370,180 Q380,200 370,220" fill="url(#steamGradient)" opacity="0.6"/>
+    <path d="M400,210 Q390,180 400,150 Q410,120 420,150 Q430,180 420,210" fill="url(#steamGradient)" opacity="0.8"/>
+    <path d="M450,220 Q440,200 450,180 Q460,160 470,180 Q480,200 470,220" fill="url(#steamGradient)" opacity="0.6"/>
+  </g>
+  
+  <!-- 装饰元素 - 筷子 -->
+  <rect x="200" y="180" width="250" height="3" fill="#8D6E63" rx="1" transform="rotate(30, 200, 180)"/>
+  <rect x="195" y="190" width="250" height="3" fill="#6D4C41" rx="1" transform="rotate(30, 195, 190)"/>
+  
+  <!-- 装饰元素 - 勺子 -->
+  <g transform="translate(550, 220) rotate(-20)">
+    <ellipse cx="0" cy="0" rx="15" ry="10" fill="#EEEEEE" stroke="#DDDDDD" stroke-width="1"/>
+    <rect x="-2" y="0" width="4" height="60" fill="#EEEEEE" stroke="#DDDDDD" stroke-width="1" rx="2"/>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="400" y="100" font-family="'Microsoft YaHei'" font-size="30" text-anchor="middle" fill="#5D4037" font-weight="bold">地锅菜</text>
+  <text x="400" y="140" font-family="'Microsoft YaHei'" font-size="16" text-anchor="middle" fill="#795548">徐州特色美食</text>
+  <text x="400" y="170" font-family="'Microsoft YaHei'" font-size="14" text-anchor="middle" fill="#8D6E63">鲜香浓郁 原汁原味</text>
+  
+  <!-- 装饰元素 -->
+  <circle cx="270" cy="100" r="8" fill="#fbf5ed" stroke="#5D4037" stroke-width="1"/>
+  <circle cx="530" cy="100" r="8" fill="#fbf5ed" stroke="#5D4037" stroke-width="1"/>
+  
+  <path d="M200,160 Q250,120 300,160" stroke="#5D4037" stroke-width="1" fill="none"/>
+  <path d="M500,160 Q550,120 600,160" stroke="#5D4037" stroke-width="1" fill="none"/>
+  
+  <!-- 装饰图案 - 菜叶 -->
+  <g transform="translate(700, 500) scale(0.6) rotate(20)">
+    <path d="M0,0 C20,-20 60,-20 80,0 C100,20 100,60 80,80 C60,100 20,100 0,80 C-20,60 -20,20 0,0 Z" fill="url(#vegetableGradient)" opacity="0.5"/>
+    <path d="M40,10 L40,70" stroke="#2E7D32" stroke-width="2"/>
+    <path d="M20,30 L60,30" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M20,50 L60,50" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M25,20 L55,60" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M25,60 L55,20" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+  </g>
+  
+  <g transform="translate(100, 500) scale(0.6) rotate(-20)">
+    <path d="M0,0 C20,-20 60,-20 80,0 C100,20 100,60 80,80 C60,100 20,100 0,80 C-20,60 -20,20 0,0 Z" fill="url(#vegetableGradient)" opacity="0.5"/>
+    <path d="M40,10 L40,70" stroke="#2E7D32" stroke-width="2"/>
+    <path d="M20,30 L60,30" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M20,50 L60,50" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M25,20 L55,60" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+    <path d="M25,60 L55,20" stroke="#2E7D32" stroke-width="1" opacity="0.7"/>
+  </g>
+</svg> 

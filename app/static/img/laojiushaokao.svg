@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a2e" />
+      <stop offset="100%" stop-color="#362049" />
+    </linearGradient>
+    <linearGradient id="fireGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9d00" />
+      <stop offset="50%" stop-color="#ff5722" />
+      <stop offset="100%" stop-color="#9c0c0c" />
+    </linearGradient>
+    <linearGradient id="skewersGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8a665" />
+      <stop offset="100%" stop-color="#9c7b43" />
+    </linearGradient>
+    <linearGradient id="meatGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9c0c0c" />
+      <stop offset="30%" stop-color="#7a0909" />
+      <stop offset="70%" stop-color="#6d0000" />
+      <stop offset="100%" stop-color="#5a0000" />
+    </linearGradient>
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ff5722" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ff5722" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰边框 -->
+  <rect x="40" y="40" width="720" height="520" stroke="#e2c17f" stroke-width="3" fill="none" rx="10"/>
+  <rect x="50" y="50" width="700" height="500" stroke="#e2c17f" stroke-width="1" fill="none" rx="8" stroke-dasharray="5,5"/>
+  
+  <!-- 烧烤架 -->
+  <rect x="150" y="400" width="500" height="20" fill="#333" rx="5"/>
+  <rect x="150" y="420" width="500" height="5" fill="#111"/>
+  <rect x="170" y="350" width="10" height="50" fill="#333"/>
+  <rect x="620" y="350" width="10" height="50" fill="#333"/>
+  
+  <!-- 火炭 -->
+  <ellipse cx="400" cy="460" rx="200" ry="30" fill="#1a0a2e"/>
+  <g>
+    <ellipse cx="330" cy="450" rx="20" ry="10" fill="#333"/>
+    <ellipse cx="380" cy="455" rx="25" ry="12" fill="#333"/>
+    <ellipse cx="430" cy="450" rx="22" ry="11" fill="#333"/>
+    <ellipse cx="470" cy="452" rx="18" ry="9" fill="#333"/>
+  </g>
+  
+  <!-- 火焰 -->
+  <ellipse cx="400" cy="440" rx="180" ry="20" fill="url(#fireGradient)" opacity="0.7"/>
+  <ellipse cx="400" cy="420" rx="150" ry="15" fill="url(#glowGradient)"/>
+  
+  <!-- 烧烤串 - 羊肉串 -->
+  <line x1="200" y1="300" x2="200" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <ellipse cx="200" cy="330" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="200" cy="355" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="200" cy="380" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="200" cy="405" rx="15" ry="10" fill="url(#meatGradient)"/>
+  
+  <!-- 烧烤串 - 鸡翅 -->
+  <line x1="250" y1="300" x2="250" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <path d="M230,320 Q250,340 270,320 Q270,360 250,380 Q230,360 230,320 Z" fill="#c39b43"/>
+  <path d="M230,320 Q250,340 270,320 L270,320 Q270,340 265,350 Q250,360 235,350 Q230,340 230,320 Z" fill="#b38833"/>
+  
+  <!-- 烧烤串 - 牛肉串 -->
+  <line x1="300" y1="300" x2="300" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <ellipse cx="300" cy="340" rx="18" ry="12" fill="#7a0909"/>
+  <ellipse cx="300" cy="370" rx="18" ry="12" fill="#7a0909"/>
+  <ellipse cx="300" cy="400" rx="18" ry="12" fill="#7a0909"/>
+  
+  <!-- 烧烤串 - 蔬菜串 -->
+  <line x1="350" y1="300" x2="350" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <ellipse cx="350" cy="330" rx="12" ry="8" fill="#4CAF50"/>
+  <rect x="340" y="345" width="20" height="10" fill="#FF9800" rx="2"/>
+  <ellipse cx="350" cy="370" rx="10" ry="6" fill="#E91E63"/>
+  <rect x="338" y="385" width="24" height="8" fill="#8BC34A" rx="2"/>
+  <ellipse cx="350" cy="410" rx="12" ry="8" fill="#673AB7"/>
+  
+  <!-- 烧烤串 - 羊肉串 -->
+  <line x1="400" y1="300" x2="400" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <ellipse cx="400" cy="330" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="400" cy="355" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="400" cy="380" rx="15" ry="10" fill="url(#meatGradient)"/>
+  <ellipse cx="400" cy="405" rx="15" ry="10" fill="url(#meatGradient)"/>
+  
+  <!-- 烧烤串 - 鱿鱼 -->
+  <line x1="450" y1="300" x2="450" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <path d="M430,320 Q450,330 470,320 Q470,350 450,370 Q430,350 430,320 Z" fill="#f5e4c3"/>
+  <path d="M435,330 L440,335 M445,330 L450,335 M455,330 L460,335" stroke="#c8a665" stroke-width="1"/>
+  <path d="M440,345 L450,355 L460,345" stroke="#c8a665" stroke-width="1" fill="none"/>
+  
+  <!-- 烧烤串 - 羊排 -->
+  <line x1="500" y1="280" x2="500" y2="420" stroke="url(#skewersGradient)" stroke-width="4"/>
+  <path d="M480,320 Q500,310 520,320 L520,380 Q500,390 480,380 Z" fill="#9c0c0c"/>
+  <path d="M490,330 L510,330 M490,345 L510,345 M490,360 L510,360" stroke="#7a0909" stroke-width="2"/>
+  <path d="M480,320 L480,380 M520,320 L520,380" stroke="#7a0909" stroke-width="2"/>
+  
+  <!-- 调料瓶 -->
+  <rect x="580" y="320" width="20" height="80" fill="#4CAF50" rx="2"/>
+  <rect x="580" y="300" width="20" height="20" fill="#388E3C" rx="2"/>
+  <rect x="620" y="320" width="20" height="80" fill="#F44336" rx="2"/>
+  <rect x="620" y="300" width="20" height="20" fill="#D32F2F" rx="2"/>
+  
+  <!-- 火焰动感效果 -->
+  <path d="M300,410 Q320,370 340,410" stroke="#FF9800" stroke-width="2" fill="none"/>
+  <path d="M350,410 Q370,380 390,410" stroke="#FF9800" stroke-width="2" fill="none"/>
+  <path d="M400,410 Q420,370 440,410" stroke="#FF9800" stroke-width="2" fill="none"/>
+  <path d="M450,410 Q470,380 490,410" stroke="#FF9800" stroke-width="2" fill="none"/>
+  
+  <!-- 烟雾 -->
+  <path d="M200,280 Q210,260 220,280 T240,280 T260,280" stroke="#f5f5f5" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M380,280 Q390,260 400,280 T420,280 T440,280" stroke="#f5f5f5" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M500,260 Q510,240 520,260 T540,260 T560,260" stroke="#f5f5f5" stroke-width="1" fill="none" opacity="0.5"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="100" font-family="'Microsoft YaHei'" font-size="30" text-anchor="middle" fill="#e2c17f" font-weight="bold">老玖烧烤</text>
+  <text x="400" y="140" font-family="'Microsoft YaHei'" font-size="16" text-anchor="middle" fill="#f5e4c3">徐州特色美食</text>
+  
+  <!-- 辣椒装饰 -->
+  <path d="M140,100 Q160,90 150,110 T160,130" stroke="#F44336" stroke-width="3" fill="none"/>
+  <ellipse cx="150" cy="95" rx="5" ry="2" fill="#F44336"/>
+  
+  <path d="M640,100 Q620,90 630,110 T620,130" stroke="#F44336" stroke-width="3" fill="none"/>
+  <ellipse cx="630" cy="95" rx="5" ry="2" fill="#F44336"/>
+</svg> 

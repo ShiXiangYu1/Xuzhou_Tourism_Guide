@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景和渐变定义 -->
+  <defs>
+    <linearGradient id="bowlGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0f0f0" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5eee6" />
+      <stop offset="100%" stop-color="#e8d8c0" />
+    </linearGradient>
+    <linearGradient id="noodleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f9f3e3" />
+      <stop offset="100%" stop-color="#e8e0d0" />
+    </linearGradient>
+    <linearGradient id="sauceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B0000" />
+      <stop offset="100%" stop-color="#6B0000" />
+    </linearGradient>
+    <radialGradient id="bowlShadowGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#444444" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#444444" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰边框 -->
+  <rect x="40" y="40" width="720" height="520" stroke="#8B0000" stroke-width="3" fill="none" rx="10"/>
+  <rect x="50" y="50" width="700" height="500" stroke="#8B0000" stroke-width="1" fill="none" rx="8" stroke-dasharray="5,5"/>
+  
+  <!-- 装饰元素 - 辣椒图案 -->
+  <g transform="translate(80, 120) scale(0.6)">
+    <path d="M10,10 C20,5 30,0 40,10 C60,25 70,60 50,100 C40,120 30,130 20,120 C0,100 -10,50 10,10 Z" fill="#D50000"/>
+    <path d="M25,20 C30,15 35,15 40,20 C50,35 55,70 40,95 C35,105 30,105 25,95 C15,70 15,35 25,20 Z" fill="#FF1744" opacity="0.7"/>
+    <path d="M10,10 C20,5 30,0 40,10 M20,120 C0,100 -10,50 10,10" stroke="#8B0000" stroke-width="1" fill="none"/>
+    <ellipse cx="25" cy="5" rx="10" ry="5" fill="#4CAF50"/>
+  </g>
+  
+  <g transform="translate(650, 480) scale(0.5) rotate(45)">
+    <path d="M10,10 C20,5 30,0 40,10 C60,25 70,60 50,100 C40,120 30,130 20,120 C0,100 -10,50 10,10 Z" fill="#D50000"/>
+    <path d="M25,20 C30,15 35,15 40,20 C50,35 55,70 40,95 C35,105 30,105 25,95 C15,70 15,35 25,20 Z" fill="#FF1744" opacity="0.7"/>
+    <path d="M10,10 C20,5 30,0 40,10 M20,120 C0,100 -10,50 10,10" stroke="#8B0000" stroke-width="1" fill="none"/>
+    <ellipse cx="25" cy="5" rx="10" ry="5" fill="#4CAF50"/>
+  </g>
+  
+  <!-- 装饰元素 - 蒜头图案 -->
+  <g transform="translate(700, 150) scale(0.7)">
+    <ellipse cx="40" cy="40" rx="35" ry="35" fill="#F5F5F5"/>
+    <path d="M20,20 Q40,10 60,20 Q70,40 60,60 Q40,70 20,60 Q10,40 20,20 Z" fill="#EEEEEE" stroke="#DDDDDD" stroke-width="1"/>
+    <path d="M30,25 Q40,20 50,25 Q55,40 50,55 Q40,60 30,55 Q25,40 30,25 Z" fill="#E0E0E0" stroke="#D0D0D0" stroke-width="0.5"/>
+    <ellipse cx="40" cy="40" rx="5" ry="5" fill="#D0D0D0"/>
+    <path d="M25,25 L55,55 M55,25 L25,55" stroke="#D0D0D0" stroke-width="0.5" opacity="0.7"/>
+  </g>
+  
+  <!-- 碗影 -->
+  <ellipse cx="400" cy="420" rx="200" ry="40" fill="url(#bowlShadowGradient)"/>
+  
+  <!-- 碗 -->
+  <ellipse cx="400" cy="300" rx="180" ry="50" fill="url(#bowlGradient)" stroke="#DDDDDD" stroke-width="2"/>
+  <path d="M220,300 C220,350 250,380 400,420 C550,380 580,350 580,300" fill="url(#bowlGradient)" stroke="#DDDDDD" stroke-width="2"/>
+  <ellipse cx="400" cy="300" rx="160" ry="40" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+  
+  <!-- 凉皮 -->
+  <g>
+    <!-- 随机生成的凉皮条 -->
+    <path d="M300,280 Q340,270 380,285 Q420,290 455,275" stroke="url(#noodleGradient)" stroke-width="35" fill="none" stroke-linecap="round"/>
+    <path d="M280,310 Q325,295 360,310 Q420,320 470,300" stroke="url(#noodleGradient)" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <path d="M290,340 Q330,330 370,340 Q410,345 460,325" stroke="url(#noodleGradient)" stroke-width="25" fill="none" stroke-linecap="round"/>
+    <path d="M315,360 Q355,350 390,355 Q425,360 450,345" stroke="url(#noodleGradient)" stroke-width="20" fill="none" stroke-linecap="round"/>
+    
+    <!-- 凉皮边缘细节 -->
+    <path d="M300,280 Q340,270 380,285 Q420,290 455,275" stroke="#e8e0d0" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M280,310 Q325,295 360,310 Q420,320 470,300" stroke="#e8e0d0" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M290,340 Q330,330 370,340 Q410,345 460,325" stroke="#e8e0d0" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M315,360 Q355,350 390,355 Q425,360 450,345" stroke="#e8e0d0" stroke-width="1" fill="none" opacity="0.5"/>
+  </g>
+  
+  <!-- 酱料 -->
+  <ellipse cx="400" cy="300" rx="130" ry="25" fill="url(#sauceGradient)" opacity="0.3"/>
+  
+  <!-- 配料 - 黄瓜丝 -->
+  <g>
+    <path d="M320,270 L440,310" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M330,275 L450,315" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M325,280 L445,320" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M335,275 L455,310" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M310,285 L430,325" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M350,265 L470,300" stroke="#4CAF50" stroke-width="1.5" />
+    <path d="M360,275 L480,310" stroke="#4CAF50" stroke-width="1.5" />
+  </g>
+  
+  <!-- 配料 - 胡萝卜丝 -->
+  <g>
+    <path d="M340,285 L460,250" stroke="#FF5722" stroke-width="1.5" />
+    <path d="M350,290 L470,255" stroke="#FF5722" stroke-width="1.5" />
+    <path d="M330,280 L450,245" stroke="#FF5722" stroke-width="1.5" />
+    <path d="M360,295 L480,260" stroke="#FF5722" stroke-width="1.5" />
+    <path d="M335,275 L455,240" stroke="#FF5722" stroke-width="1.5" />
+  </g>
+  
+  <!-- 配料 - 豆芽 -->
+  <g>
+    <path d="M370,270 C375,260 380,255 385,260" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <path d="M390,285 C395,275 400,270 405,275" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <path d="M345,290 C350,280 355,275 360,280" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <path d="M400,300 C405,290 410,285 415,290" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <path d="M420,275 C425,265 430,260 435,265" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <path d="M320,310 C325,300 330,295 335,300" stroke="#FFFDE7" stroke-width="2" fill="none"/>
+    <circle cx="385" cy="260" r="1.5" fill="#81C784"/>
+    <circle cx="405" cy="275" r="1.5" fill="#81C784"/>
+    <circle cx="360" cy="280" r="1.5" fill="#81C784"/>
+    <circle cx="415" cy="290" r="1.5" fill="#81C784"/>
+    <circle cx="435" cy="265" r="1.5" fill="#81C784"/>
+    <circle cx="335" cy="300" r="1.5" fill="#81C784"/>
+  </g>
+  
+  <!-- 配料 - 蒜末点缀 -->
+  <g>
+    <circle cx="360" cy="280" r="1" fill="#EEEEEE"/>
+    <circle cx="380" cy="290" r="1" fill="#EEEEEE"/>
+    <circle cx="400" cy="270" r="1" fill="#EEEEEE"/>
+    <circle cx="420" cy="300" r="1" fill="#EEEEEE"/>
+    <circle cx="440" cy="280" r="1" fill="#EEEEEE"/>
+    <circle cx="350" cy="310" r="1" fill="#EEEEEE"/>
+  </g>
+  
+  <!-- 配料 - 辣椒油 -->
+  <g>
+    <circle cx="370" cy="285" r="2" fill="#BF360C" opacity="0.7"/>
+    <circle cx="390" cy="275" r="2.5" fill="#BF360C" opacity="0.7"/>
+    <circle cx="410" cy="290" r="2" fill="#BF360C" opacity="0.7"/>
+    <circle cx="430" cy="280" r="1.5" fill="#BF360C" opacity="0.7"/>
+    <circle cx="450" cy="295" r="2" fill="#BF360C" opacity="0.7"/>
+    <circle cx="370" cy="300" r="1.5" fill="#BF360C" opacity="0.7"/>
+    <circle cx="390" cy="315" r="2" fill="#BF360C" opacity="0.7"/>
+    <circle cx="410" cy="305" r="1.5" fill="#BF360C" opacity="0.7"/>
+  </g>
+  
+  <!-- 筷子 -->
+  <rect x="270" y="200" width="300" height="4" fill="#8D6E63" rx="2" transform="rotate(30, 270, 200)"/>
+  <rect x="260" y="210" width="300" height="4" fill="#6D4C41" rx="2" transform="rotate(30, 260, 210)"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="100" font-family="'Microsoft YaHei'" font-size="30" text-anchor="middle" fill="#8B0000" font-weight="bold">徐州凉皮</text>
+  <text x="400" y="140" font-family="'Microsoft YaHei'" font-size="16" text-anchor="middle" fill="#6B0000">徐州特色美食</text>
+  <text x="400" y="170" font-family="'Microsoft YaHei'" font-size="14" text-anchor="middle" fill="#8D6E63">爽滑筋道 酸辣清爽</text>
+  
+  <!-- 装饰元素 -->
+  <circle cx="270" cy="100" r="8" fill="#f5eee6" stroke="#8B0000" stroke-width="1"/>
+  <circle cx="530" cy="100" r="8" fill="#f5eee6" stroke="#8B0000" stroke-width="1"/>
+  
+  <path d="M200,160 Q250,120 300,160" stroke="#8B0000" stroke-width="1" fill="none"/>
+  <path d="M500,160 Q550,120 600,160" stroke="#8B0000" stroke-width="1" fill="none"/>
+</svg> 

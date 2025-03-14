@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8def0" />
+      <stop offset="100%" stop-color="#e8f4ff" />
+    </linearGradient>
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7a0909" />
+      <stop offset="100%" stop-color="#9c0c0c" />
+    </linearGradient>
+    <linearGradient id="templeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2c17f" />
+      <stop offset="100%" stop-color="#c8a665" />
+    </linearGradient>
+    <pattern id="cloudPattern" patternUnits="userSpaceOnUse" width="200" height="100">
+      <path d="M0,40 Q30,20 60,40 T120,40 T180,40" 
+            fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- 天空 -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  <rect width="800" height="600" fill="url(#cloudPattern)" opacity="0.3"/>
+  
+  <!-- 远山 -->
+  <path d="M0,300 Q100,200 200,250 T400,150 T600,200 T800,180 L800,600 L0,600 Z" 
+        fill="#305642" opacity="0.6"/>
+  
+  <!-- 云龙山主山体 -->
+  <path d="M0,600 L0,350 Q100,320 150,270 Q200,230 250,250 Q300,280 350,240 Q400,200 450,230 Q500,260 550,240 Q600,220 650,260 Q700,300 750,280 Q800,260 800,300 L800,600 Z" 
+        fill="url(#mountainGradient)"/>
+  
+  <!-- 云龙山山顶 -->
+  <path d="M350,240 Q370,180 400,200 Q430,220 450,230" 
+        stroke="#e2c17f" stroke-width="2" fill="none"/>
+  
+  <!-- 寺庙屋顶 -->
+  <path d="M380,200 L370,240 L430,240 L420,200 Z" fill="url(#templeGradient)"/>
+  <path d="M380,200 L420,200" stroke="#7a0909" stroke-width="2" />
+  <path d="M375,210 L425,210" stroke="#7a0909" stroke-width="1" />
+  <path d="M370,220 L430,220" stroke="#7a0909" stroke-width="1" />
+  <path d="M370,230 L430,230" stroke="#7a0909" stroke-width="1" />
+  
+  <!-- 寺庙柱子 -->
+  <rect x="380" y="240" width="5" height="20" fill="#7a0909"/>
+  <rect x="415" y="240" width="5" height="20" fill="#7a0909"/>
+  
+  <!-- 山间小路 -->
+  <path d="M150,600 Q200,550 250,560 Q300,570 350,540 Q380,520 400,520 L400,600 Z" 
+        fill="#e2c17f" opacity="0.6"/>
+  
+  <!-- 山路弯曲 -->
+  <path d="M200,600 Q230,580 250,560 Q280,530 300,540 Q330,550 350,540 Q370,530 400,520"
+        stroke="#c8a665" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 山顶观景台 -->
+  <rect x="390" y="260" width="20" height="10" fill="#c8a665"/>
+  
+  <!-- 装饰云朵 -->
+  <path d="M100,150 Q130,130 160,150 T220,150" fill="#ffffff" opacity="0.7"/>
+  <path d="M500,120 Q530,100 560,120 T620,120" fill="#ffffff" opacity="0.7"/>
+  <path d="M300,180 Q330,160 360,180 T420,180" fill="#ffffff" opacity="0.6"/>
+  <path d="M650,200 Q680,180 710,200 T770,200" fill="#ffffff" opacity="0.5"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <path d="M0,595 Q20,590 40,595 T80,595 T120,595 T160,595 T200,595 T240,595 T280,595 T320,595 T360,595 T400,595 
+           T440,595 T480,595 T520,595 T560,595 T600,595 T640,595 T680,595 T720,595 T760,595 T800,595" 
+        stroke="#e2c17f" stroke-width="2" fill="none"/>
+  
+  <!-- 太阳 -->
+  <circle cx="650" cy="100" r="30" fill="#f5e4c3"/>
+  <circle cx="650" cy="100" r="40" fill="#f5e4c3" opacity="0.3"/>
+  
+  <!-- "云龙山风景区"文字 -->
+  <text x="400" y="50" font-family="'Microsoft YaHei'" font-size="24" text-anchor="middle" fill="#9c0c0c" font-weight="bold">云龙山风景区</text>
+</svg> 

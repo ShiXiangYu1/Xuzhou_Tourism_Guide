@@ -75,7 +75,7 @@
             <div class="card food-card">
                 <span class="badge bg-success category-badge">特色小吃</span>
                 <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="小鱼卷饼">
+                <img src="{{ url_for('static', filename='img/xiaoyujuanbing.svg') }}" class="card-img-top food-img" alt="小鱼卷饼">
                 <div class="card-body">
                     <h5 class="card-title">小鱼卷饼</h5>
                     <div class="rating mb-2">
@@ -105,7 +105,7 @@
             <div class="card food-card">
                 <span class="badge bg-warning text-dark category-badge">特色菜</span>
                 <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="老王地锅">
+                <img src="{{ url_for('static', filename='img/diguocai.svg') }}" class="card-img-top food-img" alt="老王地锅">
                 <div class="card-body">
                     <h5 class="card-title">老王地锅</h5>
                     <div class="rating mb-2">
@@ -135,7 +135,7 @@
             <div class="card food-card">
                 <span class="badge bg-success category-badge">特色小吃</span>
                 <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top food-img" alt="徐州凉皮">
+                <img src="{{ url_for('static', filename='img/liangpi.svg') }}" class="card-img-top food-img" alt="徐州凉皮">
                 <div class="card-body">
                     <h5 class="card-title">徐州凉皮</h5>
                     <div class="rating mb-2">
@@ -152,6 +152,36 @@
                     </p>
                     <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 10:00-20:00</small></p>
                     <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 8-15元/份</small></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 汤包类 -->
+        <div class="col-12 mb-4">
+            <h2 class="border-bottom pb-2"><i class="fas fa-bread-slice me-2"></i>传统小吃</h2>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 food-item" data-category="小吃">
+            <div class="card food-card">
+                <span class="badge bg-success category-badge">传统小吃</span>
+                <span class="authentic-badge"><i class="fas fa-fire me-1"></i>当地人推荐</span>
+                <img src="{{ url_for('static', filename='img/tangbao.svg') }}" class="card-img-top food-img" alt="彭城汤包">
+                <div class="card-body">
+                    <h5 class="card-title">彭城汤包</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="text-muted ms-1">4.9</span>
+                    </div>
+                    <p class="card-text">皮薄馅多，汤汁丰盈，一口咬下满口鲜香，是到徐州必尝的传统小吃。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger"></i> <small class="text-muted">鼓楼区中山路美食街</small>
+                        {{ map_link("彭城汤包", "鼓楼区中山路美食街") }}
+                    </p>
+                    <p class="card-text"><i class="fas fa-clock text-info"></i> <small class="text-muted">营业时间: 6:00-14:00</small></p>
+                    <p class="card-text"><i class="fas fa-yen-sign text-success"></i> <small class="text-muted">价格: 12-20元/笼</small></p>
                 </div>
             </div>
         </div>
@@ -181,6 +211,10 @@
                         <li class="list-group-item bg-light">
                             <i class="fas fa-check-circle text-danger me-2"></i>
                             <strong>隐藏菜单：</strong>在老王地锅店，可以向老板要求"特制调料"，是店内不公开的秘制配方
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            <strong>汤包吃法：</strong>彭城汤包吃法有讲究，建议先在包子上咬一小口，喝汤汁后再食用
                         </li>
                     </ul>
                 </div>
