@@ -102,7 +102,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
                 <span class="badge bg-primary category-badge">自然风光</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="云龙湖九里湾观景台">
+                <img src="{{ url_for('static', filename='img/hotspot_yunlonghu.svg') }}" class="card-img-top hotspot-img" alt="云龙湖九里湾观景台">
                 <div class="card-body">
                     <h5 class="card-title">云龙湖九里湾观景台</h5>
                     <p class="card-text">徐州摄影爱好者聚集地，湖光山色尽收眼底，是拍摄日落和云龙湖全景的绝佳位置。</p>
@@ -130,7 +130,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
                 <span class="badge bg-info category-badge">网红街区</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="老城墙街区文创园">
+                <img src="{{ url_for('static', filename='img/hotspot_oldcity.svg') }}" class="card-img-top hotspot-img" alt="老城墙街区文创园">
                 <div class="card-body">
                     <h5 class="card-title">老城墙街区文创园</h5>
                     <p class="card-text">保留明清建筑风格的文创街区，网红咖啡店与创意小店云集，极具文艺气息。</p>
@@ -158,7 +158,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
                 <span class="badge bg-warning text-dark category-badge">历史人文</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="徐州博物馆汉兵马俑展区">
+                <img src="{{ url_for('static', filename='img/hotspot_museum.svg') }}" class="card-img-top hotspot-img" alt="徐州博物馆汉兵马俑展区">
                 <div class="card-body">
                     <h5 class="card-title">徐州博物馆汉兵马俑展区</h5>
                     <p class="card-text">中国仅存的汉代兵马俑，被誉为"东方艺术明珠"，展厅设计极具震撼力。</p>
@@ -186,7 +186,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-danger social-badge"><i class="fab fa-pinterest me-1"></i>小红书热门</span>
                 <span class="badge bg-warning text-dark category-badge">历史人文</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="彭祖园古建筑群">
+                <img src="{{ url_for('static', filename='img/hotspot_pengzuyuan.svg') }}" class="card-img-top hotspot-img" alt="彭祖园古建筑群">
                 <div class="card-body">
                     <h5 class="card-title">彭祖园古建筑群</h5>
                     <p class="card-text">纪念中国传说中的长寿始祖彭祖的园林，古色古香的建筑与亭台楼阁适合古风摄影。</p>
@@ -214,7 +214,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
                 <span class="badge bg-primary category-badge">自然风光</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="戏马台音乐喷泉">
+                <img src="{{ url_for('static', filename='img/hotspot_xmtfountain.svg') }}" class="card-img-top hotspot-img" alt="戏马台音乐喷泉">
                 <div class="card-body">
                     <h5 class="card-title">戏马台音乐喷泉</h5>
                     <p class="card-text">亚洲最大的音乐喷泉之一，夜晚灯光秀与水舞表演相结合，场面壮观。</p>
@@ -241,7 +241,7 @@
             <div class="card hotspot-card">
                 <span class="badge bg-info social-badge"><i class="fab fa-tiktok me-1"></i>抖音热门</span>
                 <span class="badge bg-success category-badge">美食地标</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top hotspot-img" alt="淮海食味轩小吃城">
+                <img src="{{ url_for('static', filename='img/hotspot_huahaifood.svg') }}" class="card-img-top hotspot-img" alt="淮海食味轩小吃城">
                 <div class="card-body">
                     <h5 class="card-title">淮海食味轩小吃城</h5>
                     <p class="card-text">徐州网红美食集中地，汇集各类徐州特色小吃，是美食博主打卡圣地。</p>
@@ -306,26 +306,38 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // 分类筛选功能
-        const filterButtons = document.querySelectorAll('.filter-btn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
         const hotspotItems = document.querySelectorAll('.hotspot-item');
         
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
                 // 移除所有按钮的active类
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // 为当前按钮添加active类
-                this.classList.add('active');
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // 给当前点击的按钮添加active类
+                btn.classList.add('active');
                 
-                const category = this.dataset.category;
+                const category = btn.getAttribute('data-category');
                 
-                // 显示或隐藏打卡地项目
                 hotspotItems.forEach(item => {
-                    if (category === 'all' || item.dataset.category === category) {
+                    if (category === 'all') {
                         item.style.display = 'block';
                     } else {
-                        item.style.display = 'none';
+                        if (item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     }
                 });
+                
+                // 添加简单的动画效果
+                setTimeout(() => {
+                    document.querySelectorAll('.hotspot-item[style="display: block;"]').forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('fade-in');
+                        }, index * 100);
+                    });
+                }, 50);
             });
         });
     });

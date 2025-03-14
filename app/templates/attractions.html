@@ -63,7 +63,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
             <div class="card attraction-card">
                 <span class="badge bg-primary category-badge">历史文化</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="云龙山风景区">
+                <img src="{{ url_for('static', filename='img/yunlongshan.svg') }}" class="card-img-top attraction-img" alt="云龙山风景区">
                 <div class="card-body">
                     <h5 class="card-title">云龙山风景区</h5>
                     <div class="rating mb-2">
@@ -87,7 +87,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
             <div class="card attraction-card">
                 <span class="badge bg-primary category-badge">历史文化</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="汉文化景区">
+                <img src="{{ url_for('static', filename='img/hanwenhua.svg') }}" class="card-img-top attraction-img" alt="汉文化景区">
                 <div class="card-body">
                     <h5 class="card-title">汉文化景区</h5>
                     <div class="rating mb-2">
@@ -111,7 +111,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
             <div class="card attraction-card">
                 <span class="badge bg-primary category-badge">历史文化</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="楚王陵">
+                <img src="{{ url_for('static', filename='img/xuzhou-spring.svg') }}" class="card-img-top attraction-img" alt="楚王陵">
                 <div class="card-body">
                     <h5 class="card-title">楚王陵</h5>
                     <div class="rating mb-2">
@@ -135,7 +135,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="历史文化类">
             <div class="card attraction-card">
                 <span class="badge bg-primary category-badge">历史文化</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="徐州博物馆">
+                <img src="{{ url_for('static', filename='img/museum.svg') }}" class="card-img-top attraction-img" alt="徐州博物馆">
                 <div class="card-body">
                     <h5 class="card-title">徐州博物馆</h5>
                     <div class="rating mb-2">
@@ -164,7 +164,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="自然景观类">
             <div class="card attraction-card">
                 <span class="badge bg-success category-badge">自然景观</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="云龙湖">
+                <img src="{{ url_for('static', filename='img/yunlonghu.svg') }}" class="card-img-top attraction-img" alt="云龙湖">
                 <div class="card-body">
                     <h5 class="card-title">云龙湖</h5>
                     <div class="rating mb-2">
@@ -188,7 +188,7 @@
         <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="自然景观类">
             <div class="card attraction-card">
                 <span class="badge bg-success category-badge">自然景观</span>
-                <img src="{{ url_for('static', filename='img/placeholder.svg') }}" class="card-img-top attraction-img" alt="潘安湖湿地公园">
+                <img src="{{ url_for('static', filename='img/xuzhou-spring.svg') }}" class="card-img-top attraction-img" alt="潘安湖湿地公园">
                 <div class="card-body">
                     <h5 class="card-title">潘安湖湿地公园</h5>
                     <div class="rating mb-2">
@@ -204,6 +204,30 @@
                     <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">开放时间: 08:00-17:30</small></p>
                     <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 30元</small>
                         {{ map_link("潘安湖湿地公园", "徐州市贾汪区") }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4 attraction-item" data-category="娱乐休闲类">
+            <div class="card attraction-card">
+                <span class="badge bg-primary category-badge">娱乐休闲</span>
+                <img src="{{ url_for('static', filename='img/leyuan.svg') }}" class="card-img-top attraction-img" alt="徐州乐园">
+                <div class="card-body">
+                    <h5 class="card-title">徐州乐园</h5>
+                    <div class="rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="text-muted ms-1">4.0</span>
+                    </div>
+                    <p class="card-text">徐州最大的主题乐园，拥有过山车、摩天轮等多种游乐设施，适合亲子游玩。</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger info-icon"></i> <small class="text-muted">徐州市云龙区珠山路9号</small></p>
+                    <p class="card-text"><i class="fas fa-clock text-info info-icon"></i> <small class="text-muted">09:00-18:00</small></p>
+                    <p class="card-text"><i class="fas fa-ticket-alt text-success info-icon"></i> <small class="text-muted">门票: 180元</small>
+                        {{ map_link("徐州乐园", "徐州市云龙区珠山路9号", "34.2601", "117.1923") }}
                     </p>
                 </div>
             </div>

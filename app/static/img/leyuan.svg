@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e88e5" />
+      <stop offset="100%" stop-color="#64b5f6" />
+    </linearGradient>
+    <linearGradient id="groundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#81c784" />
+      <stop offset="100%" stop-color="#4caf50" />
+    </linearGradient>
+    <linearGradient id="rollerCoasterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f44336" />
+      <stop offset="100%" stop-color="#d32f2f" />
+    </linearGradient>
+    <linearGradient id="ferrisWheelGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffc107" />
+      <stop offset="100%" stop-color="#ffa000" />
+    </linearGradient>
+    <linearGradient id="castleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9c27b0" />
+      <stop offset="100%" stop-color="#7b1fa2" />
+    </linearGradient>
+    <linearGradient id="waterRideGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#03a9f4" />
+      <stop offset="100%" stop-color="#0288d1" />
+    </linearGradient>
+    <radialGradient id="lightGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffeb3b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffeb3b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 天空 -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <rect x="20" y="20" width="760" height="560" stroke="#9c0c0c" stroke-width="10" fill="none"/>
+  <rect x="30" y="30" width="740" height="540" stroke="#9c0c0c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 地面 -->
+  <rect x="0" y="450" width="800" height="150" fill="url(#groundGradient)"/>
+  
+  <!-- 云朵 -->
+  <ellipse cx="150" cy="100" rx="50" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="200" cy="90" rx="40" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="250" cy="110" rx="45" ry="20" fill="white" opacity="0.7"/>
+  
+  <ellipse cx="550" cy="120" rx="60" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="600" cy="130" rx="50" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="650" cy="110" rx="40" ry="20" fill="white" opacity="0.7"/>
+  
+  <!-- 太阳 -->
+  <circle cx="700" cy="80" r="40" fill="#ffd700" opacity="0.8"/>
+  <circle cx="700" cy="80" r="50" fill="#ffd700" opacity="0.3"/>
+  
+  <!-- 过山车 -->
+  <path d="M100,300 C150,200 200,350 250,250 C300,150 350,300 400,200" 
+        fill="none" stroke="url(#rollerCoasterGradient)" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- 过山车支柱 -->
+  <line x1="150" y1="250" x2="150" y2="450" stroke="#757575" stroke-width="8"/>
+  <line x1="250" y1="250" x2="250" y2="450" stroke="#757575" stroke-width="8"/>
+  <line x1="350" y1="250" x2="350" y2="450" stroke="#757575" stroke-width="8"/>
+  
+  <!-- 过山车车厢 -->
+  <rect x="380" y="190" width="30" height="20" rx="5" ry="5" fill="#f44336"/>
+  <rect x="370" y="200" width="50" height="10" rx="3" ry="3" fill="#d32f2f"/>
+  <circle cx="380" cy="210" r="5" fill="#424242"/>
+  <circle cx="410" cy="210" r="5" fill="#424242"/>
+  
+  <!-- 摩天轮 -->
+  <circle cx="600" cy="300" r="100" fill="none" stroke="url(#ferrisWheelGradient)" stroke-width="10"/>
+  <circle cx="600" cy="300" r="90" fill="none" stroke="#ffc107" stroke-width="2" stroke-dasharray="10,10"/>
+  <circle cx="600" cy="300" r="15" fill="#ffa000"/>
+  
+  <!-- 摩天轮支柱 -->
+  <path d="M550,400 L600,300 L650,400" fill="none" stroke="#757575" stroke-width="15"/>
+  
+  <!-- 摩天轮座舱 -->
+  <rect x="590" y="200" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="590" y="385" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="500" y="290" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="680" y="290" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="530" y="230" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="650" y="230" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="530" y="350" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  <rect x="650" y="350" width="20" height="15" rx="3" ry="3" fill="#ffd54f"/>
+  
+  <!-- 城堡 -->
+  <rect x="150" y="350" width="150" height="100" fill="url(#castleGradient)"/>
+  <rect x="130" y="330" width="190" height="20" fill="#9c27b0"/>
+  <path d="M130,330 L150,300 L300,300 L320,330 Z" fill="#9c27b0"/>
+  
+  <!-- 城堡塔楼 -->
+  <rect x="170" y="280" width="30" height="70" fill="#9c27b0"/>
+  <path d="M170,280 L185,250 L200,280 Z" fill="#7b1fa2"/>
+  <rect x="250" y="280" width="30" height="70" fill="#9c27b0"/>
+  <path d="M250,280 L265,250 L280,280 Z" fill="#7b1fa2"/>
+  
+  <!-- 城堡门 -->
+  <rect x="210" y="400" width="30" height="50" rx="15" ry="15" fill="#7b1fa2"/>
+  
+  <!-- 城堡窗户 -->
+  <rect x="180" y="370" width="15" height="20" rx="5" ry="5" fill="#7b1fa2"/>
+  <rect x="255" y="370" width="15" height="20" rx="5" ry="5" fill="#7b1fa2"/>
+  
+  <!-- 水上乐园 -->
+  <path d="M450,400 C470,380 490,420 510,400 C530,380 550,420 570,400" 
+        fill="none" stroke="url(#waterRideGradient)" stroke-width="15" stroke-linecap="round"/>
+  <ellipse cx="510" cy="450" rx="80" ry="20" fill="url(#waterRideGradient)"/>
+  
+  <!-- 装饰灯光 -->
+  <circle cx="150" cy="300" r="10" fill="url(#lightGradient)"/>
+  <circle cx="300" cy="300" r="10" fill="url(#lightGradient)"/>
+  <circle cx="450" cy="350" r="10" fill="url(#lightGradient)"/>
+  <circle cx="570" cy="350" r="10" fill="url(#lightGradient)"/>
+  <circle cx="600" cy="200" r="10" fill="url(#lightGradient)"/>
+  <circle cx="600" cy="400" r="10" fill="url(#lightGradient)"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="'Microsoft YaHei'" font-size="32" text-anchor="middle" fill="#9c0c0c" font-weight="bold">徐州乐园</text>
+  <text x="400" y="120" font-family="'Microsoft YaHei'" font-size="18" text-anchor="middle" fill="#9c0c0c">现代化主题乐园</text>
+</svg> 

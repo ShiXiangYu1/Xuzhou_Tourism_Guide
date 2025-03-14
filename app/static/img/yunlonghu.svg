@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64b5f6" />
+      <stop offset="100%" stop-color="#bbdefb" />
+    </linearGradient>
+    <linearGradient id="lakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0288d1" />
+      <stop offset="100%" stop-color="#03a9f4" />
+    </linearGradient>
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#43a047" />
+      <stop offset="100%" stop-color="#2e7d32" />
+    </linearGradient>
+    <linearGradient id="pagodaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8d6e63" />
+      <stop offset="100%" stop-color="#6d4c41" />
+    </linearGradient>
+    <linearGradient id="boatGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5d4037" />
+      <stop offset="100%" stop-color="#3e2723" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="15%" cy="20%" r="20%" fx="15%" fy="20%">
+      <stop offset="0%" stop-color="#ffeb3b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffeb3b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="waterReflection" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+    </filter>
+  </defs>
+  
+  <!-- 天空 -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <rect x="20" y="20" width="760" height="560" stroke="#9c0c0c" stroke-width="10" fill="none"/>
+  <rect x="30" y="30" width="740" height="540" stroke="#9c0c0c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 太阳 -->
+  <circle cx="120" cy="120" r="50" fill="#ffeb3b" opacity="0.8"/>
+  <circle cx="120" cy="120" r="80" fill="url(#sunGlow)"/>
+  
+  <!-- 云朵 -->
+  <ellipse cx="250" cy="100" rx="60" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="300" cy="90" rx="50" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="350" cy="110" rx="55" ry="20" fill="white" opacity="0.7"/>
+  
+  <ellipse cx="600" cy="150" rx="70" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="650" cy="160" rx="60" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="700" cy="140" rx="50" ry="20" fill="white" opacity="0.7"/>
+  
+  <!-- 远山 -->
+  <path d="M0,300 Q100,200 200,250 Q300,200 400,280 Q500,200 600,250 Q700,200 800,300 L800,600 L0,600 Z" 
+        fill="url(#mountainGradient)" opacity="0.5"/>
+  
+  <!-- 湖面 -->
+  <path d="M0,350 L800,350 L800,600 L0,600 Z" fill="url(#lakeGradient)"/>
+  
+  <!-- 湖面波纹 -->
+  <path d="M50,380 C100,375 150,385 200,380 C250,375 300,385 350,380" 
+        fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M250,400 C300,395 350,405 400,400 C450,395 500,405 550,400" 
+        fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M450,420 C500,415 550,425 600,420 C650,415 700,425 750,420" 
+        fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M150,440 C200,435 250,445 300,440 C350,435 400,445 450,440" 
+        fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M350,460 C400,455 450,465 500,460 C550,455 600,465 650,460" 
+        fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  
+  <!-- 近山 -->
+  <path d="M-50,350 Q50,250 150,300 Q250,250 350,320 L350,600 L-50,600 Z" 
+        fill="url(#mountainGradient)"/>
+  <path d="M650,350 Q750,250 850,300 Q950,250 1050,320 L1050,600 L650,600 Z" 
+        fill="url(#mountainGradient)"/>
+  
+  <!-- 湖中小岛 -->
+  <ellipse cx="500" cy="450" rx="80" ry="30" fill="url(#mountainGradient)"/>
+  
+  <!-- 岛上亭子 -->
+  <rect x="480" y="400" width="40" height="20" fill="url(#pagodaGradient)"/>
+  <path d="M470,400 L500,380 L530,400" fill="url(#pagodaGradient)"/>
+  <line x1="485" y1="420" x2="485" y2="400" stroke="#5d4037" stroke-width="3"/>
+  <line x1="515" y1="420" x2="515" y2="400" stroke="#5d4037" stroke-width="3"/>
+  
+  <!-- 湖中小船 -->
+  <path d="M200,500 Q250,480 300,500" fill="url(#boatGradient)"/>
+  <line x1="250" y1="460" x2="250" y2="500" stroke="#5d4037" stroke-width="2"/>
+  <path d="M240,460 L250,440 L260,460" fill="#d7ccc8"/>
+  
+  <path d="M600,520 Q650,500 700,520" fill="url(#boatGradient)"/>
+  <line x1="650" y1="480" x2="650" y2="520" stroke="#5d4037" stroke-width="2"/>
+  <path d="M640,480 L650,460 L660,480" fill="#d7ccc8"/>
+  
+  <!-- 湖边柳树 -->
+  <line x1="150" y1="350" x2="150" y2="300" stroke="#33691e" stroke-width="5"/>
+  <path d="M150,300 C170,290 190,310 210,300 C230,290 250,310 270,300" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  <path d="M150,310 C170,300 190,320 210,310 C230,300 250,320 270,310" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  <path d="M150,320 C170,310 190,330 210,320 C230,310 250,330 270,320" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  
+  <line x1="650" y1="350" x2="650" y2="300" stroke="#33691e" stroke-width="5"/>
+  <path d="M650,300 C670,290 690,310 710,300 C730,290 750,310 770,300" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  <path d="M650,310 C670,300 690,320 710,310 C730,300 750,320 770,310" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  <path d="M650,320 C670,310 690,330 710,320 C730,310 750,330 770,320" 
+        fill="none" stroke="#33691e" stroke-width="2"/>
+  
+  <!-- 湖面倒影 (简化版) -->
+  <ellipse cx="500" cy="550" rx="60" ry="15" fill="url(#mountainGradient)" opacity="0.3" filter="url(#waterReflection)"/>
+  <rect x="490" y="530" width="20" height="10" fill="url(#pagodaGradient)" opacity="0.3" filter="url(#waterReflection)"/>
+  
+  <!-- 飞鸟 -->
+  <path d="M300,150 C310,145 320,155 330,150" fill="none" stroke="black" stroke-width="2"/>
+  <path d="M400,180 C410,175 420,185 430,180" fill="none" stroke="black" stroke-width="2"/>
+  <path d="M350,120 C360,115 370,125 380,120" fill="none" stroke="black" stroke-width="2"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="'Microsoft YaHei'" font-size="32" text-anchor="middle" fill="#9c0c0c" font-weight="bold">云龙湖</text>
+  <text x="400" y="120" font-family="'Microsoft YaHei'" font-size="18" text-anchor="middle" fill="#9c0c0c">徐州最美湖泊风景区</text>
+</svg> 

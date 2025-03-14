@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5e4c3" />
+      <stop offset="100%" stop-color="#e2c17f" />
+    </linearGradient>
+    <linearGradient id="plateGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0e0e0" />
+    </linearGradient>
+    <linearGradient id="tofuGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffff0" />
+      <stop offset="100%" stop-color="#fffacd" />
+    </linearGradient>
+    <linearGradient id="sauceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b4513" />
+      <stop offset="100%" stop-color="#654321" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87ceeb" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#4682b4" stop-opacity="0.5" />
+    </linearGradient>
+    <radialGradient id="waterDropGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#87ceeb" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <rect x="20" y="20" width="760" height="560" stroke="#9c0c0c" stroke-width="10" fill="none"/>
+  <rect x="30" y="30" width="740" height="540" stroke="#9c0c0c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 山泉水背景 -->
+  <path d="M100,300 Q200,250 300,280 Q400,310 500,270 Q600,230 700,260 L700,500 L100,500 Z" 
+        fill="url(#waterGradient)" opacity="0.3"/>
+  
+  <!-- 水滴 -->
+  <circle cx="200" cy="280" r="5" fill="url(#waterDropGradient)"/>
+  <circle cx="350" cy="290" r="4" fill="url(#waterDropGradient)"/>
+  <circle cx="450" cy="270" r="6" fill="url(#waterDropGradient)"/>
+  <circle cx="550" cy="260" r="5" fill="url(#waterDropGradient)"/>
+  <circle cx="650" cy="280" r="4" fill="url(#waterDropGradient)"/>
+  
+  <!-- 盘子 -->
+  <ellipse cx="400" cy="400" rx="200" ry="60" fill="url(#plateGradient)"/>
+  <ellipse cx="400" cy="400" rx="180" ry="50" fill="#f5f5f5"/>
+  
+  <!-- 豆腐块 -->
+  <g transform="translate(300, 380)">
+    <!-- 豆腐块1 -->
+    <rect x="0" y="0" width="60" height="40" rx="5" ry="5" fill="url(#tofuGradient)" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="15" y1="10" x2="45" y2="10" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="20" x2="45" y2="20" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="30" x2="45" y2="30" stroke="#e0e0e0" stroke-width="0.5"/>
+  </g>
+  
+  <g transform="translate(380, 370)">
+    <!-- 豆腐块2 -->
+    <rect x="0" y="0" width="60" height="40" rx="5" ry="5" fill="url(#tofuGradient)" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="15" y1="10" x2="45" y2="10" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="20" x2="45" y2="20" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="30" x2="45" y2="30" stroke="#e0e0e0" stroke-width="0.5"/>
+  </g>
+  
+  <g transform="translate(460, 385)">
+    <!-- 豆腐块3 -->
+    <rect x="0" y="0" width="60" height="40" rx="5" ry="5" fill="url(#tofuGradient)" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="15" y1="10" x2="45" y2="10" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="20" x2="45" y2="20" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="30" x2="45" y2="30" stroke="#e0e0e0" stroke-width="0.5"/>
+  </g>
+  
+  <g transform="translate(340, 410)">
+    <!-- 豆腐块4 -->
+    <rect x="0" y="0" width="60" height="40" rx="5" ry="5" fill="url(#tofuGradient)" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="15" y1="10" x2="45" y2="10" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="20" x2="45" y2="20" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="30" x2="45" y2="30" stroke="#e0e0e0" stroke-width="0.5"/>
+  </g>
+  
+  <g transform="translate(420, 400)">
+    <!-- 豆腐块5 -->
+    <rect x="0" y="0" width="60" height="40" rx="5" ry="5" fill="url(#tofuGradient)" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="15" y1="10" x2="45" y2="10" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="20" x2="45" y2="20" stroke="#e0e0e0" stroke-width="0.5"/>
+    <line x1="15" y1="30" x2="45" y2="30" stroke="#e0e0e0" stroke-width="0.5"/>
+  </g>
+  
+  <!-- 酱汁 -->
+  <ellipse cx="280" cy="390" rx="15" ry="5" fill="url(#sauceGradient)" opacity="0.7"/>
+  <ellipse cx="330" cy="370" rx="10" ry="3" fill="url(#sauceGradient)" opacity="0.7"/>
+  <ellipse cx="370" cy="420" rx="12" ry="4" fill="url(#sauceGradient)" opacity="0.7"/>
+  <ellipse cx="430" cy="380" rx="8" ry="3" fill="url(#sauceGradient)" opacity="0.7"/>
+  <ellipse cx="480" cy="410" rx="10" ry="4" fill="url(#sauceGradient)" opacity="0.7"/>
+  <ellipse cx="520" cy="390" rx="15" ry="5" fill="url(#sauceGradient)" opacity="0.7"/>
+  
+  <!-- 葱花 -->
+  <ellipse cx="290" cy="380" rx="5" ry="2" fill="#4caf50"/>
+  <ellipse cx="350" cy="390" rx="4" ry="2" fill="#4caf50"/>
+  <ellipse cx="410" cy="370" rx="6" ry="2" fill="#4caf50"/>
+  <ellipse cx="450" cy="400" rx="5" ry="2" fill="#4caf50"/>
+  <ellipse cx="500" cy="380" rx="4" ry="2" fill="#4caf50"/>
+  
+  <!-- 筷子 -->
+  <rect x="200" y="200" width="5" height="250" fill="#8b4513" transform="rotate(30, 200, 200)"/>
+  <rect x="210" y="200" width="5" height="250" fill="#8b4513" transform="rotate(35, 210, 200)"/>
+  
+  <!-- 山泉水流 -->
+  <path d="M150,200 Q200,180 250,200 Q300,220 350,200 Q400,180 450,200 Q500,220 550,200 Q600,180 650,200" 
+        fill="none" stroke="#87ceeb" stroke-width="3" stroke-opacity="0.5"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="'Microsoft YaHei'" font-size="32" text-anchor="middle" fill="#9c0c0c" font-weight="bold">泉水豆腐</text>
+  <text x="400" y="120" font-family="'Microsoft YaHei'" font-size="18" text-anchor="middle" fill="#9c0c0c">清新爽口 细腻醇香</text>
+</svg> 

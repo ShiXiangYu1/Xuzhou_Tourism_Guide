@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87ceeb" />
+      <stop offset="100%" stop-color="#e8f4ff" />
+    </linearGradient>
+    <linearGradient id="groundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d2b48c" />
+      <stop offset="100%" stop-color="#8b7355" />
+    </linearGradient>
+    <linearGradient id="stoneGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a9a9a9" />
+      <stop offset="100%" stop-color="#696969" />
+    </linearGradient>
+    <linearGradient id="platformGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b7355" />
+      <stop offset="100%" stop-color="#5c4033" />
+    </linearGradient>
+    <pattern id="stonePattern" patternUnits="userSpaceOnUse" width="30" height="20">
+      <rect width="30" height="20" fill="#a9a9a9"/>
+      <path d="M0,0 L15,10 L30,0 M0,20 L15,10 L30,20" stroke="#808080" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  
+  <!-- 天空 -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  
+  <!-- 汉代风格装饰边框 -->
+  <rect x="20" y="20" width="760" height="560" stroke="#9c0c0c" stroke-width="10" fill="none"/>
+  <rect x="30" y="30" width="740" height="540" stroke="#9c0c0c" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  
+  <!-- 远山 -->
+  <path d="M0,300 Q100,250 200,280 Q300,310 400,270 Q500,230 600,260 Q700,290 800,270 L800,600 L0,600 Z" 
+        fill="#8b7355" opacity="0.5"/>
+  
+  <!-- 地面 -->
+  <rect x="0" y="400" width="800" height="200" fill="url(#groundGradient)"/>
+  
+  <!-- 戏马台平台 -->
+  <path d="M200,400 L600,400 L550,450 L250,450 Z" fill="url(#platformGradient)"/>
+  <path d="M250,450 L550,450 L500,500 L300,500 Z" fill="url(#platformGradient)"/>
+  
+  <!-- 石块装饰 -->
+  <rect x="250" y="450" width="300" height="10" fill="url(#stonePattern)"/>
+  <rect x="300" y="500" width="200" height="10" fill="url(#stonePattern)"/>
+  
+  <!-- 台阶 -->
+  <path d="M380,400 L420,400 L420,500 L380,500 Z" fill="url(#stoneGradient)"/>
+  <line x1="380" y1="420" x2="420" y2="420" stroke="#696969" stroke-width="2"/>
+  <line x1="380" y1="440" x2="420" y2="440" stroke="#696969" stroke-width="2"/>
+  <line x1="380" y1="460" x2="420" y2="460" stroke="#696969" stroke-width="2"/>
+  <line x1="380" y1="480" x2="420" y2="480" stroke="#696969" stroke-width="2"/>
+  
+  <!-- 石柱 -->
+  <rect x="250" y="350" width="20" height="50" fill="url(#stoneGradient)"/>
+  <rect x="530" y="350" width="20" height="50" fill="url(#stoneGradient)"/>
+  
+  <!-- 残破的石柱 -->
+  <path d="M300,380 L300,400 L320,400 L320,370 Z" fill="url(#stoneGradient)"/>
+  <path d="M480,375 L480,400 L500,400 L500,385 Z" fill="url(#stoneGradient)"/>
+  
+  <!-- 汉代兵马俑残片 -->
+  <g transform="translate(350, 420) scale(0.5)">
+    <path d="M0,0 L30,0 L30,40 L0,40 Z" fill="#a9a9a9"/>
+    <path d="M10,10 L20,10 L20,30 L10,30 Z" fill="#696969"/>
+  </g>
+  
+  <g transform="translate(450, 430) scale(0.5)">
+    <path d="M0,0 L40,0 L40,20 L0,20 Z" fill="#a9a9a9"/>
+    <path d="M10,5 L30,5 L30,15 L10,15 Z" fill="#696969"/>
+  </g>
+  
+  <!-- 古代兵器残片 -->
+  <path d="M280,470 L290,470 L295,490 L275,490 Z" fill="#8b4513"/>
+  <path d="M500,480 L520,480 L515,490 L505,490 Z" fill="#8b4513"/>
+  
+  <!-- 韩信点兵旗帜 -->
+  <rect x="200" y="200" width="5" height="150" fill="#8b4513"/>
+  <path d="M205,200 L250,220 L205,240 Z" fill="#9c0c0c"/>
+  
+  <!-- 云朵 -->
+  <ellipse cx="150" cy="150" rx="50" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="200" cy="140" rx="40" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="250" cy="160" rx="45" ry="20" fill="white" opacity="0.7"/>
+  
+  <ellipse cx="550" cy="120" rx="60" ry="25" fill="white" opacity="0.7"/>
+  <ellipse cx="600" cy="130" rx="50" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="650" cy="110" rx="40" ry="20" fill="white" opacity="0.7"/>
+  
+  <!-- 太阳 -->
+  <circle cx="700" cy="100" r="40" fill="#ffd700" opacity="0.8"/>
+  <circle cx="700" cy="100" r="50" fill="#ffd700" opacity="0.3"/>
+  
+  <!-- 汉代文字装饰 -->
+  <rect x="370" y="350" width="60" height="40" fill="#a9a9a9"/>
+  <path d="M380,360 L420,360 M380,370 L420,370 M380,380 L420,380" stroke="#696969" stroke-width="2"/>
+  <path d="M390,360 L390,380 M410,360 L410,380" stroke="#696969" stroke-width="2"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="'Microsoft YaHei'" font-size="32" text-anchor="middle" fill="#9c0c0c" font-weight="bold">戏马台遗址</text>
+  <text x="400" y="120" font-family="'Microsoft YaHei'" font-size="18" text-anchor="middle" fill="#9c0c0c">汉代古迹 韩信点兵之地</text>
+</svg> 
